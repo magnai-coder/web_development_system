@@ -1,0 +1,176 @@
+@charset "utf-8";
+@import url(fonts.css);
+
+
+/* container */
+.navigationMain{display: flex; align-items: center; justify-content: center; border-left: ridge #636C6D 1px; border-right: ridge #636C6D 1px;  width: 70%;} 
+.grid-container{
+    display: grid;
+    grid-template-columns: 15% 70% 15%;
+    grid-template-rows: 95vh;
+}
+.layoutColumn {
+    overflow: hidden;
+    grid-column-start: 1;
+    height: 100%;
+    background-color: #343c3e;
+    height: 100%;
+ }
+ 
+
+ .stylesColumn {
+    grid-column-start: 3;
+    background-color: #343c3e;
+ }
+h2{
+    color: #ffffff;
+    font-size: 16px;
+    font-weight:600;
+    font-family: 'Spectral';
+}
+body{
+    object-fit: cover;
+}
+
+
+
+/* navigation */
+.head {display: flex;  justify-content: space-evenly; align-items: center; height:5vh; align-items: center; background-color: #343c3e;}
+.navigation {display: flex; justify-content:space-between; width: 100%;}
+.navButtons {display: flex; gap: 6px; align-items: center; height: 100%;}
+.button1 {font-family: 'Pretendard';  font-size: 14px; width: 77px; height: 30px; background-color: #636C6D; color: #ffffff; border-radius: 7px; margin-right: 20px;border: none;}
+.button2 {font-family: 'Pretendard';  font-size: 14px; width: 120px; height: 30px; background-color: #636C6D; color: #ffffff; border-radius: 7px; margin-right: 120px;}
+
+
+
+/*Main column*/
+#render{grid-column-start: 2; display: flex; position: relative;  width: 100%; min-height: 100%; border: 0;}
+
+
+/* Render*/
+#mainPage{display: block; justify-content: center; height: 100vh ; width: 100vw;  background-color: rgb(236, 232, 240);  border: dashed 1px; }
+
+/*Layouts*/
+
+#bodySimple{display:block;  margin: 10px; width: fit-content; text-align: center;}
+#footerSimple{display:block;  margin: 10px; width: fit-content; text-align: center;}
+#bodySimple p{font-size: 9px;}
+#footerSimple p{font-size: 9px;}
+
+/* HeaderLayouts */
+
+
+#navigationLayouts {display: flex;  justify-content: center; align-items: center; }
+#navigationLayouts :nth-child(1){display: block;}
+#headerSimpleLayoutPartParent{display:block;  margin: 10px; width: fit-content; text-align: center;}
+#headerSimpleLayoutPartParent p{font-size: 13px;}
+#header-image1{ display:block; width: 10vh; height: 2vh;background-color: rgb(255, 255, 255); cursor: grab; }
+#headerWithSearch{display:block; margin: 10px; justify-content: center;}
+#headerWithSearch p{font-size: 9px;}
+#headerSimpleLayoutPart{width: 25vh; height: 4vh; background-color: rgb(255, 255, 255); cursor: grab; background-image: url('../imgs/main/header.JPG'); background-size:cover; background-repeat: no-repeat;  }
+
+/* BodyLayout */
+#bodySimpleLayoutPart{width: 25vh; height: 9vh; background-color: rgb(255, 255, 255); cursor: grab; background-image: url('../imgs/main/body.JPG'); background-size:cover; background-repeat: no-repeat;  }
+#bodySimpleLayoutPartParent{display:block;  margin: 10px; width: fit-content; text-align: center;}
+#bodySimpleLayoutPartParent p{font-size: 13px;}
+#bodyLayouts {display: flex;  justify-content: center; align-items: center; }
+#bodyLayouts :nth-child(1){display: block;}
+
+/* Footer Layout */
+#footerSimpleLayoutPart{width: 25vh; height: 4vh; background-color: rgb(255, 255, 255); cursor: grab; background-image: url('../imgs/main/footer.JPG'); background-size:cover; background-repeat: no-repeat;  }
+#footerSimpleLayoutPartParent{display:block;  margin: 10px; width: fit-content; text-align: center;}
+#footerSimpleLayoutPartParent p{font-size: 13px;}
+#footerLayouts {display: flex;  justify-content: center; align-items: center; }
+#footerLayouts :nth-child(1){display: block;}
+
+/* First Page*/
+
+#introducePage {display: flex; justify-content: center; align-items: center; width: 100%; height: 100vh; background-color: #6A84E2;}
+#logoPart {display: flex; justify-content: center; align-items: center;  background-color: #6A84E2; text-align: center;}
+#animatedSlogan{display: flex; gap: 15px; justify-content: center;}
+#logoPart img{width: 80%; height: 100%; background-color: #6A84E2;  }
+#animatedSlogan p:nth-child(1) {color: white; font-size: 25px; transform-origin: 50% 50%; animation: jump 0.8s linear alternate infinite; animation-delay: 0s;}
+#animatedSlogan p:nth-child(2) {color: white; font-size: 25px; transform-origin: 50% 50%; animation: jump 0.8s linear alternate infinite; animation-delay: 0.4s;}
+#animatedSlogan p:nth-child(3) {color: white; font-size: 25px; transform-origin: 50% 50%; animation: jump 0.8s linear alternate infinite; animation-delay: 0.8s;}
+#linePart{display: block; justify-content: center; margin-bottom: 100px;}
+@keyframes jump{
+    0%   {transform:  translateY(0px);}
+    100%  {transform:  translateY(18px);}
+  }
+
+/*Styles*/
+
+.forms{display:inline-block; text-align: center; width: 100%; height: auto; border-bottom: none;}
+.forms select{
+    align-items: center;
+    width: 150px;
+    height: 25px;
+    font-size: 12px;
+    padding: 1px;
+    border-radius: 5px;
+    font-size: 12px;
+}
+.forms input{
+    align-items: center;
+    width: 150px;
+    height: 25px;
+    font-size: 12px;
+    padding: 1px;
+    border-radius: 5px;
+    font-size: 12px;
+    color: #343c3e;
+}
+
+.forms form{display: flex; align-items: center; width: 300px; justify-content: space-between; margin-left: 5px; padding-right: 40px; }
+label{ border-bottom: none; font-size: 12px;}
+
+
+
+/*Accordion Native hiih*/
+#accordionLeft li, 
+#accordionRight li{
+    list-style:none;
+    width:100%;
+    background-color: #343c3e;
+    border-radius: 4px;
+}
+
+#accordionLeft li label,  
+#accordionRight li label{
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 16px;
+    font-family: 'Spectral';
+    font-weight: 500;
+    cursor: pointer;
+    color: #fff;
+    border-bottom: 0.5px solid #606465;
+}
+
+#accordionLeft label + input[type="checkbox"] , 
+#accordionRight label + input[type="checkbox"]{
+    display: none;
+} 
+
+#accordionLeft .content,  
+#accordionRight .content{
+    line-height: 26px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s;
+    color: #fff;
+}
+#accordionLeft label+input[type="checkbox"]:checked + .content, 
+#accordionRight label+input[type="checkbox"]:checked + .content{
+    max-height: 300px;
+    border-bottom: 5px solid #606465;
+}
+
+/* Select hiihed*/
+.special{
+    border-style: outset;
+    border: 5px solid blue;
+}
+
