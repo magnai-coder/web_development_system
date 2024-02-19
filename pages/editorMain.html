@@ -180,23 +180,23 @@
                         buttonDelete.style.padding = "3px";
                         buttonDelete.textContent = "Зураг устгах";
                         descriptionIn.style.marginRight = "25px"
-                        buttonDelete.addEventListener('click', () => {
-                            localStorage.setItem('background-image', 'none');
-                        })
-                        localStorage.removeItem('background-image');
-                        setInterval(function () {
-                            let imageName = localStorage.getItem('background-image');
-                            imageName = imageName.substring(imageName.length - 7, imageName.length - 2);
-                            function beOrNotTobe(name) {
-                                if (name === "/none" || name === "no") {
-                                    return "Зураг байхгүй байна...";
-                                } else {
-                                    return "Зураг орсон байна...";
-                                }
-                            }
-                            let definition = beOrNotTobe(imageName)
-                            descriptionIn.textContent = definition;
-                        }, 800)
+                        // buttonDelete.addEventListener('click', () => {
+                        //     localStorage.setItem('background-image', 'none');
+                        // })
+                        // localStorage.removeItem('background-image');
+                        // setInterval(function () {
+                        //     let imageName = localStorage.getItem('background-image');
+                        //     imageName = imageName.substring(imageName.length - 7, imageName.length - 2);
+                        //     function beOrNotTobe(name) {
+                        //         if (name === "/none" || name === "no") {
+                        //             return "Зураг байхгүй байна...";
+                        //         } else {
+                        //             return "Зураг орсон байна...";
+                        //         }
+                        //     }
+                        //     let definition = beOrNotTobe(imageName)
+                        //     descriptionIn.textContent = definition;
+                        // }, 800)
                         imageDescription.appendChild(descriptionIn);
                         imageDescription.appendChild(buttonDelete);
                     </script>
