@@ -125,6 +125,7 @@ document.addEventListener('mousedown', (event) => {
             
     }
 });
+//uurchlult oruulsan
 
 //Local storage baigaa uurchlugdsun utgiig tuhain elemented nemj ogoh
 let currentFontValue = null;
