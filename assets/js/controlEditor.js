@@ -1,5 +1,4 @@
 import { Layout } from "../js/baseContainerLayouts.js";
-import {selectedFontFamily, selectedFontSize, selectedHeight, selectedWidth, selectedBorderStyle, selectedBorderRadius, selectedMargin, selectedPadding, selectedColor, selectedBackgroundColor, selectedImage} from "./controlMain.js";
 
 // Todorhoilson objectuud
 const controlEditor = {
@@ -23,8 +22,9 @@ function handleLayoutDragAndDrop(layoutElement) {
         const layout = new Layout(layoutElement.id);
         const layoutMarkup = layout.createLayout(layoutElement.id);
 
+        
         function dragStart(event) {
-            
+           
         }
         
         function dragOver(event) {
@@ -63,74 +63,73 @@ window.parent.document.addEventListener('mousedown', (event) => {
 function selectChange() {
     controlEditor.selectElementFont.addEventListener('change', () => {
         let selectedOption = controlEditor.selectElementFont.value;
-        selectedFontFamily = selectedOption;
+        localStorage.setItem('font-family', selectedOption);
     });
     controlEditor.selectElementFontSize.addEventListener('change', () => {
         let selectedOption = controlEditor.selectElementFontSize.value;
-        selectedFontSize = selectedOption;
+        localStorage.setItem('font-size', selectedOption);
     });
     controlEditor.selectElementHeight.addEventListener('input', () => {
         let selectedOption = controlEditor.selectElementHeight.value;
-        selectedHeight = selectedOption;
+        localStorage.setItem('height', selectedOption +'px');
     });
     controlEditor.selectElementWidth.addEventListener('input', () => {
         let selectedOption = controlEditor.selectElementWidth.value;
-        selectedWidth = selectedOption;
+        localStorage.setItem('width', selectedOption +'px');
 
     });
     controlEditor.selectElementBorder.addEventListener('change', () => {
         let selectedOption = controlEditor.selectElementBorder.value;
-        selectedBorderStyle = selectedOption;
+        localStorage.setItem('border-bottom-style', selectedOption);
 
     });
     controlEditor.selectElementBorderRadius.addEventListener('input', () => {
         let selectedOption = controlEditor.selectElementBorderRadius.value;
-        selectedBorderRadius = selectedOption;
+        localStorage.setItem('border-bottom-left-radius', selectedOption +'%');
 
     });
     controlEditor.selectElementMargin.addEventListener('input', () => {
         let selectedOption = controlEditor.selectElementMargin.value;
-        selectedMargin = selectedOption;
+        localStorage.setItem('margin-top', selectedOption +'px');
 
     });
     controlEditor.selectElementPadding.addEventListener('input', () => {
         let selectedOption = controlEditor.selectElementPadding.value;
-        selectedPadding = selectedOption;
+        localStorage.setItem('padding-top', selectedOption +'px');
 
     });
     controlEditor.selectElementColor.addEventListener('input', () => {
         let selectedOption = controlEditor.selectElementColor.value;
-        selectedColor = selectedOption;
+        localStorage.setItem('color', selectedOption);
     });
     controlEditor.selectElementBackgroundColor.addEventListener('input', () => {
         let selectedOption = controlEditor.selectElementBackgroundColor.value;
-        selectedBackgroundColor = selectedOption;
+        localStorage.setItem('background-color', selectedOption);
     });
     controlEditor.selectElementBackgroundImage.addEventListener('change',function() {
         const reader = new FileReader();
         reader.readAsDataURL(this.files[0]);
         reader.addEventListener("load",()=>{
-            selectedImage = reader.result;
-            // localStorage.setItem('background-image', reader.result);
-            // localStorage.setItem('imgSource', reader.result);
+            localStorage.setItem('background-image', reader.result);
+            localStorage.setItem('imgSource', reader.result);
         })  
     });
 }
  
 //LocalStorage deer baiga utgiig style zesend nemeh
-
-    let localStorageStyleFont = selectedFontFamily;
-    let localStorageStyleFontSize = selectedFontSize;
-    let localStorageStyleHeight = selectedHeight;
-    let localStorageStyleWidth = selectedWidth
-    let localStorageStyleBorder = selectedBorderStyle;
-    let localStorageStyleBorderRadius = selectedBorderRadius;
-    let localStorageStyleMargin = selectedMargin;
-    let localStorageStylePadding = selectedPadding;
-    let localStorageStyleColor = selectedColor;
-    let localStorageStyleBackgroundColor = selectedBackgroundColor;
-    let localStorageStyleBackgroundImage = selectedImage;
-    // let localStorageImg = localStorage.getItem('imgSource');
+setInterval(function(){
+    let localStorageStyleFont = localStorage.getItem('font-family');
+    let localStorageStyleFontSize = localStorage.getItem('font-size');
+    let localStorageStyleHeight = localStorage.getItem('height');
+    let localStorageStyleWidth = localStorage.getItem('width');
+    let localStorageStyleBorder = localStorage.getItem('border-bottom-style');
+    let localStorageStyleBorderRadius = localStorage.getItem('border-bottom-left-radius');
+    let localStorageStyleMargin = localStorage.getItem('margin-top');
+    let localStorageStylePadding = localStorage.getItem('padding-top');
+    let localStorageStyleColor = localStorage.getItem('color');
+    let localStorageStyleBackgroundColor = localStorage.getItem('background-color');
+    let localStorageStyleBackgroundImage = localStorage.getItem('background-image');
+    let localStorageImg = localStorage.getItem('imgSource');
 
     controlEditor.selectElementFont.value = localStorageStyleFont;
     controlEditor.selectElementFontSize.value = localStorageStyleFontSize;
@@ -144,9 +143,9 @@ function selectChange() {
     controlEditor.selectElementBackgroundColor.value = localStorageStyleBackgroundColor; 
     controlEditor.selectElementBackgroundImage.name = localStorageStyleBackgroundImage;
     controlEditor.selectElementBackgroundImage.name = localStorageImg;
-
+}, 1000);    
+    
 
 
 selectChange();
 
-export {selectedFontFamily, selectedFontSize, selectedHeight, selectedWidth, selectedBorderStyle, selectedBorderRadius, selectedMargin, selectedPadding, selectedColor, selectedBackgroundColor, selectedImage}

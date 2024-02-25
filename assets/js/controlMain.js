@@ -1,6 +1,3 @@
-import {selectedFontFamily, selectedFontSize, selectedHeight, selectedWidth, selectedBorderStyle, selectedBorderRadius, selectedMargin, selectedPadding, selectedColor, selectedBackgroundColor, selectedImage} from "./controlMain.js";
-
-
 
 //Elementuudeed select hiij utgiig local storage ruu yavuulah
 var selectElement = null;
@@ -52,80 +49,91 @@ document.addEventListener('mousedown', (event) => {
                 }
             });
 
-            var selectedFontFamily;
-            var selectedFontSize;
-            var selectedHeight;
-            var selectedWidth;
-            var selectedBorderStyle;
-            var selectedBorderRadius;
-            var selectedMargin;
-            var selectedPadding;
-            var selectedColor;
-            var selectedBackgroundColor;
-            var selectedImage;
+            localStorage.clear();
 
             let collectStyle = window.getComputedStyle(selectElement);
             for (let i = 0; i < collectStyle.length; i++) {
+                let styleName;
+                let styleValue;
                 if (collectStyle[i] === 'font-family') {
-                    selectedFontFamily = collectStyle.getPropertyValue(styleName);
+                    styleName = collectStyle[i];
+                    styleValue = collectStyle.getPropertyValue(styleName);
+                    localStorage.setItem(styleName, styleValue);
                 }
-                else if (collectStyle[i] === 'font-size') { 
-                    selectedFontSize = collectStyle.getPropertyValue(styleName);
+                else if (collectStyle[i] === 'font-size') {
+                    styleName = collectStyle[i];
+                    styleValue = collectStyle.getPropertyValue(styleName);
+                    localStorage.setItem(styleName, styleValue);
                 }
                 else if (collectStyle[i] === 'height') {
-                    selectedHeight = collectStyle.getPropertyValue(styleName);
+                    styleName = collectStyle[i];
+                    styleValue = collectStyle.getPropertyValue(styleName);
+                    localStorage.setItem(styleName, styleValue);
                 }
                 else if (collectStyle[i] === 'width') {
                     if (notSelectDiv.includes('div')){
                     }else{
-                        selectedWidth = collectStyle.getPropertyValue(styleName);
+                        styleName = collectStyle[i];
+                        styleValue = collectStyle.getPropertyValue(styleName);
+                        localStorage.setItem(styleName, styleValue);
                     }
                 }
                 else if (collectStyle[i] === 'border-bottom-style') {
-                    selectedBorderStyle = collectStyle.getPropertyValue(styleName);
+                    styleName = collectStyle[i];
+                    styleValue = collectStyle.getPropertyValue(styleName);
+                    localStorage.setItem(styleName, styleValue);
                 }
                 else if (collectStyle[i] === 'border-bottom-left-radius') {
-                    selectedBorderRadius = collectStyle.getPropertyValue(styleName);
+                    styleName = collectStyle[i];
+                    styleValue = collectStyle.getPropertyValue(styleName);
+                    localStorage.setItem(styleName, styleValue);
                 }
                 else if (collectStyle[i] === 'margin-top') {
-                    selectedMargin = collectStyle.getPropertyValue(styleName);
+                    styleName = collectStyle[i];
+                    styleValue = collectStyle.getPropertyValue(styleName);
+                    localStorage.setItem(styleName, styleValue);
                 }
                 else if (collectStyle[i] === 'padding-top') {
-                    selectedPadding = collectStyle.getPropertyValue(styleName);
+                    styleName = collectStyle[i];
+                    styleValue = collectStyle.getPropertyValue(styleName);
+                    localStorage.setItem(styleName, styleValue);
                 }
                 else if (collectStyle[i] === 'color') {
-                    let styleValue = collectStyle.getPropertyValue(styleName);
+                    styleName = collectStyle[i];
+                    styleValue = collectStyle.getPropertyValue(styleName);
                     let clearRGB = styleValue.substring(4, styleValue.length - 1)
                     let rgbArray = clearRGB.split(',');
                     let hexArray = rgbArray.map(function (value) {
                         let hex = parseInt(value).toString(16);
                         return hex.length == 1 ? "0" + hex : hex;
                     });
-                    selectedColor = '#' + hexArray.join('').toUpperCase();
+                    localStorage.setItem(styleName, '#' + hexArray.join('').toUpperCase());
                 }
                 else if (collectStyle[i] === 'background-color') {
-                    let styleValue = collectStyle.getPropertyValue(styleName);
+                    styleName = collectStyle[i];
+                    styleValue = collectStyle.getPropertyValue(styleName);
                     let clearRGB = styleValue.substring(4, styleValue.length - 1)
                     let rgbArray = clearRGB.split(',');
                     let hexArray = rgbArray.map(function (value) {
                         let hex = parseInt(value).toString(16);
                         return hex.length == 1 ? "0" + hex : hex;
                     });
-                    selectedBackgroundColor = '#' + hexArray.join('').toUpperCase();
+                    localStorage.setItem(styleName, '#' + hexArray.join('').toUpperCase());
                 }
                 if (notSelectDiv.includes('img')){
-                    selectedImage = selectElement.src;
+                   localStorage.setItem('imgSource', selectElement.src);
                     }
                 else{
                     if(collectStyle[i] === 'background-image'){
-                        selectedImage = collectStyle.getPropertyValue(styleName);
+                        styleName = collectStyle[i];
+                        styleValue = collectStyle.getPropertyValue(styleName);
+                        localStorage.setItem(styleName, styleValue);
                     }
                 }
             }
             
     }
 });
-//uurchlult oruulsan
 
 //Local storage baigaa uurchlugdsun utgiig tuhain elemented nemj ogoh
 let currentFontValue = null;
@@ -140,19 +148,19 @@ let currentColor = null;
 let currentBackgroundColor = null;
 let currentBackgroundImage = null;
 let currentImgSource = null;
-
-    let localValueFont = selectedFontFamily;
-    let localValueFontSize = selectedFontSize;
-    let localValueHeight = selectedHeight;
-    let localValueWidth = selectedWidth;
-    let localValueBorder = selectedBorderStyle
-    let localValueBorderRadius = selectedBorderRadius
-    let localValueMargin = selectedMargin
-    let localValuePadding = selectedPadding
-    let localValueColor = selectedColor
-    let localValueBackgroundColor = selectedBackgroundColor
-    let localValueBackgroundImage = selectedImage
- 
+setInterval(function () {
+    let localValueFont = localStorage.getItem('font-family')
+    let localValueFontSize = localStorage.getItem('font-size')
+    let localValueHeight = localStorage.getItem('height')
+    let localValueWidth = localStorage.getItem('width')
+    let localValueBorder = localStorage.getItem('border-bottom-style')
+    let localValueBorderRadius = localStorage.getItem('border-bottom-left-radius')
+    let localValueMargin = localStorage.getItem('margin-top')
+    let localValuePadding = localStorage.getItem('padding-top')
+    let localValueColor = localStorage.getItem('color')
+    let localValueBackgroundColor = localStorage.getItem('background-color')
+    let localValueBackgroundImage = localStorage.getItem('background-image')
+    let localValueImgSource = localStorage.getItem('imgSource')
     if (currentFontValue !== localValueFont) {
         currentFontValue = localValueFont;
         selectElement.style.fontFamily = localValueFont;
@@ -204,8 +212,9 @@ let currentImgSource = null;
         currentImgSource = localValueImgSource;
         selectElement.src= localValueImgSource;
     }
+}, 2000);
 
 
 //Bairshil uurchluh function
 
-export {selectedFontFamily, selectedFontSize, selectedHeight, selectedWidth, selectedBorderStyle, selectedBorderRadius, selectedMargin, selectedPadding, selectedColor, selectedBackgroundColor, selectedImage}
+
