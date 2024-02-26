@@ -14,10 +14,11 @@ const selectElementBackgroundColorMenu = window.parent.document.getElementById('
 const selectElementBackgroundImageMenu = window.parent.document.getElementById('backgroundImage')
 
 
+
 //uurchlult oruulsan
 var selectedFontFamily;
 var selectedFontSize;
-var selectedHeight = 0;
+var selectedHeight;
 var selectedWidth;
 var selectedBorderStyle;
 var selectedBorderRadius;
@@ -125,31 +126,31 @@ headerMark.onload = function () {
             let collectStyle = window.getComputedStyle(selectElement);
             for (let i = 0; i < collectStyle.length; i++) {
                 if (collectStyle[i] === 'font-family') {
-                    selectedFontFamily = collectStyle.getPropertyValue('font-family');
+                    window.selectedFontFamily = collectStyle.getPropertyValue('font-family');
                 }
                 else if (collectStyle[i] === 'font-size') {
-                    selectedFontSize = collectStyle.getPropertyValue('font-size');
+                    window.selectedFontSize = collectStyle.getPropertyValue('font-size');
                 }
                 else if (collectStyle[i] === 'height') {
-                    selectedHeight = collectStyle.getPropertyValue('height');
+                    window.selectedHeight = collectStyle.getPropertyValue('height');
                 }
                 else if (collectStyle[i] === 'width') {
                     if (notSelectDiv.includes('div')) {
                     } else {
-                        selectedWidth = collectStyle.getPropertyValue('width');
+                        window.selectedWidth = collectStyle.getPropertyValue('width');
                     }
                 }
                 else if (collectStyle[i] === 'border-bottom-style') {
-                    selectedBorderStyle = collectStyle.getPropertyValue('border-bottom-style');
+                    window.selectedBorderStyle = collectStyle.getPropertyValue('border-bottom-style');
                 }
                 else if (collectStyle[i] === 'border-bottom-left-radius') {
-                    selectedBorderRadius = collectStyle.getPropertyValue('border-bottom-left-radius');
+                    window.selectedBorderRadius = collectStyle.getPropertyValue('border-bottom-left-radius');
                 }
                 else if (collectStyle[i] === 'margin-top') {
-                    selectedMargin = collectStyle.getPropertyValue('margin-top');
+                    window.selectedMargin = collectStyle.getPropertyValue('margin-top');
                 }
                 else if (collectStyle[i] === 'padding-top') {
-                    selectedPadding = collectStyle.getPropertyValue('padding-top');
+                    window.selectedPadding = collectStyle.getPropertyValue('padding-top');
                 }
                 else if (collectStyle[i] === 'color') {
                     let styleValue = collectStyle.getPropertyValue('color');
@@ -159,7 +160,7 @@ headerMark.onload = function () {
                         let hex = parseInt(value).toString(16);
                         return hex.length == 1 ? "0" + hex : hex;
                     });
-                    selectedColor = '#' + hexArray.join('').toUpperCase();
+                    window.selectedColor = '#' + hexArray.join('').toUpperCase();
                 }
                 else if (collectStyle[i] === 'background-color') {
                     let styleValue = collectStyle.getPropertyValue('background-color');
@@ -169,21 +170,21 @@ headerMark.onload = function () {
                         let hex = parseInt(value).toString(16);
                         return hex.length == 1 ? "0" + hex : hex;
                     });
-                    selectedBackgroundColor = '#' + hexArray.join('').toUpperCase();
+                    window.selectedBackgroundColor = '#' + hexArray.join('').toUpperCase();
                 }
                 if (notSelectDiv.includes('img')) {
-                    selectedImage = selectElement.src;
+                    window.selectedImage = selectElement.src;
                 }
                 else {
                     if (collectStyle[i] === 'background-image') {
-                        selectedImage = collectStyle.getPropertyValue('background-image');
+                        window.selectedImage = collectStyle.getPropertyValue('background-image');
                     }
                 }
             }
 
         }
     });
-   
+
     // Object.defineProperty(window, 'selectedHeight', {
     //     get: function () {
     //         return selectedHeight;
@@ -191,163 +192,196 @@ headerMark.onload = function () {
     //     set: function (value) {
     //         if (value !== selectedHeight) {
     //             selectedHeight = value;
-    //             localStorageStyleHeight = selectedHeight; // Update localStorageStyleHeight
+    //             localStorageStyleHeight = selectedHeight; 
     //         }
     //     }
     // });
 
 
-    selectElementFontMenu.value = selectedFontFamily;
-    selectElementFontSizeMenu.value = selectedFontSize;
-    setInterval(() => {
-           console.log(selectedHeight);
-       }, 500);
-    selectElementHeightMenu.value = Math.floor(selectedHeight.substring(0, selectedHeight.length - 2));
-    selectElementWidthMenu.value = Math.floor(selectedWidth.substring(0, selectedWidth.length - 2));
-    selectElementBorderMenu.value = selectedBorderStyle;
-    selectElementBorderRadiusMenu.value = Math.floor(selectedBorderRadius.substring(0, selectedBorderRadius.length - 1));
-    selectElementMarginMenu.value = Math.floor(selectedMargin.substring(0, selectedMargin.length - 2));
-    selectElementPaddingMenu.value = Math.floor(selectedPadding.substring(0, selectedPadding.length - 2));
-    selectElementColorMenu.value = selectedColor;
-    selectElementBackgroundColorMenu.value = selectedBackgroundColor;
-    selectElementBackgroundImageMenu.name = selectedImage;
+    Object.defineProperty(window, 'selectedFontFamily', {
+        get: function () {
+            return selectedFontFamily;
+        },
+        set: function (value) {
+            if (value !== selectedFontFamily) {
+                selectedFontFamily = value;
+                selectElementFontMenu.value = selectedFontFamily;
+            }
+        }
+    });
+     Object.defineProperty(window, 'selectedFontSize', {
+        get: function () {
+            return selectedFontSize;
+        },
+        set: function (value) {
+            if (value !== selectedFontSize) {
+                selectedFontSize = value;
+                selectElementFontSizeMenu.value = selectedFontSize;
+            }
+        }
+    }); 
+    Object.defineProperty(window, 'selectedHeight', {
+        get: function () {
+            return selectedHeight;
+        },
+        set: function (value) {
+            if (value !== selectedHeight) {
+                selectedHeight = value;
+                selectElementHeightMenu.value = Math.floor(selectedHeight.substring(0, selectedHeight.length - 2));
+            }
+        }
+    });
+    Object.defineProperty(window, 'selectedWidth', {
+        get: function () {
+            return selectedWidth;
+        },
+        set: function (value) {
+            if (value !== selectedWidth) {
+                selectedWidth = value;
+                selectElementWidthMenu.value = Math.floor(selectedWidth.substring(0, selectedWidth.length - 2));
+            }
+        }
+    });
+    Object.defineProperty(window, 'selectedBorderStyle', {
+        get: function () {
+            return selectedBorderStyle;
+        },
+        set: function (value) {
+            if (value !== selectedBorderStyle) {
+                selectedBorderStyle = value;
+                selectElementBorderMenu.value = selectedBorderStyle;
+            }
+        }
+    });
+    Object.defineProperty(window, 'selectedBorderRadius', {
+        get: function () {
+            return selectedBorderRadius;
+        },
+        set: function (value) {
+            if (value !== selectedBorderRadius) {
+                selectedBorderRadius = value;
+                selectElementBorderRadiusMenu.value = Math.floor(selectedBorderRadius.substring(0, selectedBorderRadius.length - 1));
+            }
+        }
+    });
+    Object.defineProperty(window, 'selectedMargin', {
+        get: function () {
+            return selectedMargin;
+        },
+        set: function (value) {
+            if (value !== selectedMargin) {
+                selectedMargin = value;
+                selectElementMarginMenu.value = Math.floor(selectedMargin.substring(0, selectedMargin.length - 2));
+            }
+        }
+    });
+    Object.defineProperty(window, 'selectedPadding', {
+        get: function () {
+            return selectedPadding;
+        },
+        set: function (value) {
+            if (value !== selectedPadding) {
+                selectedPadding = value;
+                selectElementPaddingMenu.value = Math.floor(selectedPadding.substring(0, selectedPadding.length - 2));
+            }
+        }
+    });
+    Object.defineProperty(window, 'selectedColor', {
+        get: function () {
+            return selectedColor;
+        },
+        set: function (value) {
+            if (value !== selectedColor) {
+                selectedColor = value;
+                selectElementColorMenu.value = selectedColor;
+            }
+        }
+    });
+    Object.defineProperty(window, 'selectedBackgroundColor', {
+        get: function () {
+            return selectedBackgroundColor;
+        },
+        set: function (value) {
+            if (value !== selectedBackgroundColor) {
+                selectedBackgroundColor = value;
+                selectElementBackgroundColorMenu.value = selectedBackgroundColor;
+            }
+        }
+    });
+    Object.defineProperty(window, 'selectedImage', {
+        get: function () {
+            return selectedImage;
+        },
+        set: function (value) {
+            if (value !== selectedImage) {
+                selectedImage = value;
+                selectElementBackgroundImageMenu.name = selectedImage;
+            }
+        }
+    });
+    
+   
+    
+    
+   
     // selectElementBackgroundImage.name = localStorageImg;
     //Zagvar tsesnees orj irj bui utga
 
-
+   
     selectElementFontMenu.addEventListener('change', () => {
-        let selectedOption = selectElementFontMenu.value;
-        window.selectedFontFamily = selectedOption;
+        selectElement.style.fontFamily = selectElementFontMenu.value.trim();
+   
     });
     selectElementFontSizeMenu.addEventListener('change', () => {
-        let selectedOption = selectElementFontSizeMenu.value;
-        window.selectedFontSize = selectedOption;
+        selectElement.style.fontSize = selectElementFontSizeMenu.value.trim();
+       
 
     });
-    selectElementHeightMenu.addEventListener('input', () => {
-        let selectedOption = selectElementHeightMenu.value;
-        window.selectedHeight = selectedOption;
+    selectElementHeightMenu.addEventListener('change', (event) => {
+            selectElement.style.height = selectElementHeightMenu.value.trim()+"px";
     });
-    selectElementWidthMenu.addEventListener('input', () => {
-        let selectedOption = selectElementWidthMenu.value;
-        window.selectedWidth = selectedOption;
-
+    selectElementWidthMenu.addEventListener('change', () => {
+        selectElement.style.width = selectElementWidthMenu.value.trim()+"px";
+  
     });
     selectElementBorderMenu.addEventListener('change', () => {
-        let selectedOption = selectElementBorderMenu.value;
-        window.selectedBorderStyle = selectedOption;
+        selectElement.style.border = selectElementBorderMenu.value.trim();
+         
 
     });
-    selectElementBorderRadiusMenu.addEventListener('input', () => {
-        let selectedOption = selectElementBorderRadiusMenu.value;
-        window.selectedBorderRadius = selectedOption;
+    selectElementBorderRadiusMenu.addEventListener('change', () => {
+        selectElement.style.borderRadius  = selectElementBorderRadiusMenu.value.trim()+"%";
+       
 
     });
-    selectElementMarginMenu.addEventListener('input', () => {
-        let selectedOption = selectElementMarginMenu.value;
-        window.selectedMargin = selectedOption;
+    selectElementMarginMenu.addEventListener('change', () => {
+        selectElement.style.margin = selectElementMarginMenu.value.trim()+"px";
+   
 
     });
     selectElementPaddingMenu.addEventListener('input', () => {
-        let selectedOption = selectElementPaddingMenu.value;
-        window.selectedPadding = selectedOption;
+        selectElement.style.padding  = selectElementPaddingMenu.value.trim()+"px";
 
     });
     selectElementColorMenu.addEventListener('input', () => {
-        let selectedOption = selectElementColorMenu.value;
-        window.selectedColor = selectedOption;
+        selectElement.style.color = selectElementColorMenu.value.trim();
+    
     });
     selectElementBackgroundColorMenu.addEventListener('input', () => {
-        let selectedOption = selectElementBackgroundColorMenu.value;
-        window.selectedBackgroundColor = selectedOption;
+        selectElement.style.backgroundColor = selectElementBackgroundColorMenu.value.trim();
+   
     });
     selectElementBackgroundImageMenu.addEventListener('change', function () {
         const reader = new FileReader();
         reader.readAsDataURL(this.files[0]);
         reader.addEventListener("load", () => {
-            window.selectedImage = reader.result;
+            selectElement.style.backgroundImage = reader.result;
             // localStorage.setItem('background-image', reader.result);
             // localStorage.setItem('imgSource', reader.result);
         })
     });
 
 
-    //Local storage baigaa uurchlugdsun utgiig tuhain elemented nemj ogoh
-    let currentFontValue = null;
-    let currentFontSizeValue = null;
-    let currentHeight = null;
-    let currentWidth = null;
-    let currentBorder = null;
-    let currentBorderRadius = null;
-    let currentMargin = null;
-    let currentPadding = null;
-    let currentColor = null;
-    let currentBackgroundColor = null;
-    let currentBackgroundImage = null;
-    let currentImgSource = null;
-
-    let localValueFont = selectedFontFamily;
-    let localValueFontSize = selectedFontSize;
-    let localValueHeight = selectedHeight;
-    let localValueWidth = selectedWidth;
-    let localValueBorder = selectedBorderStyle
-    let localValueBorderRadius = selectedBorderRadius
-    let localValueMargin = selectedMargin
-    let localValuePadding = selectedPadding
-    let localValueColor = selectedColor
-    let localValueBackgroundColor = selectedBackgroundColor
-    let localValueBackgroundImage = selectedImage
-
-    if (currentFontValue !== localValueFont) {
-        currentFontValue = localValueFont;
-        selectElement.style.fontFamily = localValueFont;
-    }
-    if (currentFontSizeValue !== localValueFontSize) {
-        currentFontSizeValue = localValueFontSize;
-        selectElement.style.fontSize = localValueFontSize;
-    }
-    if (currentHeight !== localValueHeight) {
-        currentHeight = localValueHeight;
-        selectElement.style.height = localValueHeight;
-    }
-    if (currentWidth !== localValueWidth) {
-        if (notSelectDiv.includes('div')) {
-        } else {
-            currentWidth = localValueWidth;
-            selectElement.style.width = localValueWidth;
-        }
-    }
-    if (currentBorder !== localValueBorder) {
-        currentBorder = localValueBorder;
-        selectElement.style.border = localValueBorder;
-    }
-    if (currentBorderRadius !== localValueBorderRadius) {
-        currentBorderRadius = localValueBorderRadius;
-        selectElement.style.borderRadius = localValueBorderRadius;
-    }
-    if (currentMargin !== localValueMargin) {
-        currentMargin = localValueMargin;
-        selectElement.style.margin = localValueMargin;
-    }
-    if (currentPadding !== localValuePadding) {
-        currentPadding = localValuePadding;
-        selectElement.style.padding = localValuePadding;
-    }
-    if (currentColor !== localValueColor) {
-        currentColor = localValueColor;
-        selectElement.style.color = localValueColor;
-    }
-    if (currentBackgroundColor !== localValueBackgroundColor) {
-        currentBackgroundColor = localValueBackgroundColor;
-        selectElement.style.backgroundColor = localValueBackgroundColor;
-    }
-    if (currentBackgroundImage !== localValueBackgroundImage) {
-        currentBackgroundImage = localValueBackgroundImage;
-        selectElement.style.backgroundImage = `url(${localValueBackgroundImage})`;
-    }
-    if (currentImgSource !== localValueImgSource) {
-        currentImgSource = localValueImgSource;
-        selectElement.src = localValueImgSource;
-    }
+   
 
 };
