@@ -1,85 +1,82 @@
 import { Layout } from "../js/baseContainerLayouts.js";
 
-const headerMark = window.parent.document.getElementById('render');
-// Todorhoilson objectuud
-const controlEditor = {
-    
-    selectElementFont: window.parent.document.getElementById('font'),
-    selectElementFontSize: window.parent.document.getElementById('font-size'),
-    selectElementHeight: window.parent.document.getElementById('height'),
-    selectElementWidth: window.parent.document.getElementById('width'),
-    selectElementBorder: window.parent.document.getElementById('border'),
-    selectElementBorderRadius: window.parent.document.getElementById('border-radius'),
-    selectElementMargin: window.parent.document.getElementById('margin'),
-    selectElementPadding: window.parent.document.getElementById('padding'),
-    selectElementColor: window.parent.document.getElementById('color'),
-    selectElementBackgroundColor: window.parent.document.getElementById('backgroundColor'),
-    selectElementBackgroundImage: window.parent.document.getElementById('backgroundImage'),
-}
+const headerMark = window.parent.document.getElementById('render')
+const selectElementFontMenu = window.parent.document.getElementById('font')
+const selectElementFontSizeMenu = window.parent.document.getElementById('font-size')
+const selectElementHeightMenu = window.parent.document.getElementById('height')
+const selectElementWidthMenu = window.parent.document.getElementById('width')
+const selectElementBorderMenu = window.parent.document.getElementById('border')
+const selectElementBorderRadiusMenu = window.parent.document.getElementById('border-radius')
+const selectElementMarginMenu = window.parent.document.getElementById('margin')
+const selectElementPaddingMenu = window.parent.document.getElementById('padding')
+const selectElementColorMenu = window.parent.document.getElementById('color')
+const selectElementBackgroundColorMenu = window.parent.document.getElementById('backgroundColor')
+const selectElementBackgroundImageMenu = window.parent.document.getElementById('backgroundImage')
+
+
+//uurchlult oruulsan
+var selectedFontFamily;
+var selectedFontSize;
+var selectedHeight = 0;
+var selectedWidth;
+var selectedBorderStyle;
+var selectedBorderRadius;
+var selectedMargin;
+var selectedPadding;
+var selectedColor;
+var selectedBackgroundColor;
+var selectedImage;
+
 
 headerMark.onload = function () {
 
- //uurchlult oruulsan
- var selectedFontFamily;
- var selectedFontSize;
- var selectedHeight = null;
- var selectedWidth;
- var selectedBorderStyle;
- var selectedBorderRadius;
- var selectedMargin ;
- var selectedPadding ;
- var selectedColor ;
- var selectedBackgroundColor;
- var selectedImage ;
 
 
 
-
-
-    var frameContent=null;
+    var frameContent = null;
     frameContent = headerMark.contentWindow.document.getElementById("mainPage");
-   
-// dragAndDrop undsen code
-function handleLayoutDragAndDrop(layoutElement) {
-    try {
-        const layout = new Layout();
-        const layoutMarkup = layout.createLayout(layoutElement.id);
 
-        function dragStart(event) {
+    // dragAndDrop undsen code
+    function handleLayoutDragAndDrop(layoutElement) {
+        try {
+            const layout = new Layout();
+            const layoutMarkup = layout.createLayout(layoutElement.id);
 
+            function dragStart(event) {
+
+            }
+            function dragOver(event) {
+                event.preventDefault();
+            }
+
+            function drop(event) {
+                event.preventDefault();
+                frameContent.appendChild(layoutMarkup);
+            }
+
+            window.parent.document.getElementById(layoutElement.id).addEventListener("dragstart", dragStart);
+            frameContent.addEventListener("dragover", dragOver);
+            frameContent.addEventListener("drop", drop);
+        } catch (error) {
+            console.error(error);
         }
-        function dragOver(event) {
-            event.preventDefault();
-        }
-
-        function drop(event) {
-            event.preventDefault();
-            frameContent.appendChild(layoutMarkup);
-        }
-
-        window.parent.document.getElementById(layoutElement.id).addEventListener("dragstart", dragStart);
-        frameContent.addEventListener("dragover", dragOver);
-        frameContent.addEventListener("drop", drop);
-    } catch (error) {
-        console.error(error);
     }
-}
 
-window.parent.document.addEventListener('mousedown', (event) => {
-    const clickedElement = event.target;
-    const elementId = clickedElement.id;
-    if (elementId.includes("LayoutPart")) {
-        handleLayoutDragAndDrop(clickedElement);
-    }
-});
+    window.parent.document.addEventListener('mousedown', (event) => {
+        const clickedElement = event.target;
+        const elementId = clickedElement.id;
+        if (elementId.includes("LayoutPart")) {
+            handleLayoutDragAndDrop(clickedElement);
+        }
+    });
 
-//Elementuudeed select hiih uyed elementiig uurtuu hadgalah huvisagch
-var selectElement = null;
+    //Elementuudeed select hiih uyed elementiig uurtuu hadgalah huvisagch
+    var selectElement = null;
 
-//herev element deer darval tuhain elementiig avna
-headerMark.contentWindow.document.addEventListener('mousedown', (event) => {
-    selectElement = event.target;
-    const selectableElements = headerMark.contentWindow.document.querySelectorAll('.selectable')
+    //herev element deer darval tuhain elementiig avna
+    headerMark.contentWindow.document.addEventListener('mousedown', (event) => {
+        selectElement = event.target;
+        const selectableElements = headerMark.contentWindow.document.querySelectorAll('.selectable')
 
         //Songoson elementees busdiig todruulahiig zogsooh
         selectableElements.forEach(element => {
@@ -135,7 +132,6 @@ headerMark.contentWindow.document.addEventListener('mousedown', (event) => {
                 }
                 else if (collectStyle[i] === 'height') {
                     selectedHeight = collectStyle.getPropertyValue('height');
-                    console.log(selectedHeight);
                 }
                 else if (collectStyle[i] === 'width') {
                     if (notSelectDiv.includes('div')) {
@@ -187,93 +183,95 @@ headerMark.contentWindow.document.addEventListener('mousedown', (event) => {
 
         }
     });
-
-
    
-    //LocalStorage deer baiga utgiig style zesend nemeh
+    // Object.defineProperty(window, 'selectedHeight', {
+    //     get: function () {
+    //         return selectedHeight;
+    //     },
+    //     set: function (value) {
+    //         if (value !== selectedHeight) {
+    //             selectedHeight = value;
+    //             localStorageStyleHeight = selectedHeight; // Update localStorageStyleHeight
+    //         }
+    //     }
+    // });
 
-    
-    controlEditor.selectElementFont.addEventListener('change', () => {
-        let selectedOption = controlEditor.selectElementFont.value;
-        selectedFontFamily = selectedOption;
+
+    selectElementFontMenu.value = selectedFontFamily;
+    selectElementFontSizeMenu.value = selectedFontSize;
+    setInterval(() => {
+           console.log(selectedHeight);
+       }, 500);
+    selectElementHeightMenu.value = Math.floor(selectedHeight.substring(0, selectedHeight.length - 2));
+    selectElementWidthMenu.value = Math.floor(selectedWidth.substring(0, selectedWidth.length - 2));
+    selectElementBorderMenu.value = selectedBorderStyle;
+    selectElementBorderRadiusMenu.value = Math.floor(selectedBorderRadius.substring(0, selectedBorderRadius.length - 1));
+    selectElementMarginMenu.value = Math.floor(selectedMargin.substring(0, selectedMargin.length - 2));
+    selectElementPaddingMenu.value = Math.floor(selectedPadding.substring(0, selectedPadding.length - 2));
+    selectElementColorMenu.value = selectedColor;
+    selectElementBackgroundColorMenu.value = selectedBackgroundColor;
+    selectElementBackgroundImageMenu.name = selectedImage;
+    // selectElementBackgroundImage.name = localStorageImg;
+    //Zagvar tsesnees orj irj bui utga
+
+
+    selectElementFontMenu.addEventListener('change', () => {
+        let selectedOption = selectElementFontMenu.value;
+        window.selectedFontFamily = selectedOption;
     });
-    controlEditor.selectElementFontSize.addEventListener('change', () => {
-        let selectedOption = controlEditor.selectElementFontSize.value;
-        selectedFontSize = selectedOption;
-    });
-    controlEditor.selectElementHeight.addEventListener('input', () => {
-        let selectedOption = controlEditor.selectElementHeight.value;
-        selectedHeight = selectedOption;
-    });
-    controlEditor.selectElementWidth.addEventListener('input', () => {
-        let selectedOption = controlEditor.selectElementWidth.value;
-        selectedWidth = selectedOption;
-        
-    });
-    controlEditor.selectElementBorder.addEventListener('change', () => {
-        let selectedOption = controlEditor.selectElementBorder.value;
-        selectedBorderStyle = selectedOption;
+    selectElementFontSizeMenu.addEventListener('change', () => {
+        let selectedOption = selectElementFontSizeMenu.value;
+        window.selectedFontSize = selectedOption;
 
     });
-    controlEditor.selectElementBorderRadius.addEventListener('input', () => {
-        let selectedOption = controlEditor.selectElementBorderRadius.value;
-        selectedBorderRadius = selectedOption;
-        
+    selectElementHeightMenu.addEventListener('input', () => {
+        let selectedOption = selectElementHeightMenu.value;
+        window.selectedHeight = selectedOption;
     });
-    controlEditor.selectElementMargin.addEventListener('input', () => {
-        let selectedOption = controlEditor.selectElementMargin.value;
-        selectedMargin = selectedOption;
-        
+    selectElementWidthMenu.addEventListener('input', () => {
+        let selectedOption = selectElementWidthMenu.value;
+        window.selectedWidth = selectedOption;
+
     });
-    controlEditor.selectElementPadding.addEventListener('input', () => {
-        let selectedOption = controlEditor.selectElementPadding.value;
-        selectedPadding = selectedOption;
-        
+    selectElementBorderMenu.addEventListener('change', () => {
+        let selectedOption = selectElementBorderMenu.value;
+        window.selectedBorderStyle = selectedOption;
+
     });
-    controlEditor.selectElementColor.addEventListener('input', () => {
-        let selectedOption = controlEditor.selectElementColor.value;
-        selectedColor = selectedOption;
+    selectElementBorderRadiusMenu.addEventListener('input', () => {
+        let selectedOption = selectElementBorderRadiusMenu.value;
+        window.selectedBorderRadius = selectedOption;
+
     });
-    controlEditor.selectElementBackgroundColor.addEventListener('input', () => {
-        let selectedOption = controlEditor.selectElementBackgroundColor.value;
-        selectedBackgroundColor = selectedOption;
+    selectElementMarginMenu.addEventListener('input', () => {
+        let selectedOption = selectElementMarginMenu.value;
+        window.selectedMargin = selectedOption;
+
     });
-    controlEditor.selectElementBackgroundImage.addEventListener('change', function () {
+    selectElementPaddingMenu.addEventListener('input', () => {
+        let selectedOption = selectElementPaddingMenu.value;
+        window.selectedPadding = selectedOption;
+
+    });
+    selectElementColorMenu.addEventListener('input', () => {
+        let selectedOption = selectElementColorMenu.value;
+        window.selectedColor = selectedOption;
+    });
+    selectElementBackgroundColorMenu.addEventListener('input', () => {
+        let selectedOption = selectElementBackgroundColorMenu.value;
+        window.selectedBackgroundColor = selectedOption;
+    });
+    selectElementBackgroundImageMenu.addEventListener('change', function () {
         const reader = new FileReader();
         reader.readAsDataURL(this.files[0]);
         reader.addEventListener("load", () => {
-            selectedImage = reader.result;
+            window.selectedImage = reader.result;
             // localStorage.setItem('background-image', reader.result);
             // localStorage.setItem('imgSource', reader.result);
         })
     });
-    let localStorageStyleFont = selectedFontFamily;
-    let localStorageStyleFontSize = selectedFontSize;
-    let localStorageStyleHeight = selectedHeight;
-    let localStorageStyleWidth = selectedWidth
-    let localStorageStyleBorder = selectedBorderStyle;
-    let localStorageStyleBorderRadius = selectedBorderRadius;
-    let localStorageStyleMargin = selectedMargin;
-    let localStorageStylePadding = selectedPadding;
-    let localStorageStyleColor = selectedColor;
-    let localStorageStyleBackgroundColor = selectedBackgroundColor;
-    let localStorageStyleBackgroundImage = selectedImage;
-    //Style dahi utga uurchlugdsuniig localstorage ruu hadgalah
-    // let localStorageImg = localStorage.getItem('imgSource');
-    
-    controlEditor.selectElementFont.value = localStorageStyleFont;
-    controlEditor.selectElementFontSize.value = localStorageStyleFontSize;
-    controlEditor.selectElementHeight.value = Math.floor(localStorageStyleHeight.substring(0, localStorageStyleHeight.length - 2));
-    controlEditor.selectElementWidth.value = Math.floor(localStorageStyleWidth.substring(0, localStorageStyleWidth.length - 2));
-    controlEditor.selectElementBorder.value = localStorageStyleBorder;
-    controlEditor.selectElementBorderRadius.value = Math.floor(localStorageStyleBorderRadius.substring(0, localStorageStyleBorderRadius.length - 1));
-    controlEditor.selectElementMargin.value = Math.floor(localStorageStyleMargin.substring(0, localStorageStyleMargin.length - 2));
-    controlEditor.selectElementPadding.value = Math.floor(localStorageStylePadding.substring(0, localStorageStylePadding.length - 2));
-    controlEditor.selectElementColor.value = localStorageStyleColor;
-    controlEditor.selectElementBackgroundColor.value = localStorageStyleBackgroundColor;
-    controlEditor.selectElementBackgroundImage.name = localStorageStyleBackgroundImage;
-    // controlEditor.selectElementBackgroundImage.name = localStorageImg;
-    
+
+
     //Local storage baigaa uurchlugdsun utgiig tuhain elemented nemj ogoh
     let currentFontValue = null;
     let currentFontSizeValue = null;
