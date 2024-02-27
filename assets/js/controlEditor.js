@@ -28,8 +28,8 @@ var selectedColor;
 var selectedBackgroundColor;
 var selectedImage;
 
- //Download blob object 
- 
+//Download blob object 
+
 headerMark.onload = function () {
 
 
@@ -186,7 +186,7 @@ headerMark.onload = function () {
         }
     });
 
-  //Select hiigdsen styluudiig menu hesgiin oroltiin heseg shiljuulen haruulah
+    //Select hiigdsen styluudiig menu hesgiin oroltiin heseg shiljuulen haruulah
     Object.defineProperty(window, 'selectedFontFamily', {
         get: function () {
             return selectedFontFamily;
@@ -198,7 +198,7 @@ headerMark.onload = function () {
             }
         }
     });
-     Object.defineProperty(window, 'selectedFontSize', {
+    Object.defineProperty(window, 'selectedFontSize', {
         get: function () {
             return selectedFontSize;
         },
@@ -208,7 +208,7 @@ headerMark.onload = function () {
                 selectElementFontSizeMenu.value = selectedFontSize;
             }
         }
-    }); 
+    });
     Object.defineProperty(window, 'selectedHeight', {
         get: function () {
             return selectedHeight;
@@ -308,59 +308,94 @@ headerMark.onload = function () {
             }
         }
     });
-    
-  
-   //Menu hesegt utguudiin uurchlultuud orohod undsen huudas deer obectod uurchlultiig oruulj uguh uuregute
+
+
+    //Menu hesegt utguudiin uurchlultuud orohod undsen huudas deer obectod uurchlultiig oruulj uguh uuregute
     selectElementFontMenu.addEventListener('change', () => {
         selectElement.style.fontFamily = selectElementFontMenu.value.trim();
-   
+
     });
     selectElementFontSizeMenu.addEventListener('change', () => {
         selectElement.style.fontSize = selectElementFontSizeMenu.value.trim();
     });
     selectElementHeightMenu.addEventListener('change', (event) => {
-            selectElement.style.height = selectElementHeightMenu.value.trim()+"px";
+        selectElement.style.height = selectElementHeightMenu.value.trim() + "px";
     });
     selectElementWidthMenu.addEventListener('change', () => {
-        selectElement.style.width = selectElementWidthMenu.value.trim()+"px";
-  
+        selectElement.style.width = selectElementWidthMenu.value.trim() + "px";
+
     });
     selectElementBorderMenu.addEventListener('change', () => {
         selectElement.style.border = selectElementBorderMenu.value.trim();
     });
     selectElementBorderRadiusMenu.addEventListener('change', () => {
-        selectElement.style.borderRadius  = selectElementBorderRadiusMenu.value.trim()+"%";
-       
+        selectElement.style.borderRadius = selectElementBorderRadiusMenu.value.trim() + "%";
+
 
     });
     selectElementMarginMenu.addEventListener('change', () => {
-        selectElement.style.margin = selectElementMarginMenu.value.trim()+"px";
-   
+        selectElement.style.margin = selectElementMarginMenu.value.trim() + "px";
+
 
     });
     selectElementPaddingMenu.addEventListener('input', () => {
-        selectElement.style.padding  = selectElementPaddingMenu.value.trim()+"px";
+        selectElement.style.padding = selectElementPaddingMenu.value.trim() + "px";
 
     });
     selectElementColorMenu.addEventListener('input', () => {
         selectElement.style.color = selectElementColorMenu.value.trim();
-    
+
     });
     selectElementBackgroundColorMenu.addEventListener('input', () => {
         selectElement.style.backgroundColor = selectElementBackgroundColorMenu.value.trim();
-   
+
     });
     selectElementBackgroundImageMenu.addEventListener('change', function () {
         const reader = new FileReader();
         reader.readAsDataURL(this.files[0]);
         reader.addEventListener("load", () => {
             selectElement.style.backgroundImage = reader.result;
-            // localStorage.setItem('background-image', reader.result);
-            // localStorage.setItem('imgSource', reader.result);
         })
     });
-    
 
-   
+    let imageDescription = window.parent.document.getElementById('description');
+    imageDescription.style.margin = "10px";
+    let descriptionIn = window.parent.document.createElement('p');
+    let buttonDelete = window.parent.document.createElement('button');
+    buttonDelete.style.color = "black";
+    buttonDelete.style.backgroundColor = "white";
+    buttonDelete.style.borderRadius = "5%";
+    buttonDelete.style.padding = "3px";
+    buttonDelete.textContent = "Зураг устгах";
+    descriptionIn.style.marginRight = "25px"
+
+    buttonDelete.addEventListener('click', () => {
+        selectedImage = null;
+    })
+    function beOrNotTobe(name) {
+        if (name == null) {
+            return "Зураг байхгүй байна...";
+        } else {
+            return "Зураг орсон байна...";
+        }
+    }
+    Object.defineProperty(window, 'selectedImage', {
+        get: function () {
+            return selectedImage;
+        },
+        set: function (value) {
+            if (value !== selectedImage) {
+                selectedImage = value;
+                let imageName = selectedImage;
+                imageName = imageName.substring(imageName.length - 7, imageName.length - 2);
+
+                let definition = beOrNotTobe(imageName)
+                descriptionIn.textContent = definition;
+                console.log(description);
+            }
+        }
+    });
+    imageDescription.appendChild(descriptionIn);
+    imageDescription.appendChild(buttonDelete);
 
 };
