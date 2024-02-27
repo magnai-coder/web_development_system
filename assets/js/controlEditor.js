@@ -1,151 +1,366 @@
 import { Layout } from "../js/baseContainerLayouts.js";
 
-// Todorhoilson objectuud
-const controlEditor = {
-    headerMark: document.getElementById('mainPage'),
-    selectElementFont: window.parent.document.getElementById('font'),
-    selectElementFontSize: window.parent.document.getElementById('font-size'), 
-    selectElementHeight: window.parent.document.getElementById('height'), 
-    selectElementWidth: window.parent.document.getElementById('width'), 
-    selectElementBorder: window.parent.document.getElementById('border'), 
-    selectElementBorderRadius: window.parent.document.getElementById('border-radius'), 
-    selectElementMargin: window.parent.document.getElementById('margin'), 
-    selectElementPadding: window.parent.document.getElementById('padding'), 
-    selectElementColor: window.parent.document.getElementById('color'), 
-    selectElementBackgroundColor: window.parent.document.getElementById('backgroundColor'), 
-    selectElementBackgroundImage: window.parent.document.getElementById('backgroundImage'), 
-}
-// dragAndDrop undsen code
-// Function to handle layout creation and drag-and-drop setup
-function handleLayoutDragAndDrop(layoutElement) {
-    try {
-        const layout = new Layout(layoutElement.id);
-        const layoutMarkup = layout.createLayout(layoutElement.id);
+const headerMark = window.parent.document.getElementById('render')
+const selectElementFontMenu = window.parent.document.getElementById('font')
+const selectElementFontSizeMenu = window.parent.document.getElementById('font-size')
+const selectElementHeightMenu = window.parent.document.getElementById('height')
+const selectElementWidthMenu = window.parent.document.getElementById('width')
+const selectElementBorderMenu = window.parent.document.getElementById('border')
+const selectElementBorderRadiusMenu = window.parent.document.getElementById('border-radius')
+const selectElementMarginMenu = window.parent.document.getElementById('margin')
+const selectElementPaddingMenu = window.parent.document.getElementById('padding')
+const selectElementColorMenu = window.parent.document.getElementById('color')
+const selectElementBackgroundColorMenu = window.parent.document.getElementById('backgroundColor')
+const selectElementBackgroundImageMenu = window.parent.document.getElementById('backgroundImage')
 
-        
-        function dragStart(event) {
-           
-        }
-        
-        function dragOver(event) {
-            event.preventDefault();
-        }
-        
-        function drop(event) {
-            event.preventDefault();
-            console.log(event.dataTransfer.getData("text/html"));
-            controlEditor.headerMark.appendChild(layoutMarkup);
-        }
 
-        window.parent.document.getElementById(layoutElement.id).parentElement.addEventListener("dragstart", dragStart);
-        controlEditor.headerMark.addEventListener("dragover", dragOver);
-        controlEditor.headerMark.addEventListener("drop", drop);
-    } catch (error) {
-        console.error(error);
+
+//uurchlult oruulsan
+var selectedFontFamily;
+var selectedFontSize;
+var selectedHeight;
+var selectedWidth;
+var selectedBorderStyle;
+var selectedBorderRadius;
+var selectedMargin;
+var selectedPadding;
+var selectedColor;
+var selectedBackgroundColor;
+var selectedImage;
+
+ //Download blob object 
+ 
+headerMark.onload = function () {
+
+
+
+
+    var frameContent = null;
+    frameContent = headerMark.contentWindow.document.getElementById("mainPage");
+
+    // dragAndDrop undsen code
+    function handleLayoutDragAndDrop(layoutElement) {
+        try {
+            const layout = new Layout();
+            const layoutMarkup = layout.createLayout(layoutElement.id);
+
+            function dragStart(event) {
+
+            }
+            function dragOver(event) {
+                event.preventDefault();
+            }
+
+            function drop(event) {
+                event.preventDefault();
+                frameContent.appendChild(layoutMarkup);
+            }
+
+            window.parent.document.getElementById(layoutElement.id).addEventListener("dragstart", dragStart);
+            frameContent.addEventListener("dragover", dragOver);
+            frameContent.addEventListener("drop", drop);
+        } catch (error) {
+            console.error(error);
+        }
     }
-}
-// Event listener for 'mousedown' on the entire document
-window.parent.document.addEventListener('mousedown', (event) => {
-    const clickedElement = event.target;
-    const elementId = clickedElement.id;
-    // Check if the clicked element's ID includes "LayoutPart"
-    if (elementId.includes("LayoutPart")) {
-        handleLayoutDragAndDrop(clickedElement);
-    }
-});
 
-
-
-
-
-
-//Style dahi utga uurchlugdsuniig localstorage ruu hadgalah
-function selectChange() {
-    controlEditor.selectElementFont.addEventListener('change', () => {
-        let selectedOption = controlEditor.selectElementFont.value;
-        localStorage.setItem('font-family', selectedOption);
+    window.parent.document.addEventListener('mousedown', (event) => {
+        const clickedElement = event.target;
+        const elementId = clickedElement.id;
+        if (elementId.includes("LayoutPart")) {
+            handleLayoutDragAndDrop(clickedElement);
+        }
     });
-    controlEditor.selectElementFontSize.addEventListener('change', () => {
-        let selectedOption = controlEditor.selectElementFontSize.value;
-        localStorage.setItem('font-size', selectedOption);
+
+    //Elementuudeed select hiih uyed elementiig uurtuu hadgalah huvisagch
+    var selectElement = null;
+
+    //herev element deer darval tuhain elementiig avna
+    headerMark.contentWindow.document.addEventListener('mousedown', (event) => {
+        selectElement = event.target;
+        const selectableElements = headerMark.contentWindow.document.querySelectorAll('.selectable')
+
+        //Songoson elementees busdiig todruulahiig zogsooh
+        selectableElements.forEach(element => {
+            element.style.borderStyle = "";
+            element.style.outline = "";
+        });
+
+        if (selectElement.classList.contains('selectable')) {
+            selectElement.style.outline = "5px solid #87CEFA"
+            var notSelectDiv = selectElement.tagName.toLowerCase().substring(0, 3);
+            // if (notSelectDiv.includes('div')) {
+            //     selectElement.style.width="100%"
+            // } else {
+            //     //Zuuh uyed duudah function
+            //     let chooseElement = null;
+            //     console.log(chooseElement)
+            //         selectElement.style.position = "absolute";
+            //         chooseElement = selectElement;
+            //         document.onmousemove = (e) => {
+            //              x = e.pageX;
+            //              y = e.pageY;
+
+            //             chooseElement.style.left = x - 50 + "px";
+            //             chooseElement.style.top = y - 10 + "px";
+            //         }
+            //         document.onmouseup = function (e) {
+            //             chooseElement = null;
+            //         }
+            //     }
+
+            //double darahad utga uurchlugdun
+            selectElement.addEventListener('dblclick', (event) => {
+                selectElement.contentEditable = selectElement.contentEditable === "true" ? "false" : "true";
+            })
+
+            //Delete darahad element ustana
+            selectElement.addEventListener('keydown', (event) => {
+                const keyPressed = event.key;
+                if (keyPressed === "Delete") {
+                    selectElement.remove();
+                }
+            });
+
+
+
+            let collectStyle = window.getComputedStyle(selectElement);
+            for (let i = 0; i < collectStyle.length; i++) {
+                if (collectStyle[i] === 'font-family') {
+                    window.selectedFontFamily = collectStyle.getPropertyValue('font-family');
+                }
+                else if (collectStyle[i] === 'font-size') {
+                    window.selectedFontSize = collectStyle.getPropertyValue('font-size');
+                }
+                else if (collectStyle[i] === 'height') {
+                    window.selectedHeight = collectStyle.getPropertyValue('height');
+                }
+                else if (collectStyle[i] === 'width') {
+                    if (notSelectDiv.includes('div')) {
+                    } else {
+                        window.selectedWidth = collectStyle.getPropertyValue('width');
+                    }
+                }
+                else if (collectStyle[i] === 'border-bottom-style') {
+                    window.selectedBorderStyle = collectStyle.getPropertyValue('border-bottom-style');
+                }
+                else if (collectStyle[i] === 'border-bottom-left-radius') {
+                    window.selectedBorderRadius = collectStyle.getPropertyValue('border-bottom-left-radius');
+                }
+                else if (collectStyle[i] === 'margin-top') {
+                    window.selectedMargin = collectStyle.getPropertyValue('margin-top');
+                }
+                else if (collectStyle[i] === 'padding-top') {
+                    window.selectedPadding = collectStyle.getPropertyValue('padding-top');
+                }
+                else if (collectStyle[i] === 'color') {
+                    let styleValue = collectStyle.getPropertyValue('color');
+                    let clearRGB = styleValue.substring(4, styleValue.length - 1)
+                    let rgbArray = clearRGB.split(',');
+                    let hexArray = rgbArray.map(function (value) {
+                        let hex = parseInt(value).toString(16);
+                        return hex.length == 1 ? "0" + hex : hex;
+                    });
+                    window.selectedColor = '#' + hexArray.join('').toUpperCase();
+                }
+                else if (collectStyle[i] === 'background-color') {
+                    let styleValue = collectStyle.getPropertyValue('background-color');
+                    let clearRGB = styleValue.substring(4, styleValue.length - 1)
+                    let rgbArray = clearRGB.split(',');
+                    let hexArray = rgbArray.map(function (value) {
+                        let hex = parseInt(value).toString(16);
+                        return hex.length == 1 ? "0" + hex : hex;
+                    });
+                    window.selectedBackgroundColor = '#' + hexArray.join('').toUpperCase();
+                }
+                if (notSelectDiv.includes('img')) {
+                    window.selectedImage = selectElement.src;
+                }
+                else {
+                    if (collectStyle[i] === 'background-image') {
+                        window.selectedImage = collectStyle.getPropertyValue('background-image');
+                    }
+                }
+            }
+
+        }
     });
-    controlEditor.selectElementHeight.addEventListener('input', () => {
-        let selectedOption = controlEditor.selectElementHeight.value;
-        localStorage.setItem('height', selectedOption +'px');
+
+  //Select hiigdsen styluudiig menu hesgiin oroltiin heseg shiljuulen haruulah
+    Object.defineProperty(window, 'selectedFontFamily', {
+        get: function () {
+            return selectedFontFamily;
+        },
+        set: function (value) {
+            if (value !== selectedFontFamily) {
+                selectedFontFamily = value;
+                selectElementFontMenu.value = selectedFontFamily;
+            }
+        }
     });
-    controlEditor.selectElementWidth.addEventListener('input', () => {
-        let selectedOption = controlEditor.selectElementWidth.value;
-        localStorage.setItem('width', selectedOption +'px');
+     Object.defineProperty(window, 'selectedFontSize', {
+        get: function () {
+            return selectedFontSize;
+        },
+        set: function (value) {
+            if (value !== selectedFontSize) {
+                selectedFontSize = value;
+                selectElementFontSizeMenu.value = selectedFontSize;
+            }
+        }
+    }); 
+    Object.defineProperty(window, 'selectedHeight', {
+        get: function () {
+            return selectedHeight;
+        },
+        set: function (value) {
+            if (value !== selectedHeight) {
+                selectedHeight = value;
+                selectElementHeightMenu.value = Math.floor(selectedHeight.substring(0, selectedHeight.length - 2));
+            }
+        }
+    });
+    Object.defineProperty(window, 'selectedWidth', {
+        get: function () {
+            return selectedWidth;
+        },
+        set: function (value) {
+            if (value !== selectedWidth) {
+                selectedWidth = value;
+                selectElementWidthMenu.value = Math.floor(selectedWidth.substring(0, selectedWidth.length - 2));
+            }
+        }
+    });
+    Object.defineProperty(window, 'selectedBorderStyle', {
+        get: function () {
+            return selectedBorderStyle;
+        },
+        set: function (value) {
+            if (value !== selectedBorderStyle) {
+                selectedBorderStyle = value;
+                selectElementBorderMenu.value = selectedBorderStyle;
+            }
+        }
+    });
+    Object.defineProperty(window, 'selectedBorderRadius', {
+        get: function () {
+            return selectedBorderRadius;
+        },
+        set: function (value) {
+            if (value !== selectedBorderRadius) {
+                selectedBorderRadius = value;
+                selectElementBorderRadiusMenu.value = Math.floor(selectedBorderRadius.substring(0, selectedBorderRadius.length - 1));
+            }
+        }
+    });
+    Object.defineProperty(window, 'selectedMargin', {
+        get: function () {
+            return selectedMargin;
+        },
+        set: function (value) {
+            if (value !== selectedMargin) {
+                selectedMargin = value;
+                selectElementMarginMenu.value = Math.floor(selectedMargin.substring(0, selectedMargin.length - 2));
+            }
+        }
+    });
+    Object.defineProperty(window, 'selectedPadding', {
+        get: function () {
+            return selectedPadding;
+        },
+        set: function (value) {
+            if (value !== selectedPadding) {
+                selectedPadding = value;
+                selectElementPaddingMenu.value = Math.floor(selectedPadding.substring(0, selectedPadding.length - 2));
+            }
+        }
+    });
+    Object.defineProperty(window, 'selectedColor', {
+        get: function () {
+            return selectedColor;
+        },
+        set: function (value) {
+            if (value !== selectedColor) {
+                selectedColor = value;
+                selectElementColorMenu.value = selectedColor;
+            }
+        }
+    });
+    Object.defineProperty(window, 'selectedBackgroundColor', {
+        get: function () {
+            return selectedBackgroundColor;
+        },
+        set: function (value) {
+            if (value !== selectedBackgroundColor) {
+                selectedBackgroundColor = value;
+                selectElementBackgroundColorMenu.value = selectedBackgroundColor;
+            }
+        }
+    });
+    Object.defineProperty(window, 'selectedImage', {
+        get: function () {
+            return selectedImage;
+        },
+        set: function (value) {
+            if (value !== selectedImage) {
+                selectedImage = value;
+                selectElementBackgroundImageMenu.name = selectedImage;
+            }
+        }
+    });
+    
+  
+   //Menu hesegt utguudiin uurchlultuud orohod undsen huudas deer obectod uurchlultiig oruulj uguh uuregute
+    selectElementFontMenu.addEventListener('change', () => {
+        selectElement.style.fontFamily = selectElementFontMenu.value.trim();
+   
+    });
+    selectElementFontSizeMenu.addEventListener('change', () => {
+        selectElement.style.fontSize = selectElementFontSizeMenu.value.trim();
+    });
+    selectElementHeightMenu.addEventListener('change', (event) => {
+            selectElement.style.height = selectElementHeightMenu.value.trim()+"px";
+    });
+    selectElementWidthMenu.addEventListener('change', () => {
+        selectElement.style.width = selectElementWidthMenu.value.trim()+"px";
+  
+    });
+    selectElementBorderMenu.addEventListener('change', () => {
+        selectElement.style.border = selectElementBorderMenu.value.trim();
+    });
+    selectElementBorderRadiusMenu.addEventListener('change', () => {
+        selectElement.style.borderRadius  = selectElementBorderRadiusMenu.value.trim()+"%";
+       
 
     });
-    controlEditor.selectElementBorder.addEventListener('change', () => {
-        let selectedOption = controlEditor.selectElementBorder.value;
-        localStorage.setItem('border-bottom-style', selectedOption);
+    selectElementMarginMenu.addEventListener('change', () => {
+        selectElement.style.margin = selectElementMarginMenu.value.trim()+"px";
+   
 
     });
-    controlEditor.selectElementBorderRadius.addEventListener('input', () => {
-        let selectedOption = controlEditor.selectElementBorderRadius.value;
-        localStorage.setItem('border-bottom-left-radius', selectedOption +'%');
+    selectElementPaddingMenu.addEventListener('input', () => {
+        selectElement.style.padding  = selectElementPaddingMenu.value.trim()+"px";
 
     });
-    controlEditor.selectElementMargin.addEventListener('input', () => {
-        let selectedOption = controlEditor.selectElementMargin.value;
-        localStorage.setItem('margin-top', selectedOption +'px');
-
+    selectElementColorMenu.addEventListener('input', () => {
+        selectElement.style.color = selectElementColorMenu.value.trim();
+    
     });
-    controlEditor.selectElementPadding.addEventListener('input', () => {
-        let selectedOption = controlEditor.selectElementPadding.value;
-        localStorage.setItem('padding-top', selectedOption +'px');
-
+    selectElementBackgroundColorMenu.addEventListener('input', () => {
+        selectElement.style.backgroundColor = selectElementBackgroundColorMenu.value.trim();
+   
     });
-    controlEditor.selectElementColor.addEventListener('input', () => {
-        let selectedOption = controlEditor.selectElementColor.value;
-        localStorage.setItem('color', selectedOption);
-    });
-    controlEditor.selectElementBackgroundColor.addEventListener('input', () => {
-        let selectedOption = controlEditor.selectElementBackgroundColor.value;
-        localStorage.setItem('background-color', selectedOption);
-    });
-    controlEditor.selectElementBackgroundImage.addEventListener('change',function() {
+    selectElementBackgroundImageMenu.addEventListener('change', function () {
         const reader = new FileReader();
         reader.readAsDataURL(this.files[0]);
-        reader.addEventListener("load",()=>{
-            localStorage.setItem('background-image', reader.result);
-            localStorage.setItem('imgSource', reader.result);
-        })  
+        reader.addEventListener("load", () => {
+            selectElement.style.backgroundImage = reader.result;
+            // localStorage.setItem('background-image', reader.result);
+            // localStorage.setItem('imgSource', reader.result);
+        })
     });
-}
- 
-//LocalStorage deer baiga utgiig style zesend nemeh
-setInterval(function(){
-    let localStorageStyleFont = localStorage.getItem('font-family');
-    let localStorageStyleFontSize = localStorage.getItem('font-size');
-    let localStorageStyleHeight = localStorage.getItem('height');
-    let localStorageStyleWidth = localStorage.getItem('width');
-    let localStorageStyleBorder = localStorage.getItem('border-bottom-style');
-    let localStorageStyleBorderRadius = localStorage.getItem('border-bottom-left-radius');
-    let localStorageStyleMargin = localStorage.getItem('margin-top');
-    let localStorageStylePadding = localStorage.getItem('padding-top');
-    let localStorageStyleColor = localStorage.getItem('color');
-    let localStorageStyleBackgroundColor = localStorage.getItem('background-color');
-    let localStorageStyleBackgroundImage = localStorage.getItem('background-image');
-    let localStorageImg = localStorage.getItem('imgSource');
-
-    controlEditor.selectElementFont.value = localStorageStyleFont;
-    controlEditor.selectElementFontSize.value = localStorageStyleFontSize;
-    controlEditor.selectElementHeight.value = Math.floor( localStorageStyleHeight.substring(0,localStorageStyleHeight.length-2));
-    controlEditor.selectElementWidth.value = Math.floor( localStorageStyleWidth.substring(0,localStorageStyleWidth.length-2));
-    controlEditor.selectElementBorder.value = localStorageStyleBorder;
-    controlEditor.selectElementBorderRadius.value = Math.floor( localStorageStyleBorderRadius.substring(0,localStorageStyleBorderRadius.length-1));
-    controlEditor.selectElementMargin.value = Math.floor( localStorageStyleMargin.substring(0,localStorageStyleMargin.length-2));
-    controlEditor.selectElementPadding.value = Math.floor( localStorageStylePadding.substring(0,localStorageStylePadding.length-2)); 
-    controlEditor.selectElementColor.value = localStorageStyleColor;
-    controlEditor.selectElementBackgroundColor.value = localStorageStyleBackgroundColor; 
-    controlEditor.selectElementBackgroundImage.name = localStorageStyleBackgroundImage;
-    controlEditor.selectElementBackgroundImage.name = localStorageImg;
-}, 1000);    
     
 
+   
 
-selectChange();
-
+};
