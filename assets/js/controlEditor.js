@@ -13,7 +13,11 @@ const selectElementColorMenu = window.parent.document.getElementById('color')
 const selectElementBackgroundColorMenu = window.parent.document.getElementById('backgroundColor')
 const selectElementBackgroundImageMenu = window.parent.document.getElementById('backgroundImage')
 
-
+let imageDescription = window.parent.document.getElementById('description');
+let descriptionIn = window.parent.document.createElement('p');
+let buttonDelete = window.parent.document.createElement('button');
+let imageName;
+var notSelectDiv;
 
 //uurchlult oruulsan
 var selectedFontFamily;
@@ -79,7 +83,7 @@ headerMark.onload = function () {
     headerMark.contentWindow.document.addEventListener('mousedown', (event) => {
         selectElement = event.target;
         const selectableElements = headerMark.contentWindow.document.querySelectorAll('.selectable')
-
+        imageName == "Хоосон"
         //Songoson elementees busdiig todruulahiig zogsooh
         selectableElements.forEach(element => {
             element.style.borderStyle = "";
@@ -88,7 +92,7 @@ headerMark.onload = function () {
 
         if (selectElement.classList.contains('selectable')) {
             selectElement.style.outline = "5px solid #87CEFA"
-            var notSelectDiv = selectElement.tagName.toLowerCase().substring(0, 3);
+             notSelectDiv = selectElement.tagName.toLowerCase().substring(0, 3);
             // if (notSelectDiv.includes('div')) {
             //     selectElement.style.width="100%"
             // } else {
@@ -184,8 +188,11 @@ headerMark.onload = function () {
             }
 
         }
+        
     });
-
+setInterval(() => {
+    console.log(imageName)
+}, 400);
     //Select hiigdsen styluudiig menu hesgiin oroltiin heseg shiljuulen haruulah
     Object.defineProperty(window, 'selectedFontFamily', {
         get: function () {
@@ -305,6 +312,8 @@ headerMark.onload = function () {
             if (value !== selectedImage) {
                 selectedImage = value;
                 selectElementBackgroundImageMenu.name = selectedImage;
+                imageName = selectedImage;
+                imageName = imageName.substring(imageName.length - 7, imageName.length - 2);
             }
         }
     });
@@ -318,7 +327,7 @@ headerMark.onload = function () {
     selectElementFontSizeMenu.addEventListener('change', () => {
         selectElement.style.fontSize = selectElementFontSizeMenu.value.trim();
     });
-    selectElementHeightMenu.addEventListener('change', (event) => {
+    selectElementHeightMenu.addEventListener('change', () => {
         selectElement.style.height = selectElementHeightMenu.value.trim() + "px";
     });
     selectElementWidthMenu.addEventListener('change', () => {
@@ -354,14 +363,15 @@ headerMark.onload = function () {
         const reader = new FileReader();
         reader.readAsDataURL(this.files[0]);
         reader.addEventListener("load", () => {
-            selectElement.style.backgroundImage = reader.result;
+                if(notSelectDiv.includes('img')){
+                    selectElement.style.src = reader.result;
+                }else{
+                    selectElement.style.backgroundImage = `url(${reader.result})`;
+                }
         })
     });
 
-    let imageDescription = window.parent.document.getElementById('description');
     imageDescription.style.margin = "10px";
-    let descriptionIn = window.parent.document.createElement('p');
-    let buttonDelete = window.parent.document.createElement('button');
     buttonDelete.style.color = "black";
     buttonDelete.style.backgroundColor = "white";
     buttonDelete.style.borderRadius = "5%";
@@ -370,31 +380,26 @@ headerMark.onload = function () {
     descriptionIn.style.marginRight = "25px"
 
     buttonDelete.addEventListener('click', () => {
-        selectedImage = null;
+         selectElement.style.backgroundImage = 'none';;
     })
     function beOrNotTobe(name) {
-        if (name == null) {
+        if (name == "Хоосон") {
             return "Зураг байхгүй байна...";
         } else {
             return "Зураг орсон байна...";
         }
     }
-    Object.defineProperty(window, 'selectedImage', {
-        get: function () {
-            return selectedImage;
-        },
-        set: function (value) {
-            if (value !== selectedImage) {
-                selectedImage = value;
-                let imageName = selectedImage;
-                imageName = imageName.substring(imageName.length - 7, imageName.length - 2);
 
-                let definition = beOrNotTobe(imageName)
-                descriptionIn.textContent = definition;
-                console.log(description);
-            }
-        }
-    });
+    
+   
+
+
+    let definition = beOrNotTobe(imageName)
+    descriptionIn.textContent = definition;
+
+
+
+
     imageDescription.appendChild(descriptionIn);
     imageDescription.appendChild(buttonDelete);
 

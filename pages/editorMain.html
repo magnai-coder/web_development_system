@@ -54,7 +54,7 @@
                 </script>
                 <navBundleButtons>
                     <div class="navButtons">
-                        <button id="button1" class="button1" onclick="reloadFrame()">Шинэ</button>
+                        <button id="button1" class="button1" onclick=`reloadFrame()`>Шинэ</button>
                         <button class="button2" onclick="downloading()">Экспротлох</button>
                     </div>
                 </navBundleButtons>
@@ -171,16 +171,7 @@
                         }
                         border.map(borderOption);
 
-                        let imageDescription = document.getElementById('description');
-                        imageDescription.style.margin = "10px";
-                        let descriptionIn = document.createElement('p');
-                        let buttonDelete = document.createElement('button');
-                        buttonDelete.style.color = "black";
-                        buttonDelete.style.backgroundColor = "white";
-                        buttonDelete.style.borderRadius = "5%";
-                        buttonDelete.style.padding = "3px";
-                        buttonDelete.textContent = "Зураг устгах";
-                        descriptionIn.style.marginRight = "25px"
+                        
                     </script>
                 </ui>
             </div>
