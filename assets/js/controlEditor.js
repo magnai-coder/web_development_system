@@ -1,4 +1,5 @@
-import { Layout } from "../js/baseContainerLayouts.js";
+import { Layouts } from "../js/baseContainerLayouts.js";
+import { Elements } from "../js/baseContainerElements.js";
 
 const headerMark = window.parent.document.getElementById('render')
 const selectElementFontMenu = window.parent.document.getElementById('font')
@@ -35,46 +36,7 @@ var selectedImage;
 //Download blob object 
 
 headerMark.onload = function () {
-
-
-
-
-    var frameContent = null;
-    frameContent = headerMark.contentWindow.document.getElementById("mainPage");
-
-    // dragAndDrop undsen code
-    function handleLayoutDragAndDrop(layoutElement) {
-        try {
-            const layout = new Layout();
-            const layoutMarkup = layout.createLayout(layoutElement.id);
-
-            function dragStart(event) {
-
-            }
-            function dragOver(event) {
-                event.preventDefault();
-            }
-
-            function drop(event) {
-                event.preventDefault();
-                frameContent.appendChild(layoutMarkup);
-            }
-
-            window.parent.document.getElementById(layoutElement.id).addEventListener("dragstart", dragStart);
-            frameContent.addEventListener("dragover", dragOver);
-            frameContent.addEventListener("drop", drop);
-        } catch (error) {
-            console.error(error);
-        }
-    }
-
-    window.parent.document.addEventListener('mousedown', (event) => {
-        const clickedElement = event.target;
-        const elementId = clickedElement.id;
-        if (elementId.includes("LayoutPart")) {
-            handleLayoutDragAndDrop(clickedElement);
-        }
-    });
+   
 
     //Elementuudeed select hiih uyed elementiig uurtuu hadgalah huvisagch
     var selectElement = null;
@@ -89,29 +51,30 @@ headerMark.onload = function () {
             element.style.borderStyle = "";
             element.style.outline = "";
         });
+        // document.getElementById("myH1").setAttribute("class", "democlass"); 
 
         if (selectElement.classList.contains('selectable')) {
             selectElement.style.outline = "5px solid #87CEFA"
-             notSelectDiv = selectElement.tagName.toLowerCase().substring(0, 3);
-            // if (notSelectDiv.includes('div')) {
-            //     selectElement.style.width="100%"
-            // } else {
-            //     //Zuuh uyed duudah function
-            //     let chooseElement = null;
-            //     console.log(chooseElement)
-            //         selectElement.style.position = "absolute";
-            //         chooseElement = selectElement;
-            //         document.onmousemove = (e) => {
-            //              x = e.pageX;
-            //              y = e.pageY;
+            notSelectDiv = selectElement.tagName.toLowerCase().substring(0, 3);
+            if (notSelectDiv.includes('div')) {
+                selectElement.style.width = "100%"
+            } else {
+                //Zuuh uyed duudah function
+                // let chooseElement = null;
+                // console.log(chooseElement)
+                //     selectElement.style.position = "absolute";
+                //     chooseElement = selectElement;
+                //     document.onmousemove = (e) => {
+                //          x = e.pageX;
+                //          y = e.pageY;
 
-            //             chooseElement.style.left = x - 50 + "px";
-            //             chooseElement.style.top = y - 10 + "px";
-            //         }
-            //         document.onmouseup = function (e) {
-            //             chooseElement = null;
-            //         }
-            //     }
+                //         chooseElement.style.left = x - 50 + "px";
+                //         chooseElement.style.top = y - 10 + "px";
+                //     }
+                //     document.onmouseup = function (e) {
+                //         chooseElement = null;
+                //     }
+            }
 
             //double darahad utga uurchlugdun
             selectElement.addEventListener('dblclick', (event) => {
@@ -188,12 +151,10 @@ headerMark.onload = function () {
             }
 
         }
-        
+
     });
-setInterval(() => {
-    console.log(imageName)
-}, 400);
-    //Select hiigdsen styluudiig menu hesgiin oroltiin heseg shiljuulen haruulah
+
+    //Select hiigdsen styluudiig menu hesgiin oroltiin heseg shiljuulen haruulah real-time uurchlult uugeer hiigdej bga
     Object.defineProperty(window, 'selectedFontFamily', {
         get: function () {
             return selectedFontFamily;
@@ -363,11 +324,11 @@ setInterval(() => {
         const reader = new FileReader();
         reader.readAsDataURL(this.files[0]);
         reader.addEventListener("load", () => {
-                if(notSelectDiv.includes('img')){
-                    selectElement.style.src = reader.result;
-                }else{
-                    selectElement.style.backgroundImage = `url(${reader.result})`;
-                }
+            if (notSelectDiv.includes('img')) {
+                selectElement.style.src = reader.result;
+            } else {
+                selectElement.style.backgroundImage = `url(${reader.result})`;
+            }
         })
     });
 
@@ -380,7 +341,7 @@ setInterval(() => {
     descriptionIn.style.marginRight = "25px"
 
     buttonDelete.addEventListener('click', () => {
-         selectElement.style.backgroundImage = 'none';;
+        selectElement.style.backgroundImage = 'none';;
     })
     function beOrNotTobe(name) {
         if (name == "Хоосон") {
@@ -390,17 +351,54 @@ setInterval(() => {
         }
     }
 
-    
-   
-
-
     let definition = beOrNotTobe(imageName)
     descriptionIn.textContent = definition;
 
-
-
-
     imageDescription.appendChild(descriptionIn);
     imageDescription.appendChild(buttonDelete);
+   
 
+    var frameContent = null;
+    frameContent = headerMark.contentWindow.document.getElementById("mainPage");
+    var constuctedPart;
+    var hoverElement;
+    // dragAndDrop undsen code
+    function handleDragAndDrop(chosenElement) {
+        try {
+            const layout = new Layouts();
+            const elements = new Elements();
+           
+            if (chosenElement.id.includes("Layout")) {
+                constuctedPart = layout.createLayout(chosenElement.id);
+            } else if (chosenElement.id.includes("Tag")) {
+                constuctedPart = elements.createElement(chosenElement.id);
+            }  
+            
+            function dragOver(event) {
+                event.preventDefault();
+                 hoverElement = event.target;
+                 console.log(hoverElement);
+            }
+
+            function drop() {
+                headerMark.contentWindow.document.getElementById(hoverElement.id).appendChild(constuctedPart);
+            }
+            
+            frameContent.addEventListener("dragover", dragOver);
+            frameContent.addEventListener("drop", drop);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+    
+    
+    window.parent.document.addEventListener('mousedown', (event) => {
+        const clickedElement = event.target;
+        const elementId = clickedElement.id;
+        
+        if (elementId.includes("Part")) {
+            handleDragAndDrop(clickedElement);
+        }
+
+    });
 };

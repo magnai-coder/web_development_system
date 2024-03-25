@@ -4,7 +4,7 @@ import { Images } from "./images.js";
 import { P_tag } from "./p.js";
 import { Button } from "./button.js";
 
-class Layout {
+class Layouts {
   constructor(typeName) {
     this.typeName = typeName;
   }
@@ -105,4 +105,4 @@ class Layout {
     }
   }
 }
-export { Layout };
+export { Layouts };

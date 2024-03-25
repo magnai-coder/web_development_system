@@ -103,6 +103,37 @@
                                             </div>
                                         </div>
                                     </div>` },
+                                {
+                                    id: 'fourth', label: 'Элементүүд', content: `
+                                    <div id="elements">
+                                        <div>
+                                            <div class=element id="divTagPart" draggable="true">
+                                                <p id="divTagPart"> div элемент</p>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class=element id="buttonTagPart" draggable="true">
+                                                <p id="buttonTagPart">Товч элемент</p>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class=element id="aTagPart" draggable="true">
+                                                <p id="aTagPart">a элемент</p>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class=element id="pTagPart" draggable="true">
+                                                <p id="pTagPart">p элемент</p>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class=element id="imageTagPart" draggable="true">
+                                                <p id="imageTagPart">image элемент</p>
+                                            </div>
+                                        </div>
+                                    </div>`
+                                },
+                                
                             ];
                             function createAccordionItem(id, label, content) {
                                 const item = document.createElement('li');
@@ -171,7 +202,7 @@
                         }
                         border.map(borderOption);
 
-                        
+
                     </script>
                 </ui>
             </div>
