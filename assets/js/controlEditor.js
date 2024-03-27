@@ -17,7 +17,6 @@ const selectElementBackgroundImageMenu = window.parent.document.getElementById('
 let imageDescription = window.parent.document.getElementById('description');
 let descriptionIn = window.parent.document.createElement('p');
 let buttonDelete = window.parent.document.createElement('button');
-let imageName;
 var notSelectDiv;
 
 //uurchlult oruulsan
@@ -33,48 +32,139 @@ var selectedColor;
 var selectedBackgroundColor;
 var selectedImage;
 
+var imageName = "Хоосон";
 //Download blob object 
 
 headerMark.onload = function () {
-   
+
 
     //Elementuudeed select hiih uyed elementiig uurtuu hadgalah huvisagch
+    var selectedPart = null;
     var selectElement = null;
 
     //herev element deer darval tuhain elementiig avna
     headerMark.contentWindow.document.addEventListener('mousedown', (event) => {
-        selectElement = event.target;
-        const selectableElements = headerMark.contentWindow.document.querySelectorAll('.selectable')
-        imageName == "Хоосон"
-        //Songoson elementees busdiig todruulahiig zogsooh
-        selectableElements.forEach(element => {
-            element.style.borderStyle = "";
-            element.style.outline = "";
-        });
-        // document.getElementById("myH1").setAttribute("class", "democlass"); 
+        selectedPart = event.target;
+        if (selectedPart.className.includes('selectable')) {
+            selectElement = selectedPart;
+            const selectableElements = headerMark.contentWindow.document.querySelectorAll('.selectable')
+            //Songoson elementees busdiig todruulahiig zogsooh
+            selectableElements.forEach(element => {
+                element.style.borderStyle = "";
+                element.style.outline = "";
+            });
+            // document.getElementById("myH1").setAttribute("class", "democlass"); 
 
-        if (selectElement.classList.contains('selectable')) {
             selectElement.style.outline = "5px solid #87CEFA"
             notSelectDiv = selectElement.tagName.toLowerCase().substring(0, 3);
-            if (notSelectDiv.includes('div')) {
-                selectElement.style.width = "100%"
-            } else {
-                //Zuuh uyed duudah function
-                // let chooseElement = null;
-                // console.log(chooseElement)
-                //     selectElement.style.position = "absolute";
-                //     chooseElement = selectElement;
-                //     document.onmousemove = (e) => {
-                //          x = e.pageX;
-                //          y = e.pageY;
+            //     if (notSelectDiv.includes('div')) {
+            //         selectElement.style.width="100%"
+            //     } else {
+            //     //Zuuh uyed duudah function
+            //     let chooseElement = null;
+            //     console.log(chooseElement)
+            //     selectElement.style.position = "absolute";
+            //     chooseElement = selectElement;
+            //     document.onmousemove = (e) => {
+            //         x = e.pageX;
+            //         y = e.pageY;
 
-                //         chooseElement.style.left = x - 50 + "px";
-                //         chooseElement.style.top = y - 10 + "px";
-                //     }
-                //     document.onmouseup = function (e) {
-                //         chooseElement = null;
-                //     }
-            }
+            //         chooseElement.style.left = x - 50 + "px";
+            //         chooseElement.style.top = y - 10 + "px";
+            //     }
+            //     document.onmouseup = function (e) {
+            //         chooseElement = null;
+            //     }
+            // }
+            document.addEventListener('mousedown', () => {
+                document.addEventListener('mousemove', changePosition);
+                function changePosition() {
+                    x = e.pageX;
+                    y = e.pageY;
+                    console.log(x);
+                    selectElement.style.left = x + "px";
+                    selectElement.style.top = y + "px";
+                }
+            });
+
+
+            var changedWidth;
+            var changeHeight;
+            // cursoriin helberjilt bairshilaas hamarch uurchlugduh
+            headerMark.contentWindow.document.addEventListener('mousemove', (event) => {
+                var coordinate = selectElement.getBoundingClientRect();
+
+                var x = event.clientX;
+                var y = event.clientY;
+                var selectedElementHeight = coordinate.height;
+                var selectedElementWidth = coordinate.width;
+                var xleftcorner = coordinate.x;
+                var yleftcorner = coordinate.y;
+
+                // frameContent.addEventListener('mouseover', stretching);
+
+                if (x > xleftcorner - 10 && x < xleftcorner + 13 && yleftcorner - 13 < y && y < yleftcorner + 13) {
+                    selectElement.style.cursor = 'nwse-resize';
+                    selectElement.style.width = x - xleftcorner + 'px';
+                    selectElement.style.height = y - yleftcorner + 'px';
+
+                }
+                else if (x > xleftcorner + selectedElementWidth - 13 && x < xleftcorner + selectedElementWidth + 13 && yleftcorner + selectedElementHeight - 13 < y && y < yleftcorner + selectedElementHeight + 13) {
+                    selectElement.style.cursor = 'nwse-resize';
+
+                    selectElement.style.height = y - yleftcorner + 'px';
+                    selectElement.style.width = x - xleftcorner + 'px';
+
+                }
+                else if (x > xleftcorner + selectedElementWidth - 13 && x < xleftcorner + selectedElementWidth + 13 && yleftcorner - 13 < y && y < yleftcorner + 13) {
+                    selectElement.style.cursor = 'sw-resize';
+                    selectElement.style.height = y - yleftcorner + 'px';
+                    selectElement.style.width = x - xleftcorner + 'px';
+
+                }
+                else if (x > xleftcorner - 13 && x < xleftcorner + 13 && yleftcorner + selectedElementHeight - 13 < y && y < yleftcorner + selectedElementHeight + 13) {
+                    selectElement.style.cursor = 'sw-resize';
+                    selectElement.style.height = selectedElementHeight + yleftcorner - y + 'px';
+                    selectElement.style.width = selectedElementWidth + xleftcorner - x + 'px';
+                }
+                else if (x > xleftcorner + 8 && x < xleftcorner + selectedElementWidth - 8 && yleftcorner - 8 < y && y < yleftcorner + 8) {
+                    selectElement.style.cursor = 'ns-resize';
+                    selectElement.style.height = selectedElementHeight + y - yleftcorner + 'px';
+                }
+                else if (x > xleftcorner + 8 && x < xleftcorner + selectedElementWidth - 8 && yleftcorner + selectedElementHeight - 8 < y && y < yleftcorner + selectedElementHeight + 8) {
+                    selectElement.style.cursor = 'ns-resize';
+                    selectElement.style.height = y - yleftcorner + 'px';
+                }
+                else if (x < xleftcorner + 8 && x > xleftcorner - 8 && yleftcorner + 8 < y && y < yleftcorner + selectedElementHeight - 8) {
+                    selectElement.style.cursor = 'ew-resize';
+                    selectElement.style.width = selectedElementWidth - x + xleftcorner + 'px';
+                }
+                else if (x < xleftcorner + selectedElementWidth + 8 && x > xleftcorner + selectedElementWidth - 8 && yleftcorner + 8 < y && y < yleftcorner + selectedElementHeight - 8) {
+                    selectElement.style.cursor = 'ew-resize';
+                    selectElement.style.width = x - xleftcorner + 'px';
+
+                }
+                else {
+
+                    selectElement.style.cursor = 'all-scroll';
+                    // selectElement.style.position = 'absolute';
+                        selectElement.style.left = x - 100 + "px";
+                        selectElement.style.top = y - 100 + "px";
+                 
+
+                  
+                   
+                }
+            });
+
+
+
+
+
+
+
+
+
 
             //double darahad utga uurchlugdun
             selectElement.addEventListener('dblclick', (event) => {
@@ -90,7 +180,7 @@ headerMark.onload = function () {
             });
 
 
-
+            //Songoson hesgiin style medeelluudiig angilan hadgalgh
             let collectStyle = window.getComputedStyle(selectElement);
             for (let i = 0; i < collectStyle.length; i++) {
                 if (collectStyle[i] === 'font-family') {
@@ -112,7 +202,7 @@ headerMark.onload = function () {
                     window.selectedBorderStyle = collectStyle.getPropertyValue('border-bottom-style');
                 }
                 else if (collectStyle[i] === 'border-bottom-left-radius') {
-                    window.selectedBorderRadius = collectStyle.getPropertyValue('border-bottom-left-radius');
+                    window.selectedBorderRadius = collectStyle.getPropertyValue('border-bottom-left-radius').split('x');
                 }
                 else if (collectStyle[i] === 'margin-top') {
                     window.selectedMargin = collectStyle.getPropertyValue('margin-top');
@@ -217,7 +307,8 @@ headerMark.onload = function () {
         set: function (value) {
             if (value !== selectedBorderRadius) {
                 selectedBorderRadius = value;
-                selectElementBorderRadiusMenu.value = Math.floor(selectedBorderRadius.substring(0, selectedBorderRadius.length - 1));
+                selectElementBorderRadiusMenu.value = Math.floor(selectedBorderRadius[0].substring(0, selectedBorderRadius[0].length - 1));
+
             }
         }
     });
@@ -273,11 +364,11 @@ headerMark.onload = function () {
             if (value !== selectedImage) {
                 selectedImage = value;
                 selectElementBackgroundImageMenu.name = selectedImage;
-                imageName = selectedImage;
-                imageName = imageName.substring(imageName.length - 7, imageName.length - 2);
+                imageName = selectedImage.substring(imageName.length - 7, imageName.length - 2);
             }
         }
     });
+  
 
 
     //Menu hesegt utguudiin uurchlultuud orohod undsen huudas deer obectod uurchlultiig oruulj uguh uuregute
@@ -325,13 +416,15 @@ headerMark.onload = function () {
         reader.readAsDataURL(this.files[0]);
         reader.addEventListener("load", () => {
             if (notSelectDiv.includes('img')) {
-                selectElement.style.src = reader.result;
+                selectElement.src = reader.result;
+                
             } else {
                 selectElement.style.backgroundImage = `url(${reader.result})`;
             }
         })
     });
 
+    //Zurag uurchluh oruulah hesgiin tohirgoo
     imageDescription.style.margin = "10px";
     buttonDelete.style.color = "black";
     buttonDelete.style.backgroundColor = "white";
@@ -339,7 +432,6 @@ headerMark.onload = function () {
     buttonDelete.style.padding = "3px";
     buttonDelete.textContent = "Зураг устгах";
     descriptionIn.style.marginRight = "25px"
-
     buttonDelete.addEventListener('click', () => {
         selectElement.style.backgroundImage = 'none';;
     })
@@ -351,12 +443,14 @@ headerMark.onload = function () {
         }
     }
 
-    let definition = beOrNotTobe(imageName)
+    let definition = beOrNotTobe(imageName);
     descriptionIn.textContent = definition;
 
     imageDescription.appendChild(descriptionIn);
     imageDescription.appendChild(buttonDelete);
-   
+
+
+
 
     var frameContent = null;
     frameContent = headerMark.contentWindow.document.getElementById("mainPage");
@@ -367,38 +461,47 @@ headerMark.onload = function () {
         try {
             const layout = new Layouts();
             const elements = new Elements();
-           
+
             if (chosenElement.id.includes("Layout")) {
                 constuctedPart = layout.createLayout(chosenElement.id);
             } else if (chosenElement.id.includes("Tag")) {
                 constuctedPart = elements.createElement(chosenElement.id);
-            }  
-            
+            }
+            var x;
+            var y;
             function dragOver(event) {
                 event.preventDefault();
-                 hoverElement = event.target;
-                 console.log(hoverElement);
+                hoverElement = event.target;
+                x = event.pageX;
+                y = event.pageY;
             }
 
             function drop() {
+                // constuctedPart.style.position = "absolute";
+                constuctedPart.style.top = y + 'px';
+                constuctedPart.style.left = x + 'px';
                 headerMark.contentWindow.document.getElementById(hoverElement.id).appendChild(constuctedPart);
+
+                frameContent.removeEventListener("dragover", dragOver);
+                frameContent.removeEventListener("drop", drop);
             }
-            
+
             frameContent.addEventListener("dragover", dragOver);
             frameContent.addEventListener("drop", drop);
         } catch (error) {
             console.error(error);
         }
     }
-    
-    
-    window.parent.document.addEventListener('mousedown', (event) => {
+
+    // songoson zuuh elementiig shalgaj bna
+    window.parent.document.getElementById("accordionLeft").addEventListener('mousedown', (event) => {
         const clickedElement = event.target;
         const elementId = clickedElement.id;
-        
+
         if (elementId.includes("Part")) {
             handleDragAndDrop(clickedElement);
         }
 
     });
+
 };

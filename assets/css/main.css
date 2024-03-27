@@ -48,7 +48,7 @@ body{
 
 
 /* Үндсэн хуудсын хэв загвар тодорхойлсон байдал*/
-#mainPage{display: block; justify-content: center; height: 100vh ; width: 100vw;  background-color: rgb(236, 232, 240);  border: dashed 1px; }
+#mainPage{display: block; position: absolute; height: 100vh ; width: 100vw;  background-color: rgb(236, 232, 240);  border: dashed 1px; }
 
 /*Бүрдэл их бие, хөл хэсгүүдийн хэв загвар*/
 #bodySimple{display:block;  margin: 10px; width: fit-content; text-align: center;}

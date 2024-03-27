@@ -12,7 +12,7 @@ class Elements {
   createElement(typeName) {
    
     if (typeName === "buttonTagPart") {
-        const button = new Button('12', 'Malgun', 'grey', 'FirstButton', [30, 100], 5, 3, 10, 'solid').createButton();;
+        const button = new Button('12', 'Malgun', 'grey', 'FirstButton', [30, 100], 5, 3, 10, 'solid').createButton();
       return button;
     }
     if (typeName === "aTagPart") {
@@ -20,7 +20,7 @@ class Elements {
         return aTag;
     }
     if (typeName === "divTagPart"){
-        const divTag = new Div("100%", "auto", "blue").createDiv();
+        const divTag = new Div("auto", "auto", "grey").createDiv();
     return divTag;
     }
     if (typeName === "pTagPart"){

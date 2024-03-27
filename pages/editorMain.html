@@ -49,12 +49,13 @@
                         }
                     }
                     function reloadFrame() {
-                        document.getElementById("render").contentWindow.reload();
+                        console.log("shinechlegdlee")
+                        document.getElementById("render").contentWindow.location.reload();
                     }
                 </script>
                 <navBundleButtons>
                     <div class="navButtons">
-                        <button id="button1" class="button1" onclick=`reloadFrame()`>Шинэ</button>
+                        <button id="button1" class="button1" onclick="reloadFrame()">Шинэ</button>
                         <button class="button2" onclick="downloading()">Экспротлох</button>
                     </div>
                 </navBundleButtons>
