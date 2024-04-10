@@ -1,6 +1,3 @@
-import { Layouts } from "../js/baseContainerLayouts.js";
-import { Elements } from "../js/baseContainerElements.js";
-
 const headerMark = window.parent.document.getElementById('render')
 const selectElementFontMenu = window.parent.document.getElementById('font')
 const selectElementFontSizeMenu = window.parent.document.getElementById('font-size')
@@ -76,96 +73,6 @@ headerMark.onload = function () {
             //         chooseElement = null;
             //     }
             // }
-            document.addEventListener('mousedown', () => {
-                document.addEventListener('mousemove', changePosition);
-                function changePosition() {
-                    x = e.pageX;
-                    y = e.pageY;
-                    console.log(x);
-                    selectElement.style.left = x + "px";
-                    selectElement.style.top = y + "px";
-                }
-            });
-
-
-            var changedWidth;
-            var changeHeight;
-            // cursoriin helberjilt bairshilaas hamarch uurchlugduh
-            headerMark.contentWindow.document.addEventListener('mousemove', (event) => {
-                var coordinate = selectElement.getBoundingClientRect();
-
-                var x = event.clientX;
-                var y = event.clientY;
-                var selectedElementHeight = coordinate.height;
-                var selectedElementWidth = coordinate.width;
-                var xleftcorner = coordinate.x;
-                var yleftcorner = coordinate.y;
-
-                // frameContent.addEventListener('mouseover', stretching);
-
-                if (x > xleftcorner - 10 && x < xleftcorner + 13 && yleftcorner - 13 < y && y < yleftcorner + 13) {
-                    selectElement.style.cursor = 'nwse-resize';
-                    selectElement.style.width = x - xleftcorner + 'px';
-                    selectElement.style.height = y - yleftcorner + 'px';
-
-                }
-                else if (x > xleftcorner + selectedElementWidth - 13 && x < xleftcorner + selectedElementWidth + 13 && yleftcorner + selectedElementHeight - 13 < y && y < yleftcorner + selectedElementHeight + 13) {
-                    selectElement.style.cursor = 'nwse-resize';
-
-                    selectElement.style.height = y - yleftcorner + 'px';
-                    selectElement.style.width = x - xleftcorner + 'px';
-
-                }
-                else if (x > xleftcorner + selectedElementWidth - 13 && x < xleftcorner + selectedElementWidth + 13 && yleftcorner - 13 < y && y < yleftcorner + 13) {
-                    selectElement.style.cursor = 'sw-resize';
-                    selectElement.style.height = y - yleftcorner + 'px';
-                    selectElement.style.width = x - xleftcorner + 'px';
-
-                }
-                else if (x > xleftcorner - 13 && x < xleftcorner + 13 && yleftcorner + selectedElementHeight - 13 < y && y < yleftcorner + selectedElementHeight + 13) {
-                    selectElement.style.cursor = 'sw-resize';
-                    selectElement.style.height = selectedElementHeight + yleftcorner - y + 'px';
-                    selectElement.style.width = selectedElementWidth + xleftcorner - x + 'px';
-                }
-                else if (x > xleftcorner + 8 && x < xleftcorner + selectedElementWidth - 8 && yleftcorner - 8 < y && y < yleftcorner + 8) {
-                    selectElement.style.cursor = 'ns-resize';
-                    selectElement.style.height = selectedElementHeight + y - yleftcorner + 'px';
-                }
-                else if (x > xleftcorner + 8 && x < xleftcorner + selectedElementWidth - 8 && yleftcorner + selectedElementHeight - 8 < y && y < yleftcorner + selectedElementHeight + 8) {
-                    selectElement.style.cursor = 'ns-resize';
-                    selectElement.style.height = y - yleftcorner + 'px';
-                }
-                else if (x < xleftcorner + 8 && x > xleftcorner - 8 && yleftcorner + 8 < y && y < yleftcorner + selectedElementHeight - 8) {
-                    selectElement.style.cursor = 'ew-resize';
-                    selectElement.style.width = selectedElementWidth - x + xleftcorner + 'px';
-                }
-                else if (x < xleftcorner + selectedElementWidth + 8 && x > xleftcorner + selectedElementWidth - 8 && yleftcorner + 8 < y && y < yleftcorner + selectedElementHeight - 8) {
-                    selectElement.style.cursor = 'ew-resize';
-                    selectElement.style.width = x - xleftcorner + 'px';
-
-                }
-                else {
-
-                    selectElement.style.cursor = 'all-scroll';
-                    // selectElement.style.position = 'absolute';
-                        selectElement.style.left = x - 100 + "px";
-                        selectElement.style.top = y - 100 + "px";
-                 
-
-                  
-                   
-                }
-            });
-
-
-
-
-
-
-
-
-
-
             //double darahad utga uurchlugdun
             selectElement.addEventListener('dblclick', (event) => {
                 selectElement.contentEditable = selectElement.contentEditable === "true" ? "false" : "true";
@@ -368,7 +275,7 @@ headerMark.onload = function () {
             }
         }
     });
-  
+
 
 
     //Menu hesegt utguudiin uurchlultuud orohod undsen huudas deer obectod uurchlultiig oruulj uguh uuregute
@@ -417,7 +324,7 @@ headerMark.onload = function () {
         reader.addEventListener("load", () => {
             if (notSelectDiv.includes('img')) {
                 selectElement.src = reader.result;
-                
+
             } else {
                 selectElement.style.backgroundImage = `url(${reader.result})`;
             }
@@ -448,60 +355,5 @@ headerMark.onload = function () {
 
     imageDescription.appendChild(descriptionIn);
     imageDescription.appendChild(buttonDelete);
-
-
-
-
-    var frameContent = null;
-    frameContent = headerMark.contentWindow.document.getElementById("mainPage");
-    var constuctedPart;
-    var hoverElement;
-    // dragAndDrop undsen code
-    function handleDragAndDrop(chosenElement) {
-        try {
-            const layout = new Layouts();
-            const elements = new Elements();
-
-            if (chosenElement.id.includes("Layout")) {
-                constuctedPart = layout.createLayout(chosenElement.id);
-            } else if (chosenElement.id.includes("Tag")) {
-                constuctedPart = elements.createElement(chosenElement.id);
-            }
-            var x;
-            var y;
-            function dragOver(event) {
-                event.preventDefault();
-                hoverElement = event.target;
-                x = event.pageX;
-                y = event.pageY;
-            }
-
-            function drop() {
-                // constuctedPart.style.position = "absolute";
-                constuctedPart.style.top = y + 'px';
-                constuctedPart.style.left = x + 'px';
-                headerMark.contentWindow.document.getElementById(hoverElement.id).appendChild(constuctedPart);
-
-                frameContent.removeEventListener("dragover", dragOver);
-                frameContent.removeEventListener("drop", drop);
-            }
-
-            frameContent.addEventListener("dragover", dragOver);
-            frameContent.addEventListener("drop", drop);
-        } catch (error) {
-            console.error(error);
-        }
-    }
-
-    // songoson zuuh elementiig shalgaj bna
-    window.parent.document.getElementById("accordionLeft").addEventListener('mousedown', (event) => {
-        const clickedElement = event.target;
-        const elementId = clickedElement.id;
-
-        if (elementId.includes("Part")) {
-            handleDragAndDrop(clickedElement);
-        }
-
-    });
 
 };
