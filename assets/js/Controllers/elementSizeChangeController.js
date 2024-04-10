@@ -24,46 +24,52 @@ headerMark.contentWindow.addEventListener('mousedown', (event) => {
             var yleftcorner = coordinate.y;
 
             // frameContent.addEventListener('mouseover', stretching);
-            
+
             if (x > xleftcorner - 10 && x < xleftcorner + 13 && yleftcorner - 13 < y && y < yleftcorner + 13) {
                 selectElement.style.cursor = 'nwse-resize';
-                selectElement.addEventListener('mousedown', mouseDownEvent);
-                function mouseDownEvent() {
+                selectElement.onmousedown = function () {
                     console.log("darsan bna1")
-                    selectElement.addEventListener('mousemove', mouseMoveEvent);
-                    function mouseMoveEvent() {
+                    selectElement.onmousemove = function () {
                         console.log("hudulj bna1")
                         selectElement.style.width = x - xleftcorner + 'px';
                         selectElement.style.height = y - yleftcorner + 'px';
-                        selectElement.removeEventListener('mousemove', mouseMoveEvent);
-                    }
-                }
-                
 
-                    
-             
+                    }
+
+                }
+
+                selectElement.onmouseup = function () {
+                    console.log("zogsooloo")
+                    selectElement.removeEventListener('mousemove', mouseMoveEvent);
+                }
             }
             else if (x > xleftcorner + selectedElementWidth - 100 && x < xleftcorner + selectedElementWidth + 100 && yleftcorner + selectedElementHeight - 100 < y && y < yleftcorner + selectedElementHeight + 100) {
                 selectElement.style.cursor = 'nwse-resize';
-                selectElement.addEventListener('mousedown', mouseDownEvent);
-                function mouseDownEvent() {
-                    console.log("darsan bna2")
-                    selectElement.addEventListener('mousemove', mouseMoveEvent);
-                    function mouseMoveEvent() {
-                        console.log("hudulj bna2")
+                selectElement.onmousedown = function () {
+                    console.log("darsan bna1")
+                    selectElement.onmousemove = function () {
+                        console.log("hudulj bna1")
                         selectElement.style.height = y - yleftcorner + 'px';
                         selectElement.style.width = x - xleftcorner + 'px';
-                        selectElement.removeEventListener('mousemove', mouseMoveEvent);
+
                     }
+
                 }
-                    
+
+                selectElement.onmouseup = function () {
+                    console.log("zogsooloo")
+                    selectElement.removeEventListener('mousemove', mouseMoveEvent);
+                }
+
+
+
                 
             }
             else if (x > xleftcorner + selectedElementWidth - 13 && x < xleftcorner + selectedElementWidth + 13 && yleftcorner - 13 < y && y < yleftcorner + 13) {
                 selectElement.style.cursor = 'sw-resize';
-                        selectElement.style.height = y - yleftcorner + 'px';
-                        selectElement.style.width = x - xleftcorner + 'px';
-                    
+                selectElement.style.height = y - yleftcorner + 'px';
+                selectElement.style.width = x - xleftcorner + 'px';
+
             }
             else if (x > xleftcorner - 13 && x < xleftcorner + 13 && yleftcorner + selectedElementHeight - 13 < y && y < yleftcorner + selectedElementHeight + 13) {
                 selectElement.style.cursor = 'sw-resize';
@@ -100,13 +106,26 @@ headerMark.contentWindow.addEventListener('mousedown', (event) => {
             else {
 
                 selectElement.style.cursor = 'all-scroll';
-                // selectElement.style.position = 'absolute';
-                selectElement.style.left = x - 100 + "px";
-                selectElement.style.top = y - 100 + "px";
+                selectElement.style.position = 'absolute';
+
+                var selectPart;
+                selectElement.onmousedown = function () {
+                    console.log("darsan bna55")
+                    selectPart = selectElement;
 
 
+                }
+                selectElement.onmousemove = function () {
+                    console.log("hudulj bna 55")
+                    selectPart.style.left = x - 100 + "px";
+                    selectPart.style.top = y - 100 + "px";
+                }
 
 
+                selectElement.onmouseup = function () {
+                    console.log("zogsooloo 55")
+                    selectPart = null
+                }
             }
 
         })

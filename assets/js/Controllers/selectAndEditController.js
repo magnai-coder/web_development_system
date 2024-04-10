@@ -39,7 +39,7 @@ var imageName = "Хоосон";
     var selectedPart = null;
     var selectElement = null;
     //herev element deer darval tuhain elementiig avna
-    headerMark.contentWindow.addEventListener('mousedown', (event) => {
+    headerMark.contentWindow.onmousedown = function(event){
         selectedPart = event.target;
         if (selectedPart.className.includes('selectable')) {
             selectElement = selectedPart;
@@ -73,17 +73,17 @@ var imageName = "Хоосон";
             //     }
             // }
             //double darahad utga uurchlugdun
-            selectElement.addEventListener('dblclick', (event) => {
+            selectElement.ondblclick = function(){
                 selectElement.contentEditable = selectElement.contentEditable === "true" ? "false" : "true";
-            })
+            }
 
             //Delete darahad element ustana
-            selectElement.addEventListener('keydown', (event) => {
+            selectElement.onkeydown = function(event){
                 const keyPressed = event.key;
                 if (keyPressed === "Delete") {
                     selectElement.remove();
                 }
-            });
+            };
             
             
             //Songoson hesgiin style medeelluudiig angilan hadgalgh
@@ -148,7 +148,7 @@ var imageName = "Хоосон";
 
         }
 
-    });
+    };
 
     //Select hiigdsen styluudiig menu hesgiin oroltiin heseg shiljuulen haruulah real-time uurchlult uugeer hiigdej bga
     Object.defineProperty(window, 'selectedFontFamily', {
@@ -278,57 +278,57 @@ var imageName = "Хоосон";
 
     
     //Menu hesegt utguudiin uurchlultuud orohod undsen huudas deer obectod uurchlultiig oruulj uguh uuregute
-    selectElementFontMenu.addEventListener('change', () => {
+    selectElementFontMenu.onchange = function(){
         selectElement.style.fontFamily = selectElementFontMenu.value.trim();
         
-    });
-    selectElementFontSizeMenu.addEventListener('change', () => {
+    };
+    selectElementFontSizeMenu.onchange = function(){
         selectElement.style.fontSize = selectElementFontSizeMenu.value.trim();
-    });
-    selectElementHeightMenu.addEventListener('change', () => {
+    };
+    selectElementHeightMenu.onchange = function(){
         selectElement.style.height = selectElementHeightMenu.value.trim() + "px";
-    });
-    selectElementWidthMenu.addEventListener('change', () => {
+    };
+    selectElementWidthMenu.onchange = function(){
         selectElement.style.width = selectElementWidthMenu.value.trim() + "px";
 
-    });
-    selectElementBorderMenu.addEventListener('change', () => {
+    };
+    selectElementBorderMenu.onchange = function(){
         selectElement.style.border = selectElementBorderMenu.value.trim();
-    });
-    selectElementBorderRadiusMenu.addEventListener('change', () => {
+    };
+    selectElementBorderRadiusMenu.onchange = function(){
         selectElement.style.borderRadius = selectElementBorderRadiusMenu.value.trim() + "%";
         
         
-    });
-    selectElementMarginMenu.addEventListener('change', () => {
+    };
+    selectElementMarginMenu.onchange = function(){
         selectElement.style.margin = selectElementMarginMenu.value.trim() + "px";
         
 
-    });
-    selectElementPaddingMenu.addEventListener('input', () => {
+    };
+    selectElementPaddingMenu.onchange = function(){
         selectElement.style.padding = selectElementPaddingMenu.value.trim() + "px";
 
-    });
-    selectElementColorMenu.addEventListener('input', () => {
+    };
+    selectElementColorMenu.onchange = function(){
         selectElement.style.color = selectElementColorMenu.value.trim();
         
-    });
-    selectElementBackgroundColorMenu.addEventListener('input', () => {
+    };
+    selectElementBackgroundColorMenu.onchange = function(){
         selectElement.style.backgroundColor = selectElementBackgroundColorMenu.value.trim();
 
-    });
-    selectElementBackgroundImageMenu.addEventListener('change', function () {
+    };
+    selectElementBackgroundImageMenu.onchange = function(){
         const reader = new FileReader();
         reader.readAsDataURL(this.files[0]);
-        reader.addEventListener("load", () => {
-            if (notSelectDiv.includes('img')) {
+        reader.onload = function(){            
+        if (notSelectDiv.includes('img')) {
                 selectElement.src = reader.result;
 
             } else {
                 selectElement.style.backgroundImage = `url(${reader.result})`;
             }
-        })
-    });
+        }
+    };
 
     //Zurag uurchluh oruulah hesgiin tohirgoo
     imageDescription.style.margin = "10px";
@@ -338,9 +338,9 @@ var imageName = "Хоосон";
     buttonDelete.style.padding = "3px";
     buttonDelete.textContent = "Зураг устгах";
     descriptionIn.style.marginRight = "25px"
-    buttonDelete.addEventListener('click', () => {
+    buttonDelete.onclick = function(){
         selectElement.style.backgroundImage = 'none';;
-    })
+    }
     function beOrNotTobe(name) {
         if (name == "Хоосон") {
             return "Зураг байхгүй байна...";
