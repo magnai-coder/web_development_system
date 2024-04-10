@@ -12,69 +12,103 @@ const headerMark = window.parent.document.getElementById('render')
 
 headerMark.contentWindow.addEventListener('mousedown', (event) => {
     var selectElement = event.target;
-// cursoriin helberjilt bairshilaas hamarch uurchlugduh
-headerMark.contentWindow.addEventListener('mousemove', (event) => {
-    var coordinate = selectElement.getBoundingClientRect();
-    var x = event.clientX;
-    var y = event.clientY;
-    var selectedElementHeight = coordinate.height;
-    var selectedElementWidth = coordinate.width;
-    var xleftcorner = coordinate.x;
-    var yleftcorner = coordinate.y;
+    if (selectElement.className.includes('selectable')) {
+        // cursoriin helberjilt bairshilaas hamarch uurchlugduh
+        headerMark.contentWindow.addEventListener('mousemove', (event) => {
+            var coordinate = selectElement.getBoundingClientRect();
+            var x = event.pageX;
+            var y = event.pageY;
+            var selectedElementHeight = coordinate.height;
+            var selectedElementWidth = coordinate.width;
+            var xleftcorner = coordinate.x;
+            var yleftcorner = coordinate.y;
 
-    // frameContent.addEventListener('mouseover', stretching);
+            // frameContent.addEventListener('mouseover', stretching);
+            
+            if (x > xleftcorner - 10 && x < xleftcorner + 13 && yleftcorner - 13 < y && y < yleftcorner + 13) {
+                selectElement.style.cursor = 'nwse-resize';
+                selectElement.addEventListener('mousedown', mouseDownEvent);
+                function mouseDownEvent() {
+                    console.log("darsan bna1")
+                    selectElement.addEventListener('mousemove', mouseMoveEvent);
+                    function mouseMoveEvent() {
+                        console.log("hudulj bna1")
+                        selectElement.style.width = x - xleftcorner + 'px';
+                        selectElement.style.height = y - yleftcorner + 'px';
+                        selectElement.removeEventListener('mousemove', mouseMoveEvent);
+                    }
+                }
+                
 
-    if (x > xleftcorner - 10 && x < xleftcorner + 13 && yleftcorner - 13 < y && y < yleftcorner + 13) {
-        selectElement.style.cursor = 'nwse-resize';
-        selectElement.style.width = x - xleftcorner + 'px';
-        selectElement.style.height = y - yleftcorner + 'px';
+                    
+             
+            }
+            else if (x > xleftcorner + selectedElementWidth - 100 && x < xleftcorner + selectedElementWidth + 100 && yleftcorner + selectedElementHeight - 100 < y && y < yleftcorner + selectedElementHeight + 100) {
+                selectElement.style.cursor = 'nwse-resize';
+                selectElement.addEventListener('mousedown', mouseDownEvent);
+                function mouseDownEvent() {
+                    console.log("darsan bna2")
+                    selectElement.addEventListener('mousemove', mouseMoveEvent);
+                    function mouseMoveEvent() {
+                        console.log("hudulj bna2")
+                        selectElement.style.height = y - yleftcorner + 'px';
+                        selectElement.style.width = x - xleftcorner + 'px';
+                        selectElement.removeEventListener('mousemove', mouseMoveEvent);
+                    }
+                }
+                    
+                
+            }
+            else if (x > xleftcorner + selectedElementWidth - 13 && x < xleftcorner + selectedElementWidth + 13 && yleftcorner - 13 < y && y < yleftcorner + 13) {
+                selectElement.style.cursor = 'sw-resize';
+                        selectElement.style.height = y - yleftcorner + 'px';
+                        selectElement.style.width = x - xleftcorner + 'px';
+                    
+            }
+            else if (x > xleftcorner - 13 && x < xleftcorner + 13 && yleftcorner + selectedElementHeight - 13 < y && y < yleftcorner + selectedElementHeight + 13) {
+                selectElement.style.cursor = 'sw-resize';
+                selectElement.onmousedown = function () {
+                    selectElement.style.height = selectedElementHeight + yleftcorner - y + 'px';
+                    selectElement.style.width = selectedElementWidth + xleftcorner - x + 'px';
+                }
+            }
+            else if (x > xleftcorner + 8 && x < xleftcorner + selectedElementWidth - 8 && yleftcorner - 8 < y && y < yleftcorner + 8) {
+                selectElement.style.cursor = 'ns-resize';
+                selectElement.onmousedown = function () {
+                    selectElement.style.height = selectedElementHeight + y - yleftcorner + 'px';
+                }
+            }
+            else if (x > xleftcorner + 8 && x < xleftcorner + selectedElementWidth - 8 && yleftcorner + selectedElementHeight - 8 < y && y < yleftcorner + selectedElementHeight + 8) {
+                selectElement.style.cursor = 'ns-resize';
+                selectElement.onmousedown = function () {
+                    selectElement.style.height = y - yleftcorner + 'px';
+                }
+            }
+            else if (x < xleftcorner + 8 && x > xleftcorner - 8 && yleftcorner + 8 < y && y < yleftcorner + selectedElementHeight - 8) {
+                selectElement.style.cursor = 'ew-resize';
+                selectElement.onmousedown = function () {
+                    selectElement.style.width = selectedElementWidth - x + xleftcorner + 'px';
+                }
+            }
+            else if (x < xleftcorner + selectedElementWidth + 8 && x > xleftcorner + selectedElementWidth - 8 && yleftcorner + 8 < y && y < yleftcorner + selectedElementHeight - 8) {
+                selectElement.style.cursor = 'ew-resize';
+                selectElement.onmousedown = function () {
+                    selectElement.style.width = x - xleftcorner + 'px';
+                }
 
+            }
+            else {
+
+                selectElement.style.cursor = 'all-scroll';
+                // selectElement.style.position = 'absolute';
+                selectElement.style.left = x - 100 + "px";
+                selectElement.style.top = y - 100 + "px";
+
+
+
+
+            }
+
+        })
     }
-    else if (x > xleftcorner + selectedElementWidth - 13 && x < xleftcorner + selectedElementWidth + 13 && yleftcorner + selectedElementHeight - 13 < y && y < yleftcorner + selectedElementHeight + 13) {
-        selectElement.style.cursor = 'nwse-resize';
-
-        selectElement.style.height = y - yleftcorner + 'px';
-        selectElement.style.width = x - xleftcorner + 'px';
-
-    }
-    else if (x > xleftcorner + selectedElementWidth - 13 && x < xleftcorner + selectedElementWidth + 13 && yleftcorner - 13 < y && y < yleftcorner + 13) {
-        selectElement.style.cursor = 'sw-resize';
-        selectElement.style.height = y - yleftcorner + 'px';
-        selectElement.style.width = x - xleftcorner + 'px';
-
-    }
-    else if (x > xleftcorner - 13 && x < xleftcorner + 13 && yleftcorner + selectedElementHeight - 13 < y && y < yleftcorner + selectedElementHeight + 13) {
-        selectElement.style.cursor = 'sw-resize';
-        selectElement.style.height = selectedElementHeight + yleftcorner - y + 'px';
-        selectElement.style.width = selectedElementWidth + xleftcorner - x + 'px';
-    }
-    else if (x > xleftcorner + 8 && x < xleftcorner + selectedElementWidth - 8 && yleftcorner - 8 < y && y < yleftcorner + 8) {
-        selectElement.style.cursor = 'ns-resize';
-        selectElement.style.height = selectedElementHeight + y - yleftcorner + 'px';
-    }
-    else if (x > xleftcorner + 8 && x < xleftcorner + selectedElementWidth - 8 && yleftcorner + selectedElementHeight - 8 < y && y < yleftcorner + selectedElementHeight + 8) {
-        selectElement.style.cursor = 'ns-resize';
-        selectElement.style.height = y - yleftcorner + 'px';
-    }
-    else if (x < xleftcorner + 8 && x > xleftcorner - 8 && yleftcorner + 8 < y && y < yleftcorner + selectedElementHeight - 8) {
-        selectElement.style.cursor = 'ew-resize';
-        selectElement.style.width = selectedElementWidth - x + xleftcorner + 'px';
-    }
-    else if (x < xleftcorner + selectedElementWidth + 8 && x > xleftcorner + selectedElementWidth - 8 && yleftcorner + 8 < y && y < yleftcorner + selectedElementHeight - 8) {
-        selectElement.style.cursor = 'ew-resize';
-        selectElement.style.width = x - xleftcorner + 'px';
-
-    }
-    else {
-
-        selectElement.style.cursor = 'all-scroll';
-        // selectElement.style.position = 'absolute';
-        selectElement.style.left = x - 100 + "px";
-        selectElement.style.top = y - 100 + "px";
-
-
-
-
-    }
-    
-}) });
+});
