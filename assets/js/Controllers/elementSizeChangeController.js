@@ -10,13 +10,11 @@ const headerMark = window.parent.document.getElementById('render')
 //     }
 // });
 
-
-var changedWidth;
-var changeHeight;
+headerMark.contentWindow.addEventListener('mousedown', (event) => {
+    var selectElement = event.target;
 // cursoriin helberjilt bairshilaas hamarch uurchlugduh
-headerMark.contentWindow.document.addEventListener('mousemove', (event) => {
+headerMark.contentWindow.addEventListener('mousemove', (event) => {
     var coordinate = selectElement.getBoundingClientRect();
-
     var x = event.clientX;
     var y = event.clientY;
     var selectedElementHeight = coordinate.height;
@@ -78,4 +76,5 @@ headerMark.contentWindow.document.addEventListener('mousemove', (event) => {
 
 
     }
-});
+    
+}) });

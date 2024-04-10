@@ -30,8 +30,6 @@ function handleDragAndDrop(chosenElement) {
             hoverElement = event.target;
             x = event.pageX;
             y = event.pageY;
-            console.log("bna")
-            
         }
 
         function drop() {

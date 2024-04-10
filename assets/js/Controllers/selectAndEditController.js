@@ -1,3 +1,4 @@
+
 const headerMark = window.parent.document.getElementById('render')
 const selectElementFontMenu = window.parent.document.getElementById('font')
 const selectElementFontSizeMenu = window.parent.document.getElementById('font-size')
@@ -28,19 +29,17 @@ var selectedPadding;
 var selectedColor;
 var selectedBackgroundColor;
 var selectedImage;
-
 var imageName = "Хоосон";
 //Download blob object 
 
-headerMark.onload = function () {
+    
 
 
     //Elementuudeed select hiih uyed elementiig uurtuu hadgalah huvisagch
     var selectedPart = null;
     var selectElement = null;
-
     //herev element deer darval tuhain elementiig avna
-    headerMark.contentWindow.document.addEventListener('mousedown', (event) => {
+    headerMark.contentWindow.addEventListener('mousedown', (event) => {
         selectedPart = event.target;
         if (selectedPart.className.includes('selectable')) {
             selectElement = selectedPart;
@@ -85,8 +84,8 @@ headerMark.onload = function () {
                     selectElement.remove();
                 }
             });
-
-
+            
+            
             //Songoson hesgiin style medeelluudiig angilan hadgalgh
             let collectStyle = window.getComputedStyle(selectElement);
             for (let i = 0; i < collectStyle.length; i++) {
@@ -277,11 +276,11 @@ headerMark.onload = function () {
     });
 
 
-
+    
     //Menu hesegt utguudiin uurchlultuud orohod undsen huudas deer obectod uurchlultiig oruulj uguh uuregute
     selectElementFontMenu.addEventListener('change', () => {
         selectElement.style.fontFamily = selectElementFontMenu.value.trim();
-
+        
     });
     selectElementFontSizeMenu.addEventListener('change', () => {
         selectElement.style.fontSize = selectElementFontSizeMenu.value.trim();
@@ -298,12 +297,12 @@ headerMark.onload = function () {
     });
     selectElementBorderRadiusMenu.addEventListener('change', () => {
         selectElement.style.borderRadius = selectElementBorderRadiusMenu.value.trim() + "%";
-
-
+        
+        
     });
     selectElementMarginMenu.addEventListener('change', () => {
         selectElement.style.margin = selectElementMarginMenu.value.trim() + "px";
-
+        
 
     });
     selectElementPaddingMenu.addEventListener('input', () => {
@@ -312,7 +311,7 @@ headerMark.onload = function () {
     });
     selectElementColorMenu.addEventListener('input', () => {
         selectElement.style.color = selectElementColorMenu.value.trim();
-
+        
     });
     selectElementBackgroundColorMenu.addEventListener('input', () => {
         selectElement.style.backgroundColor = selectElementBackgroundColorMenu.value.trim();
@@ -349,11 +348,10 @@ headerMark.onload = function () {
             return "Зураг орсон байна...";
         }
     }
-
+    
     let definition = beOrNotTobe(imageName);
     descriptionIn.textContent = definition;
-
+    
     imageDescription.appendChild(descriptionIn);
     imageDescription.appendChild(buttonDelete);
-
-};
+    export default selectElement;
