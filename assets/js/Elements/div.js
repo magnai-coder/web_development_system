@@ -24,8 +24,6 @@ class Div{
         container.style.height = this.height;
         container.style.backgroundColor = this.backgroundColor;
         container.classList.add('selectable');
-        container.style.minHeight = '200px';
-        container.style.minWidth = '200px';
         container.style.backgroundRepeat = "no-repeat";
         container.style.objectFit = "cover";
         container.tabIndex = "0";

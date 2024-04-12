@@ -20,7 +20,7 @@ class Elements {
         return aTag;
     }
     if (typeName === "divTagPart"){
-        const divTag = new Div("auto", "auto", "grey").createDiv();
+        const divTag = new Div("40vh", "20vw", "grey").createDiv();
     return divTag;
     }
     if (typeName === "pTagPart"){

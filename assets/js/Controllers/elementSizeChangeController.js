@@ -14,7 +14,7 @@ headerMark.contentWindow.addEventListener('mousedown', (event) => {
     var selectElement = event.target;
     if (selectElement.className.includes('selectable')) {
         // cursoriin helberjilt bairshilaas hamarch uurchlugduh
-        headerMark.contentWindow.addEventListener('mousemove', (event) => {
+        headerMark.contentWindow.onmousemove = function(event) {
             var coordinate = selectElement.getBoundingClientRect();
             var x = event.pageX;
             var y = event.pageY;
@@ -27,52 +27,54 @@ headerMark.contentWindow.addEventListener('mousedown', (event) => {
 
             if (x > xleftcorner - 10 && x < xleftcorner + 13 && yleftcorner - 13 < y && y < yleftcorner + 13) {
                 selectElement.style.cursor = 'nwse-resize';
+                
                 selectElement.onmousedown = function () {
-                    console.log("darsan bna1")
-                    selectElement.onmousemove = function () {
-                        console.log("hudulj bna1")
+                    selectElement.onmousemove = function(e) {
+                        x = e.pageX;
+                        y = e.pageY;
                         selectElement.style.width = x - xleftcorner + 'px';
                         selectElement.style.height = y - yleftcorner + 'px';
-
                     }
-
                 }
 
                 selectElement.onmouseup = function () {
-                    console.log("zogsooloo")
-                    selectElement.removeEventListener('mousemove', mouseMoveEvent);
+                   selectElement.onmousemove = function(){
+                   }
                 }
+                
+                       
             }
-            else if (x > xleftcorner + selectedElementWidth - 100 && x < xleftcorner + selectedElementWidth + 100 && yleftcorner + selectedElementHeight - 100 < y && y < yleftcorner + selectedElementHeight + 100) {
+            else if (x > xleftcorner + selectedElementWidth - 10 && x < xleftcorner + selectedElementWidth + 10 && yleftcorner + selectedElementHeight - 10 < y && y < yleftcorner + selectedElementHeight + 100) {
                 selectElement.style.cursor = 'nwse-resize';
+                headerMark.style.cursor = 'nwse-resize';
                 selectElement.onmousedown = function () {
-                    console.log("darsan bna1")
-                    selectElement.onmousemove = function () {
-                        console.log("hudulj bna1")
+                    selectElement.onmousemove = function(e) {
+                        x = e.pageX;
+                        y = e.pageY;
                         selectElement.style.height = y - yleftcorner + 'px';
                         selectElement.style.width = x - xleftcorner + 'px';
+                        console.log(selectElement.style.height)
+                        console.log(selectElement.style.width)
 
                     }
-
                 }
 
                 selectElement.onmouseup = function () {
-                    console.log("zogsooloo")
-                    selectElement.removeEventListener('mousemove', mouseMoveEvent);
+                   selectElement.onmousemove = function(){
+                   }
                 }
-
-
-
                 
             }
             else if (x > xleftcorner + selectedElementWidth - 13 && x < xleftcorner + selectedElementWidth + 13 && yleftcorner - 13 < y && y < yleftcorner + 13) {
                 selectElement.style.cursor = 'sw-resize';
+                headerMark.style.cursor = 'sw-resize';
                 selectElement.style.height = y - yleftcorner + 'px';
                 selectElement.style.width = x - xleftcorner + 'px';
 
             }
             else if (x > xleftcorner - 13 && x < xleftcorner + 13 && yleftcorner + selectedElementHeight - 13 < y && y < yleftcorner + selectedElementHeight + 13) {
                 selectElement.style.cursor = 'sw-resize';
+                headerMark.style.cursor = 'sw-resize';
                 selectElement.onmousedown = function () {
                     selectElement.style.height = selectedElementHeight + yleftcorner - y + 'px';
                     selectElement.style.width = selectedElementWidth + xleftcorner - x + 'px';
@@ -107,27 +109,44 @@ headerMark.contentWindow.addEventListener('mousedown', (event) => {
 
                 selectElement.style.cursor = 'all-scroll';
                 selectElement.style.position = 'absolute';
-
-                var selectPart;
                 selectElement.onmousedown = function () {
-                    console.log("darsan bna55")
-                    selectPart = selectElement;
-
-
+                    selectElement.onmousemove = function(e) {
+                        x = e.pageX;
+                        y = e.pageY;
+                        console.log("hudulj bna 55")
+                        selectElement.style.left = x - 100 + "px";
+                        selectElement.style.top = y - 100 + "px";
+                    }
                 }
-                selectElement.onmousemove = function () {
-                    console.log("hudulj bna 55")
-                    selectPart.style.left = x - 100 + "px";
-                    selectPart.style.top = y - 100 + "px";
-                }
-
 
                 selectElement.onmouseup = function () {
-                    console.log("zogsooloo 55")
-                    selectPart = null
+                   selectElement.onmousemove = function(){
+                   }
                 }
             }
 
-        })
+        }
     }
 });
+// if (selectElement.classList.contains('selectable')) {
+//     selectElement.style.outline = "5px solid #87CEFA"
+// notSelectDiv = selectElement.tagName.toLowerCase().substring(0, 3);
+// if (notSelectDiv.includes('div')) {
+//     selectElement.style.width="100%"
+// } else {
+//     //Zuuh uyed duudah function
+//     let chooseElement = null;
+//     console.log(chooseElement)
+//         selectElement.style.position = "absolute";
+//         chooseElement = selectElement;
+//         document.onmousemove = (e) => {
+//              x = e.pageX;
+//              y = e.pageY;
+            
+//             chooseElement.style.left = x - 50 + "px";
+//             chooseElement.style.top = y - 10 + "px";
+//         }
+//         document.onmouseup = function (e) {
+//             chooseElement = null;
+//         }
+//     }

@@ -13,6 +13,7 @@ class Images{
         img.classList.add('selectable');
         img.style.backgroundRepeat = "no-repeat";
         img.style.objectFit = "cover";
+        img.setAttribute("draggable", "false")
         img.tabIndex = "0";
         return img;
     }
