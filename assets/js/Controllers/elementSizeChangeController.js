@@ -21,19 +21,16 @@
 
 
 const whitePageWay = window.parent.document.getElementById('render');
-whitePageWay.onload = function(){
-    const insideWhitePage = whitePageWay.contentWindow.document.getElementById("whitePage");
-    return insideWhitePage;
-}
+
+
 whitePageWay.contentWindow.addEventListener('mousedown', (event) => {
     var selectElement = event.target;
-    console.log(insideWhitePage);
     if (selectElement.className.includes('selectable')) {
-   console.log(insideWhitePage)
-
+        const insideWhitePage = whitePageWay.contentWindow.document.getElementById("whitePage");
+        
         // cursoriin helberjilt bairshilaas hamarch uurchlugduh
      insideWhitePage.onmousemove = function(event) {
-   console.log(insideWhitePage)
+  
 
             var coordinate = selectElement.getBoundingClientRect();
             var x = event.pageX;
