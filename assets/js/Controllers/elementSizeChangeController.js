@@ -46,7 +46,6 @@ whitePageWay.contentWindow.addEventListener('click', (event) => {
                     
                     insideWhitePage.onmousedown = function() {
                         insideWhitePage.onmousemove = function(e) {
-                console.log("za odoo bolno")
 
                             x = e.clientX;
                             y = e.clientY;
@@ -55,7 +54,7 @@ whitePageWay.contentWindow.addEventListener('click', (event) => {
 
 
                             selectedElementToChange.style.width = xleftcorner-x+selectedElementWidth + 'px';
-                            selectedElementToChange.style.height = yleftcorner-y+selectedElementWidth + 'px';
+                            selectedElementToChange.style.height = yleftcorner-y+selectedElementHeight + 'px';
                         }
                     }
                     
@@ -106,8 +105,12 @@ whitePageWay.contentWindow.addEventListener('click', (event) => {
 
                         x = e.clientX;
                         y = e.clientY;
-                        selectedElementToChange.style.height = y - yleftcorner + 'px';
-                        selectedElementToChange.style.width = x - xleftcorner + 'px';
+                        selectedElementToChange.style.top = y + 'px';
+                        selectedElementToChange.style.left = xleftcorner + 'px';
+
+
+                        selectedElementToChange.style.width = x-xleftcorner + 'px';
+                        selectedElementToChange.style.height = yleftcorner-y+selectedElementWidth + 'px';
                     }
                 }
                 
@@ -128,12 +131,15 @@ whitePageWay.contentWindow.addEventListener('click', (event) => {
 
                 insideWhitePage.onmousedown = function() {
                     insideWhitePage.onmousemove = function(e) {
-                console.log("Zuun dood bulangar tatah")
 
                         x = e.clientX;
                         y = e.clientY;
-                        selectedElementToChange.style.height = selectedElementHeight + yleftcorner - y + 'px';
-                        selectedElementToChange.style.width = selectedElementWidth + xleftcorner - x + 'px';
+                        selectedElementToChange.style.top = yleftcorner+ 'px';
+                        selectedElementToChange.style.left = x + 'px';
+
+
+                            selectedElementToChange.style.width = xleftcorner+selectedElementWidth-x + 'px';
+                            selectedElementToChange.style.height = y - yleftcorner + 'px';
                     }
                 }
                 
@@ -155,11 +161,11 @@ whitePageWay.contentWindow.addEventListener('click', (event) => {
 
                 insideWhitePage.onmousedown = function() {
                     insideWhitePage.onmousemove = function(e) {
-                console.log("deedeer sungah")
-
                         x = e.clientX;
                         y = e.clientY;
-                        selectedElementToChange.style.height = selectedElementHeight + y - yleftcorner + 'px';
+                        selectedElementToChange.style.top = y + 'px';
+
+                        selectedElementToChange.style.height = selectedElementHeight + yleftcorner - y + 'px';
                     }
                 }
                 
@@ -213,7 +219,9 @@ whitePageWay.contentWindow.addEventListener('click', (event) => {
 
                         x = e.clientX;
                         y = e.clientY;
-                        selectedElementToChange.style.width = selectedElementWidth - x + xleftcorner + 'px';
+                        selectedElementToChange.style.left = x + 'px';
+
+                        selectedElementToChange.style.width = selectedElementWidth + xleftcorner - x + 'px';
                         
                     }
                 }

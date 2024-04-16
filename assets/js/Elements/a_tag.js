@@ -18,6 +18,8 @@ class A_tag{
         a.style.margin = this.margin;
         a.classList.add('selectable');
         a.appendChild(text);
+        a.setAttribute("draggable", "false")
+
         return a;
     }
 }
