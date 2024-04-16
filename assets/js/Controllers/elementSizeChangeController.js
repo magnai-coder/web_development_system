@@ -283,8 +283,8 @@ whitePageWay.contentWindow.addEventListener('click', (event) => {
                     selectedElementToChange.onmousemove = function(e){
                         x = e.clientX;
                         y = e.clientY;
-                        selectedElementToChange.style.left = x - selectedElementWidth/2 + "px";
-                        selectedElementToChange.style.top = y - selectedElementHeight/2 + "px";
+                        selectedElementToChange.style.left = x-(xleftcorner + selectedElementWidth - x) + "px";
+                        selectedElementToChange.style.top = y-(yleftcorner + selectedElementHeight - y) +"px";
                     }
                 }
                 
