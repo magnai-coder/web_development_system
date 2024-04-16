@@ -1,10 +1,10 @@
-import { Div } from "./div.js";
-import { A_tag } from "./a_tag.js";
-import { Images } from "./images.js";
-import { P_tag } from "./p.js";
-import { Button } from "./button.js";
+import { Div } from "../Elements/div.js";
+import { A_tag } from "../Elements/a_tag.js";
+import { Images } from "../Elements/images.js";
+import { P_tag } from "../Elements/p.js";
+import { Button } from "../Elements/button.js";
 
-class Layout {
+class Layouts {
   constructor(typeName) {
     this.typeName = typeName;
   }
@@ -105,4 +105,4 @@ class Layout {
     }
   }
 }
-export { Layout };
+export { Layouts };
