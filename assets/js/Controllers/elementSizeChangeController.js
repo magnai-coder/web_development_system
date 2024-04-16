@@ -2,8 +2,8 @@
 // document.addEventListener('mousedown', () => {
 //     document.addEventListener('mousemove', changePosition);
 //     function changePosition() {
-//         x = e.pageX;
-//         y = e.pageY;
+//         x = e.clientX;
+//         y = e.clientY;
 //         console.log(x);
 //         selectElement.style.left = x + "px";
 //         selectElement.style.top = y + "px";
@@ -35,8 +35,8 @@ whitePageWay.contentWindow.addEventListener('click', (event) => {
                 
                 
                 var coordinate = selectElement.getBoundingClientRect();
-                var x = event.pageX;
-                var y = event.pageY;
+                var x = event.clientX;
+                var y = event.clientY;
                 var selectedElementHeight = coordinate.height;
                 var selectedElementWidth = coordinate.width;
                 var xleftcorner = coordinate.x;
@@ -46,16 +46,20 @@ whitePageWay.contentWindow.addEventListener('click', (event) => {
                     insideWhitePage.style.cursor = 'nwse-resize';
                     insideWhitePage.onmousedown = function() {
                         insideWhitePage.onmousemove = function(e) {
-                            x = e.pageX;
-                            y = e.pageY;
+                            x = e.clientX;
+                            y = e.clientY;
                             selectElement.style.width = x - xleftcorner + 'px';
                             selectElement.style.height = y - yleftcorner + 'px';
                         }
                     }
                     
                     insideWhitePage.onmouseup = function () {
+                        selectElement.onmousedown = function(){
+                        
+                        }
                         insideWhitePage.onmousemove = function(){
                         }
+                        changeSizeAndPosition()
                     }
                     
                     
@@ -65,16 +69,20 @@ whitePageWay.contentWindow.addEventListener('click', (event) => {
                 selectElement.style.cursor = 'nwse-resize';
                 insideWhitePage.onmousedown = function() {
                     insideWhitePage.onmousemove = function(e) {
-                        x = e.pageX;
-                        y = e.pageY;
+                        x = e.clientX;
+                        y = e.clientY;
                         selectElement.style.height = y - yleftcorner + 'px';
                         selectElement.style.width = x - xleftcorner + 'px';
                     }
                 }
                 
                 insideWhitePage.onmouseup = function () {
+                    selectElement.onmousedown = function(){
+                        
+                    }
                     insideWhitePage.onmousemove = function(){
                     }
+                    changeSizeAndPosition()
                 }
                 
             }
@@ -82,67 +90,85 @@ whitePageWay.contentWindow.addEventListener('click', (event) => {
                 selectElement.style.cursor = 'sw-resize';
                 insideWhitePage.onmousedown = function() {
                     insideWhitePage.onmousemove = function(e) {
-                        x = e.pageX;
-                        y = e.pageY;
+                        x = e.clientX;
+                        y = e.clientY;
                         selectElement.style.height = y - yleftcorner + 'px';
                         selectElement.style.width = x - xleftcorner + 'px';
                     }
                 }
                 
                 insideWhitePage.onmouseup = function () {
+                    selectElement.onmousedown = function(){
+                        
+                    }
                     insideWhitePage.onmousemove = function(){
                         
                     }
+                    changeSizeAndPosition()
                 }
             }
             else if (x > xleftcorner - 13 && x < xleftcorner + 13 && yleftcorner + selectedElementHeight - 13 < y && y < yleftcorner + selectedElementHeight + 13) {
                 selectElement.style.cursor = 'sw-resize';
                 insideWhitePage.onmousedown = function() {
                     insideWhitePage.onmousemove = function(e) {
-                        x = e.pageX;
-                        y = e.pageY;
+                        x = e.clientX;
+                        y = e.clientY;
                         selectElement.style.height = selectedElementHeight + yleftcorner - y + 'px';
                         selectElement.style.width = selectedElementWidth + xleftcorner - x + 'px';
                     }
                 }
                 
                 insideWhitePage.onmouseup = function () {
+                    selectElement.onmousedown = function(){
+                        
+                    }
                     insideWhitePage.onmousemove = function(){
                         
                     }
                 }
+                changeSizeAndPosition();
             }
             else if (x > xleftcorner + 8 && x < xleftcorner + selectedElementWidth - 8 && yleftcorner - 8 < y && y < yleftcorner + 8) {
                 selectElement.style.cursor = 'ns-resize';
                 insideWhitePage.onmousedown = function() {
                     insideWhitePage.onmousemove = function(e) {
-                        x = e.pageX;
-                        y = e.pageY;
+                        x = e.clientX;
+                        y = e.clientY;
                         selectElement.style.height = selectedElementHeight + y - yleftcorner + 'px';
                     }
                 }
                 
                 insideWhitePage.onmouseup = function () {
+                    selectElement.onmousedown = function(){
+                        
+                    }
                     insideWhitePage.onmousemove = function(){
                         
 
                     }
+                changeSizeAndPosition()
+
                 }
             }
             else if (x > xleftcorner + 8 && x < xleftcorner + selectedElementWidth - 8 && yleftcorner + selectedElementHeight - 8 < y && y < yleftcorner + selectedElementHeight + 8) {
                 selectElement.style.cursor = 'ns-resize';
                 insideWhitePage.onmousedown = function() {
                     insideWhitePage.onmousemove = function(e) {
-                        x = e.pageX;
-                        y = e.pageY;
+                        x = e.clientX;
+                        y = e.clientY;
                         selectElement.style.height = y - yleftcorner + 'px';
                     }
                 }
                 
                 insideWhitePage.onmouseup = function () {
+                    selectElement.onmousedown = function(){
+                        
+                    }
                     insideWhitePage.onmousemove = function(){
                         
                     }
+                changeSizeAndPosition()
+
                 }
                 
             }
@@ -150,18 +176,23 @@ whitePageWay.contentWindow.addEventListener('click', (event) => {
                 selectElement.style.cursor = 'ew-resize';
                 insideWhitePage.onmousedown = function() {
                     insideWhitePage.onmousemove = function(e) {
-                        x = e.pageX;
-                        y = e.pageY;
+                        x = e.clientX;
+                        y = e.clientY;
                         selectElement.style.width = selectedElementWidth - x + xleftcorner + 'px';
                         
                     }
                 }
                 
                 insideWhitePage.onmouseup = function () {
+                    selectElement.onmousedown = function(){
+                        
+                    }
                     insideWhitePage.onmousemove = function(){
                         
                         
                     }
+                changeSizeAndPosition()
+
                 }
                 
                 
@@ -170,26 +201,32 @@ whitePageWay.contentWindow.addEventListener('click', (event) => {
                 selectElement.style.cursor = 'ew-resize';
                 insideWhitePage.onmousedown = function() {
                     insideWhitePage.onmousemove = function(e) {
-                        x = e.pageX;
-                        y = e.pageY;
+                        x = e.clientX;
+                        y = e.clientY;
                         selectElement.style.width = x - xleftcorner + 'px';
                     }
                 }
                 
                 insideWhitePage.onmouseup = function () {
+                    selectElement.onmousedown = function(){
+                        
+                    }
                     insideWhitePage.onmousemove = function(){
                         
                     }
+                changeSizeAndPosition()
+
                 }   
                 
                 
             }else{
+                insideWhitePage.style.cursor = 'default';
                 selectElement.style.cursor = 'all-scroll';
                 selectElement.style.position = 'absolute';
                 selectElement.onmousedown = function () {
                     selectElement.onmousemove = function(e) {
-                        x = e.pageX;
-                        y = e.pageY;
+                        x = e.clientX;
+                        y = e.clientY;
                         selectElement.style.left = x - selectedElementWidth/2 + "px";
                         selectElement.style.top = y - selectedElementHeight/2 + "px";
                     }
@@ -212,7 +249,7 @@ whitePageWay.contentWindow.addEventListener('click', (event) => {
         changeSizeAndPosition()
     }  
 });
-selectElement=null;
+
 // if (selectElement.classList.contains('selectable')) {
     //     selectElement.style.outline = "5px solid #87CEFA"
     // notSelectDiv = selectElement.tagName.toLowerCase().substring(0, 3);
@@ -225,8 +262,8 @@ selectElement=null;
             //         selectElement.style.position = "absolute";
             //         chooseElement = selectElement;
             //         document.onmousemove = (e) => {
-                //              x = e.pageX;
-                //              y = e.pageY;
+                //              x = e.clientX;
+                //              y = e.clientY;
                     
 //             chooseElement.style.left = x - 50 + "px";
 //             chooseElement.style.top = y - 10 + "px";
