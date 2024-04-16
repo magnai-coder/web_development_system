@@ -1,16 +1,16 @@
 
-const headerMark = window.parent.document.getElementById('render')
-const selectElementFontMenu = window.parent.document.getElementById('font')
-const selectElementFontSizeMenu = window.parent.document.getElementById('font-size')
-const selectElementHeightMenu = window.parent.document.getElementById('height')
-const selectElementWidthMenu = window.parent.document.getElementById('width')
-const selectElementBorderMenu = window.parent.document.getElementById('border')
-const selectElementBorderRadiusMenu = window.parent.document.getElementById('border-radius')
-const selectElementMarginMenu = window.parent.document.getElementById('margin')
-const selectElementPaddingMenu = window.parent.document.getElementById('padding')
-const selectElementColorMenu = window.parent.document.getElementById('color')
-const selectElementBackgroundColorMenu = window.parent.document.getElementById('backgroundColor')
-const selectElementBackgroundImageMenu = window.parent.document.getElementById('backgroundImage')
+const renderFrameContent = window.parent.document.getElementById('render')
+const selectedElementFontMenu = window.parent.document.getElementById('font')
+const selectedElementFontSizeMenu = window.parent.document.getElementById('font-size')
+const selectedElementHeightMenu = window.parent.document.getElementById('height')
+const selectedElementWidthMenu = window.parent.document.getElementById('width')
+const selectedElementBorderMenu = window.parent.document.getElementById('border')
+const selectedElementBorderRadiusMenu = window.parent.document.getElementById('border-radius')
+const selectedElementMarginMenu = window.parent.document.getElementById('margin')
+const selectedElementPaddingMenu = window.parent.document.getElementById('padding')
+const selectedElementColorMenu = window.parent.document.getElementById('color')
+const selectedElementBackgroundColorMenu = window.parent.document.getElementById('backgroundColor')
+const selectedElementBackgroundImageMenu = window.parent.document.getElementById('backgroundImage')
 
 let imageDescription = window.parent.document.getElementById('description');
 let descriptionIn = window.parent.document.createElement('p');
@@ -37,13 +37,13 @@ var imageName = "Хоосон";
 
     //Elementuudeed select hiih uyed elementiig uurtuu hadgalah huvisagch
     var selectedPart = null;
-    var selectElement = null;
+    var selectedElement = null;
     //herev element deer darval tuhain elementiig avna
-    headerMark.contentWindow.onmousedown = function(event){
+    renderFrameContent.contentWindow.onmousedown = function(event){
         selectedPart = event.target;
         if (selectedPart.className.includes('selectable')) {
-            selectElement = selectedPart;
-            const selectableElements = headerMark.contentWindow.document.querySelectorAll('.selectable')
+            selectedElement = selectedPart;
+            const selectableElements = renderFrameContent.contentWindow.document.querySelectorAll('.selectable')
             //Songoson elementees busdiig todruulahiig zogsooh
             selectableElements.forEach(element => {
                 element.style.borderStyle = "";
@@ -51,16 +51,16 @@ var imageName = "Хоосон";
             });
             // document.getElementById("myH1").setAttribute("class", "democlass"); 
 
-            selectElement.style.outline = "5px solid #87CEFA"
-            notSelectDiv = selectElement.tagName.toLowerCase().substring(0, 3);
+            selectedElement.style.outline = "5px solid #87CEFA"
+            notSelectDiv = selectedElement.tagName.toLowerCase().substring(0, 3);
             //     if (notSelectDiv.includes('div')) {
-            //         selectElement.style.width="100%"
+            //         selectedElement.style.width="100%"
             //     } else {
             //     //Zuuh uyed duudah function
             //     let chooseElement = null;
             //     console.log(chooseElement)
-            //     selectElement.style.position = "absolute";
-            //     chooseElement = selectElement;
+            //     selectedElement.style.position = "absolute";
+            //     chooseElement = selectedElement;
             //     document.onmousemove = (e) => {
             //         x = e.pageX;
             //         y = e.pageY;
@@ -73,21 +73,21 @@ var imageName = "Хоосон";
             //     }
             // }
             //double darahad utga uurchlugdun
-            selectElement.ondblclick = function(){
-                selectElement.contentEditable = selectElement.contentEditable === "true" ? "false" : "true";
+            selectedElement.ondblclick = function(){
+                selectedElement.contentEditable = selectedElement.contentEditable === "true" ? "false" : "true";
             }
 
             //Delete darahad element ustana
-            selectElement.onkeydown = function(event){
+            selectedElement.onkeydown = function(event){
                 const keyPressed = event.key;
                 if (keyPressed === "Delete") {
-                    selectElement.remove();
+                    selectedElement.remove();
                 }
             };
             
             
             //Songoson hesgiin style medeelluudiig angilan hadgalgh
-            let collectStyle = window.getComputedStyle(selectElement);
+            let collectStyle = window.getComputedStyle(selectedElement);
             for (let i = 0; i < collectStyle.length; i++) {
                 if (collectStyle[i] === 'font-family') {
                     window.selectedFontFamily = collectStyle.getPropertyValue('font-family');
@@ -137,7 +137,7 @@ var imageName = "Хоосон";
                     window.selectedBackgroundColor = '#' + hexArray.join('').toUpperCase();
                 }
                 if (notSelectDiv.includes('img')) {
-                    window.selectedImage = selectElement.src;
+                    window.selectedImage = selectedElement.src;
                 }
                 else {
                     if (collectStyle[i] === 'background-image') {
@@ -147,8 +147,8 @@ var imageName = "Хоосон";
             }
 
         }
-
     };
+ 
 
     //Select hiigdsen styluudiig menu hesgiin oroltiin heseg shiljuulen haruulah real-time uurchlult uugeer hiigdej bga
     Object.defineProperty(window, 'selectedFontFamily', {
@@ -158,7 +158,7 @@ var imageName = "Хоосон";
         set: function (value) {
             if (value !== selectedFontFamily) {
                 selectedFontFamily = value;
-                selectElementFontMenu.value = selectedFontFamily;
+                selectedElementFontMenu.value = selectedFontFamily;
             }
         }
     });
@@ -169,7 +169,7 @@ var imageName = "Хоосон";
         set: function (value) {
             if (value !== selectedFontSize) {
                 selectedFontSize = value;
-                selectElementFontSizeMenu.value = selectedFontSize;
+                selectedElementFontSizeMenu.value = selectedFontSize;
             }
         }
     });
@@ -180,7 +180,7 @@ var imageName = "Хоосон";
         set: function (value) {
             if (value !== selectedHeight) {
                 selectedHeight = value;
-                selectElementHeightMenu.value = Math.floor(selectedHeight.substring(0, selectedHeight.length - 2));
+                selectedElementHeightMenu.value = Math.floor(selectedHeight.substring(0, selectedHeight.length - 2));
             }
         }
     });
@@ -191,7 +191,7 @@ var imageName = "Хоосон";
         set: function (value) {
             if (value !== selectedWidth) {
                 selectedWidth = value;
-                selectElementWidthMenu.value = Math.floor(selectedWidth.substring(0, selectedWidth.length - 2));
+                selectedElementWidthMenu.value = Math.floor(selectedWidth.substring(0, selectedWidth.length - 2));
             }
         }
     });
@@ -202,7 +202,7 @@ var imageName = "Хоосон";
         set: function (value) {
             if (value !== selectedBorderStyle) {
                 selectedBorderStyle = value;
-                selectElementBorderMenu.value = selectedBorderStyle;
+                selectedElementBorderMenu.value = selectedBorderStyle;
             }
         }
     });
@@ -213,7 +213,7 @@ var imageName = "Хоосон";
         set: function (value) {
             if (value !== selectedBorderRadius) {
                 selectedBorderRadius = value;
-                selectElementBorderRadiusMenu.value = Math.floor(selectedBorderRadius[0].substring(0, selectedBorderRadius[0].length - 1));
+                selectedElementBorderRadiusMenu.value = Math.floor(selectedBorderRadius[0].substring(0, selectedBorderRadius[0].length - 1));
 
             }
         }
@@ -225,7 +225,7 @@ var imageName = "Хоосон";
         set: function (value) {
             if (value !== selectedMargin) {
                 selectedMargin = value;
-                selectElementMarginMenu.value = Math.floor(selectedMargin.substring(0, selectedMargin.length - 2));
+                selectedElementMarginMenu.value = Math.floor(selectedMargin.substring(0, selectedMargin.length - 2));
             }
         }
     });
@@ -236,7 +236,7 @@ var imageName = "Хоосон";
         set: function (value) {
             if (value !== selectedPadding) {
                 selectedPadding = value;
-                selectElementPaddingMenu.value = Math.floor(selectedPadding.substring(0, selectedPadding.length - 2));
+                selectedElementPaddingMenu.value = Math.floor(selectedPadding.substring(0, selectedPadding.length - 2));
             }
         }
     });
@@ -247,7 +247,7 @@ var imageName = "Хоосон";
         set: function (value) {
             if (value !== selectedColor) {
                 selectedColor = value;
-                selectElementColorMenu.value = selectedColor;
+                selectedElementColorMenu.value = selectedColor;
             }
         }
     });
@@ -258,7 +258,7 @@ var imageName = "Хоосон";
         set: function (value) {
             if (value !== selectedBackgroundColor) {
                 selectedBackgroundColor = value;
-                selectElementBackgroundColorMenu.value = selectedBackgroundColor;
+                selectedElementBackgroundColorMenu.value = selectedBackgroundColor;
             }
         }
     });
@@ -269,7 +269,7 @@ var imageName = "Хоосон";
         set: function (value) {
             if (value !== selectedImage) {
                 selectedImage = value;
-                selectElementBackgroundImageMenu.name = selectedImage;
+                selectedElementBackgroundImageMenu.name = selectedImage;
                 imageName = selectedImage.substring(imageName.length - 7, imageName.length - 2);
             }
         }
@@ -278,54 +278,54 @@ var imageName = "Хоосон";
 
     
     //Menu hesegt utguudiin uurchlultuud orohod undsen huudas deer obectod uurchlultiig oruulj uguh uuregute
-    selectElementFontMenu.onchange = function(){
-        selectElement.style.fontFamily = selectElementFontMenu.value.trim();
+    selectedElementFontMenu.onchange = function(){
+        selectedElement.style.fontFamily = selectedElementFontMenu.value.trim();
         
     };
-    selectElementFontSizeMenu.onchange = function(){
-        selectElement.style.fontSize = selectElementFontSizeMenu.value.trim();
+    selectedElementFontSizeMenu.onchange = function(){
+        selectedElement.style.fontSize = selectedElementFontSizeMenu.value.trim();
     };
-    selectElementHeightMenu.onchange = function(){
-        selectElement.style.height = selectElementHeightMenu.value.trim() + "px";
+    selectedElementHeightMenu.onchange = function(){
+        selectedElement.style.height = selectedElementHeightMenu.value.trim() + "px";
     };
-    selectElementWidthMenu.onchange = function(){
-        selectElement.style.width = selectElementWidthMenu.value.trim() + "px";
+    selectedElementWidthMenu.onchange = function(){
+        selectedElement.style.width = selectedElementWidthMenu.value.trim() + "px";
 
     };
-    selectElementBorderMenu.onchange = function(){
-        selectElement.style.border = selectElementBorderMenu.value.trim();
+    selectedElementBorderMenu.onchange = function(){
+        selectedElement.style.border = selectedElementBorderMenu.value.trim();
     };
-    selectElementBorderRadiusMenu.onchange = function(){
-        selectElement.style.borderRadius = selectElementBorderRadiusMenu.value.trim() + "%";
+    selectedElementBorderRadiusMenu.onchange = function(){
+        selectedElement.style.borderRadius = selectedElementBorderRadiusMenu.value.trim() + "%";
         
         
     };
-    selectElementMarginMenu.onchange = function(){
-        selectElement.style.margin = selectElementMarginMenu.value.trim() + "px";
+    selectedElementMarginMenu.onchange = function(){
+        selectedElement.style.margin = selectedElementMarginMenu.value.trim() + "px";
         
 
     };
-    selectElementPaddingMenu.onchange = function(){
-        selectElement.style.padding = selectElementPaddingMenu.value.trim() + "px";
+    selectedElementPaddingMenu.onchange = function(){
+        selectedElement.style.padding = selectedElementPaddingMenu.value.trim() + "px";
 
     };
-    selectElementColorMenu.onchange = function(){
-        selectElement.style.color = selectElementColorMenu.value.trim();
+    selectedElementColorMenu.onchange = function(){
+        selectedElement.style.color = selectedElementColorMenu.value.trim();
         
     };
-    selectElementBackgroundColorMenu.onchange = function(){
-        selectElement.style.backgroundColor = selectElementBackgroundColorMenu.value.trim();
+    selectedElementBackgroundColorMenu.onchange = function(){
+        selectedElement.style.backgroundColor = selectedElementBackgroundColorMenu.value.trim();
 
     };
-    selectElementBackgroundImageMenu.onchange = function(){
+    selectedElementBackgroundImageMenu.onchange = function(){
         const reader = new FileReader();
         reader.readAsDataURL(this.files[0]);
         reader.onload = function(){            
         if (notSelectDiv.includes('img')) {
-                selectElement.src = reader.result;
+                selectedElement.src = reader.result;
 
             } else {
-                selectElement.style.backgroundImage = `url(${reader.result})`;
+                selectedElement.style.backgroundImage = `url(${reader.result})`;
             }
         }
     };
@@ -339,7 +339,7 @@ var imageName = "Хоосон";
     buttonDelete.textContent = "Зураг устгах";
     descriptionIn.style.marginRight = "25px"
     buttonDelete.onclick = function(){
-        selectElement.style.backgroundImage = 'none';;
+        selectedElement.style.backgroundImage = 'none';;
     }
     function beOrNotTobe(name) {
         if (name == "Хоосон") {
@@ -354,4 +354,4 @@ var imageName = "Хоосон";
     
     imageDescription.appendChild(descriptionIn);
     imageDescription.appendChild(buttonDelete);
-    export default selectElement;
+    

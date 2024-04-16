@@ -5,10 +5,11 @@
 //         x = e.clientX;
 //         y = e.clientY;
 //         console.log(x);
-//         selectElement.style.left = x + "px";
-//         selectElement.style.top = y + "px";
+//         selectedElementToChange.style.left = x + "px";
+//         selectedElementToChange.style.top = y + "px";
 //     }
 // });
+
 
 // let promise = new Promise(function(resolve, reject){
 //     resolve("bolchihloo");
@@ -21,20 +22,13 @@
 
 
 const whitePageWay = window.parent.document.getElementById('render');
-
-
 whitePageWay.contentWindow.addEventListener('click', (event) => {
-    var selectElement = event.target;
-    
-    if (selectElement.className.includes('selectable')) {   
+    var selectedElementToChange = event.target; 
+    if (selectedElementToChange.className.includes('selectable') && selectedElementToChange !== " "){   
         const insideWhitePage = whitePageWay.contentWindow.document.getElementById("whitePage");
-        function changeSizeAndPosition(){
-            
             // cursoriin helberjilt bairshilaas hamarch uurchlugduh
-            insideWhitePage.onmousemove = function(event) {
-                
-                
-                var coordinate = selectElement.getBoundingClientRect();
+            insideWhitePage.addEventListener('mousemove', (event) => {
+                var coordinate = selectedElementToChange.getBoundingClientRect();
                 var x = event.clientX;
                 var y = event.clientY;
                 var selectedElementHeight = coordinate.height;
@@ -42,225 +36,283 @@ whitePageWay.contentWindow.addEventListener('click', (event) => {
                 var xleftcorner = coordinate.x;
                 var yleftcorner = coordinate.y;
                 
-                if (x > xleftcorner - 10 && x < xleftcorner + 13 && yleftcorner - 13 < y && y < yleftcorner + 13){
+
+                
+                //Zuun deed untsuguus tataj urgun bolon unduriig nemj hasah 
+                if (x > xleftcorner - 20 && x < xleftcorner + 2 && yleftcorner - 13 < y && y < yleftcorner + 2){
                     insideWhitePage.style.cursor = 'nwse-resize';
+                    selectedElementToChange.style.cursor = 'nwse-resize';
+
+                    
                     insideWhitePage.onmousedown = function() {
                         insideWhitePage.onmousemove = function(e) {
+                console.log("za odoo bolno")
+
                             x = e.clientX;
                             y = e.clientY;
-                            selectElement.style.width = x - xleftcorner + 'px';
-                            selectElement.style.height = y - yleftcorner + 'px';
+                            selectedElementToChange.style.top = y + 'px';
+                            selectedElementToChange.style.left = x + 'px';
+
+
+                            selectedElementToChange.style.width = xleftcorner-x+selectedElementWidth + 'px';
+                            selectedElementToChange.style.height = yleftcorner-y+selectedElementWidth + 'px';
                         }
                     }
                     
                     insideWhitePage.onmouseup = function () {
-                        selectElement.onmousedown = function(){
+                        insideWhitePage.onmousedown = function(){
                         
                         }
                         insideWhitePage.onmousemove = function(){
                         }
-                        changeSizeAndPosition()
+                    
+                         
+                        
                     }
                     
                     
                 }
-                else if (x > xleftcorner + selectedElementWidth - 10 && x < xleftcorner + selectedElementWidth + 10 && yleftcorner + selectedElementHeight - 10 < y && y < yleftcorner + selectedElementHeight + 10) {
+                // Elementiin baruun dood hesgees chirch undur bolon urgunii hemjeeg ihesgeh
+                else if (x > xleftcorner + selectedElementWidth - 2 && x < xleftcorner + selectedElementWidth + 10 && yleftcorner + selectedElementHeight - 2 < y && y < yleftcorner + selectedElementHeight + 10) {
                 insideWhitePage.style.cursor = 'nwse-resize';
-                selectElement.style.cursor = 'nwse-resize';
+                selectedElementToChange.style.cursor = 'nwse-resize';
                 insideWhitePage.onmousedown = function() {
                     insideWhitePage.onmousemove = function(e) {
                         x = e.clientX;
                         y = e.clientY;
-                        selectElement.style.height = y - yleftcorner + 'px';
-                        selectElement.style.width = x - xleftcorner + 'px';
+                        selectedElementToChange.style.height = y - yleftcorner + 'px';
+                        selectedElementToChange.style.width = x - xleftcorner + 'px';
                     }
                 }
-                
                 insideWhitePage.onmouseup = function () {
-                    selectElement.onmousedown = function(){
-                        
+                    
+                    insideWhitePage.onmousedown = function(){
                     }
                     insideWhitePage.onmousemove = function(){
                     }
-                    changeSizeAndPosition()
+
+                    
+
                 }
                 
             }
-            else if (x > xleftcorner + selectedElementWidth - 13 && x < xleftcorner + selectedElementWidth + 13 && yleftcorner - 13 < y && y < yleftcorner + 13) {
-                selectElement.style.cursor = 'sw-resize';
+            //Baruun deed untsuguus sungaj undur urguniig uurchluh bolomjtoi 
+            else if (x > xleftcorner + selectedElementWidth - 2 && x < xleftcorner + selectedElementWidth + 13 && yleftcorner - 13 < y && y < yleftcorner + 2) {
+                selectedElementToChange.style.cursor = 'sw-resize';
+                insideWhitePage.style.cursor = 'sw-resize';
                 insideWhitePage.onmousedown = function() {
                     insideWhitePage.onmousemove = function(e) {
+                console.log("tatah")
+
                         x = e.clientX;
                         y = e.clientY;
-                        selectElement.style.height = y - yleftcorner + 'px';
-                        selectElement.style.width = x - xleftcorner + 'px';
+                        selectedElementToChange.style.height = y - yleftcorner + 'px';
+                        selectedElementToChange.style.width = x - xleftcorner + 'px';
                     }
                 }
                 
                 insideWhitePage.onmouseup = function () {
-                    selectElement.onmousedown = function(){
-                        
-                    }
-                    insideWhitePage.onmousemove = function(){
-                        
-                    }
-                    changeSizeAndPosition()
-                }
-            }
-            else if (x > xleftcorner - 13 && x < xleftcorner + 13 && yleftcorner + selectedElementHeight - 13 < y && y < yleftcorner + selectedElementHeight + 13) {
-                selectElement.style.cursor = 'sw-resize';
-                insideWhitePage.onmousedown = function() {
-                    insideWhitePage.onmousemove = function(e) {
-                        x = e.clientX;
-                        y = e.clientY;
-                        selectElement.style.height = selectedElementHeight + yleftcorner - y + 'px';
-                        selectElement.style.width = selectedElementWidth + xleftcorner - x + 'px';
-                    }
-                }
-                
-                insideWhitePage.onmouseup = function () {
-                    selectElement.onmousedown = function(){
+                    insideWhitePage.onmousedown = function(){
                         
                     }
                     insideWhitePage.onmousemove = function(){
                         
                     }
+                    
                 }
-                changeSizeAndPosition();
             }
-            else if (x > xleftcorner + 8 && x < xleftcorner + selectedElementWidth - 8 && yleftcorner - 8 < y && y < yleftcorner + 8) {
-                selectElement.style.cursor = 'ns-resize';
+            // zuun dood bulangaas tataj sungan urgun bolon unduriig uurchluh bolomjtoi boloh
+            else if (x > xleftcorner - 13 && x < xleftcorner + 2 && yleftcorner + selectedElementHeight - 2 < y && y < yleftcorner + selectedElementHeight + 13) {
+                selectedElementToChange.style.cursor = 'sw-resize';
+                insideWhitePage.style.cursor = 'sw-resize';
+
                 insideWhitePage.onmousedown = function() {
                     insideWhitePage.onmousemove = function(e) {
+                console.log("Zuun dood bulangar tatah")
+
                         x = e.clientX;
                         y = e.clientY;
-                        selectElement.style.height = selectedElementHeight + y - yleftcorner + 'px';
+                        selectedElementToChange.style.height = selectedElementHeight + yleftcorner - y + 'px';
+                        selectedElementToChange.style.width = selectedElementWidth + xleftcorner - x + 'px';
                     }
                 }
                 
                 insideWhitePage.onmouseup = function () {
-                    selectElement.onmousedown = function(){
+                    insideWhitePage.onmousedown = function(){
+                        
+                    }
+                    insideWhitePage.onmousemove = function(){
+                        
+                    }
+                }
+
+                ;
+            }
+            //Deed talaas tataj unduriig uurchluh bolomjtoi bolgoson
+            else if (x > xleftcorner + 8 && x < xleftcorner + selectedElementWidth - 8 && yleftcorner - 8 < y && y < yleftcorner + 4) {
+                selectedElementToChange.style.cursor = 'ns-resize';
+                insideWhitePage.style.cursor = 'ns-resize';
+
+                insideWhitePage.onmousedown = function() {
+                    insideWhitePage.onmousemove = function(e) {
+                console.log("deedeer sungah")
+
+                        x = e.clientX;
+                        y = e.clientY;
+                        selectedElementToChange.style.height = selectedElementHeight + y - yleftcorner + 'px';
+                    }
+                }
+                
+                insideWhitePage.onmouseup = function () {
+                    insideWhitePage.onmousedown = function(){
                         
                     }
                     insideWhitePage.onmousemove = function(){
                         
 
                     }
-                changeSizeAndPosition()
 
                 }
             }
-            else if (x > xleftcorner + 8 && x < xleftcorner + selectedElementWidth - 8 && yleftcorner + selectedElementHeight - 8 < y && y < yleftcorner + selectedElementHeight + 8) {
-                selectElement.style.cursor = 'ns-resize';
+            //Dood talaas tataj sungan unduriig uurchilj boloh bolomjtoi bolson
+            else if (x > xleftcorner + 8 && x < xleftcorner + selectedElementWidth - 4 && yleftcorner + selectedElementHeight - 4 < y && y < yleftcorner + selectedElementHeight + 8) {
+                selectedElementToChange.style.cursor = 'ns-resize';
+                insideWhitePage.style.cursor = 'ns-resize';
                 insideWhitePage.onmousedown = function() {
                     insideWhitePage.onmousemove = function(e) {
+                console.log("dooshoo sungah")
+
                         x = e.clientX;
                         y = e.clientY;
-                        selectElement.style.height = y - yleftcorner + 'px';
+                        selectedElementToChange.style.height = y - yleftcorner + 'px';
                     }
                 }
                 
                 insideWhitePage.onmouseup = function () {
-                    selectElement.onmousedown = function(){
+                    insideWhitePage.onmousedown = function(){
                         
                     }
                     insideWhitePage.onmousemove = function(){
                         
                     }
-                changeSizeAndPosition()
+
+
+                
 
                 }
                 
             }
-            else if (x < xleftcorner + 8 && x > xleftcorner - 8 && yleftcorner + 8 < y && y < yleftcorner + selectedElementHeight - 8) {
-                selectElement.style.cursor = 'ew-resize';
+            //Zuun talaas sunguj elementiin urguniig uurchluh bolomjtoi bolgoson
+            else if (x < xleftcorner + 4 && x > xleftcorner - 8 && yleftcorner + 8 < y && y < yleftcorner + selectedElementHeight - 8) {
+                selectedElementToChange.style.cursor = 'ew-resize';
+                insideWhitePage.style.cursor = 'ew-resize';
+
                 insideWhitePage.onmousedown = function() {
                     insideWhitePage.onmousemove = function(e) {
+                console.log("Zuuneer sungah")
+
                         x = e.clientX;
                         y = e.clientY;
-                        selectElement.style.width = selectedElementWidth - x + xleftcorner + 'px';
+                        selectedElementToChange.style.width = selectedElementWidth - x + xleftcorner + 'px';
                         
                     }
                 }
                 
                 insideWhitePage.onmouseup = function () {
-                    selectElement.onmousedown = function(){
+                    insideWhitePage.onmousedown = function(){
                         
                     }
                     insideWhitePage.onmousemove = function(){
                         
                         
                     }
-                changeSizeAndPosition()
+
+
+                
 
                 }
                 
-                
             }
-            else if (x < xleftcorner + selectedElementWidth + 8 && x > xleftcorner + selectedElementWidth - 8 && yleftcorner + 8 < y && y < yleftcorner + selectedElementHeight - 8) {
-                selectElement.style.cursor = 'ew-resize';
+            //Baruun talaas sungaj elementiiin urguniig uurchluh bolomjtoi bolgoh
+            else if (x < xleftcorner + selectedElementWidth + 8 && x > xleftcorner + selectedElementWidth - 4  && yleftcorner + 8 < y && y < yleftcorner + selectedElementHeight - 8) {
+                selectedElementToChange.style.cursor = 'ew-resize';
+                insideWhitePage.style.cursor = 'ew-resize';
+
                 insideWhitePage.onmousedown = function() {
+                console.log("baruunaar sungah")
+
                     insideWhitePage.onmousemove = function(e) {
                         x = e.clientX;
                         y = e.clientY;
-                        selectElement.style.width = x - xleftcorner + 'px';
+                        selectedElementToChange.style.width = x - xleftcorner + 'px';
                     }
                 }
                 
                 insideWhitePage.onmouseup = function () {
-                    selectElement.onmousedown = function(){
+                    insideWhitePage.onmousedown = function(){
                         
                     }
                     insideWhitePage.onmousemove = function(){
                         
                     }
-                changeSizeAndPosition()
+
+
+                
 
                 }   
-                
-                
+            //Hureenii dortor bolon gaduurah cursoriin helberiig zaahaas gadna elementiin bairshiliig uurchluh bolomjtoi bolgoh
             }else{
                 insideWhitePage.style.cursor = 'default';
-                selectElement.style.cursor = 'all-scroll';
-                selectElement.style.position = 'absolute';
-                selectElement.onmousedown = function () {
-                    selectElement.onmousemove = function(e) {
+                selectedElementToChange.style.cursor = 'all-scroll';
+                selectedElementToChange.style.position = 'absolute';
+                selectedElementToChange.onmousedown = function () {
+                    insideWhitePage.onmousedown = function(){
+                        
+                    }
+                    insideWhitePage.onmousemove = function(){
+                        
+                    }
+                    selectedElementToChange.onmousemove = function(e){
                         x = e.clientX;
                         y = e.clientY;
-                        selectElement.style.left = x - selectedElementWidth/2 + "px";
-                        selectElement.style.top = y - selectedElementHeight/2 + "px";
+                        selectedElementToChange.style.left = x - selectedElementWidth/2 + "px";
+                        selectedElementToChange.style.top = y - selectedElementHeight/2 + "px";
                     }
                 }
                 
-                selectElement.onmouseup = function () {
-                    selectElement.onmousedown = function(){
+                selectedElementToChange.onmouseup = function () {
+                    selectedElementToChange.onmousedown = function(){
+                    }
+                    selectedElementToChange.onmousemove = function(){
                         
                     }
-                    selectElement.onmousemove = function(){
-                        
-                    }
-                    changeSizeAndPosition()
+                    
                 }
                 
             }
             
-        }
-        }
-        changeSizeAndPosition()
-    }  
+        })
+        
+        
+    }else{
+        selectedElementToChange = null;
+   
+
+    }
+
 });
 
-// if (selectElement.classList.contains('selectable')) {
-    //     selectElement.style.outline = "5px solid #87CEFA"
-    // notSelectDiv = selectElement.tagName.toLowerCase().substring(0, 3);
+// if (selectedElementToChange.classList.contains('selectable')) {
+    //     selectedElementToChange.style.outline = "5px solid #87CEFA"
+    // notSelectDiv = selectedElementToChange.tagName.toLowerCase().substring(0, 3);
     // if (notSelectDiv.includes('div')) {
-        //     selectElement.style.width="100%"
+        //     selectedElementToChange.style.width="100%"
         // } else {
             //     //Zuuh uyed duudah function
             //     let chooseElement = null;
             //     console.log(chooseElement)
-            //         selectElement.style.position = "absolute";
-            //         chooseElement = selectElement;
+            //         selectedElementToChange.style.position = "absolute";
+            //         chooseElement = selectedElementToChange;
             //         document.onmousemove = (e) => {
                 //              x = e.clientX;
                 //              y = e.clientY;
