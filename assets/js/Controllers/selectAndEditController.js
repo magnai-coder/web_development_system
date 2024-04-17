@@ -50,7 +50,7 @@ var imageName = "Хоосон";
                 element.style.outline = "";
             });
             // document.getElementById("myH1").setAttribute("class", "democlass"); 
-
+            
             selectedElement.style.outline = "5px solid #87CEFA"
             notSelectDiv = selectedElement.tagName.toLowerCase().substring(0, 3);
             //     if (notSelectDiv.includes('div')) {
@@ -146,6 +146,10 @@ var imageName = "Хоосон";
                 }
             }
 
+        }else{
+            
+                selectedElement.style.borderStyle = "";
+                selectedElement.style.outline = "";
         }
     };
  

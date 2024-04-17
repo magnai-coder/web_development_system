@@ -24,7 +24,7 @@
 const whitePageWay = window.parent.document.getElementById('render');
 whitePageWay.contentWindow.addEventListener('click', (event) => {
     var selectedElementToChange = event.target; 
-    if (selectedElementToChange.className.includes('selectable') && selectedElementToChange !== " "){   
+        if (selectedElementToChange.className.includes('selectable') && selectedElementToChange !== " "){   
         const insideWhitePage = whitePageWay.contentWindow.document.getElementById("whitePage");
             // cursoriin helberjilt bairshilaas hamarch uurchlugduh
             insideWhitePage.addEventListener('mousemove', (event) => {
@@ -32,7 +32,7 @@ whitePageWay.contentWindow.addEventListener('click', (event) => {
                 var x = event.clientX;
                 var y = event.clientY;
                 var selectedElementHeight = coordinate.height;
-                var selectedElementWidth = coordinate.width;
+                var selectedElementWidth = coordinate.width;    
                 var xleftcorner = coordinate.x;
                 var yleftcorner = coordinate.y;
                 
@@ -59,6 +59,8 @@ whitePageWay.contentWindow.addEventListener('click', (event) => {
                     }
                     
                     insideWhitePage.onmouseup = function () {
+                    selectedElementToChange.style.outline = "5px solid #87CEFA"
+
                         insideWhitePage.onmousedown = function(){
                         
                         }
@@ -84,6 +86,7 @@ whitePageWay.contentWindow.addEventListener('click', (event) => {
                     }
                 }
                 insideWhitePage.onmouseup = function () {
+                    selectedElementToChange.style.outline = "5px solid #87CEFA"
                     
                     insideWhitePage.onmousedown = function(){
                     }
@@ -115,6 +118,8 @@ whitePageWay.contentWindow.addEventListener('click', (event) => {
                 }
                 
                 insideWhitePage.onmouseup = function () {
+                    selectedElementToChange.style.outline = "5px solid #87CEFA"
+
                     insideWhitePage.onmousedown = function(){
                         
                     }
@@ -144,6 +149,8 @@ whitePageWay.contentWindow.addEventListener('click', (event) => {
                 }
                 
                 insideWhitePage.onmouseup = function () {
+                    selectedElementToChange.style.outline = "5px solid #87CEFA"
+
                     insideWhitePage.onmousedown = function(){
                         
                     }
@@ -170,6 +177,8 @@ whitePageWay.contentWindow.addEventListener('click', (event) => {
                 }
                 
                 insideWhitePage.onmouseup = function () {
+                    selectedElementToChange.style.outline = "5px solid #87CEFA"
+
                     insideWhitePage.onmousedown = function(){
                         
                     }
@@ -227,6 +236,8 @@ whitePageWay.contentWindow.addEventListener('click', (event) => {
                 }
                 
                 insideWhitePage.onmouseup = function () {
+                    selectedElementToChange.style.outline = "5px solid #87CEFA"
+
                     insideWhitePage.onmousedown = function(){
                         
                     }
@@ -257,6 +268,7 @@ whitePageWay.contentWindow.addEventListener('click', (event) => {
                 }
                 
                 insideWhitePage.onmouseup = function () {
+                    selectedElementToChange.style.outline = "5px solid #87CEFA"
                     insideWhitePage.onmousedown = function(){
                         
                     }
@@ -274,17 +286,19 @@ whitePageWay.contentWindow.addEventListener('click', (event) => {
                 selectedElementToChange.style.cursor = 'all-scroll';
                 selectedElementToChange.style.position = 'absolute';
                 selectedElementToChange.onmousedown = function () {
+                    var changingX = x - xleftcorner; 
+                    var changingY = y - yleftcorner;
                     insideWhitePage.onmousedown = function(){
-                        
+                     
                     }
                     insideWhitePage.onmousemove = function(){
-                        
+                       
                     }
-                    selectedElementToChange.onmousemove = function(e){
+                    insideWhitePage.onmousemove = function(e){
                         x = e.clientX;
                         y = e.clientY;
-                        selectedElementToChange.style.left = x-(xleftcorner + selectedElementWidth - x) + "px";
-                        selectedElementToChange.style.top = y-(yleftcorner + selectedElementHeight - y) +"px";
+                        selectedElementToChange.style.left = x - changingX + "px";
+                        selectedElementToChange.style.top = y - changingY + "px";
                     }
                 }
                 
@@ -292,6 +306,12 @@ whitePageWay.contentWindow.addEventListener('click', (event) => {
                     selectedElementToChange.onmousedown = function(){
                     }
                     selectedElementToChange.onmousemove = function(){
+                        
+                    }
+                    insideWhitePage.onmousemove = function(){
+                        
+                    }
+                    insideWhitePage.onmouseup = function(){
                         
                     }
                     
