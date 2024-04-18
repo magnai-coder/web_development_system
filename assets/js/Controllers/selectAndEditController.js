@@ -43,10 +43,9 @@ var imageName = "Хоосон";
         selectedPart = event.target;
         if (selectedPart.className.includes('selectable')) {
             selectedElement = selectedPart;
-            const selectableElements = renderFrameContent.contentWindow.document.querySelectorAll('.selectable')
+            const selectableElements = renderFrameContent.contentWindow.document.querySelectorAll('.selectable');
             //Songoson elementees busdiig todruulahiig zogsooh
             selectableElements.forEach(element => {
-                element.style.borderStyle = "";
                 element.style.outline = "";
             });
             // document.getElementById("myH1").setAttribute("class", "democlass"); 
@@ -148,11 +147,7 @@ var imageName = "Хоосон";
             }
 
         }else{
-            selectedElement.style.borderStyle = "";
             selectedElement.style.outline = "";
-          
-              
-        
         }
     };
  

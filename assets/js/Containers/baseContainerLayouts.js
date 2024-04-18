@@ -20,6 +20,7 @@ class Layouts {
       const divIn = divObjectInner.createDiv();
       divIn.classList.remove("selectable");
       divIn.style.backgroundColor = "transparent";
+      divIn.style.border = "none";
 
       const div = divObject.createDiv();
       const logo = imageObject.createImg();
@@ -48,6 +49,8 @@ class Layouts {
       const divIn = divObjectInner.createDiv();
       divIn.classList.remove("selectable");
       divIn.style.backgroundColor = "transparent";
+      divIn.style.border = "none";
+      
 
       const div = divObject.createDiv();
       const logo = imageObject.createImg();
@@ -88,6 +91,7 @@ class Layouts {
       const divIn = divObjectInner.createDiv();
       divIn.classList.remove("selectable");
       divIn.style.backgroundColor = "transparent";
+      divIn.style.border = "none";
 
       const div = divObject.createDiv();
 

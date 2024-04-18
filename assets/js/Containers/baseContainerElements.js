@@ -13,22 +13,31 @@ class Elements {
    
     if (typeName === "buttonTagPart") {
         const button = new Button('12', 'Malgun', 'grey', 'FirstButton', [30, 100], 5, 3, 10, 'solid').createButton();
+        button.style.position = "absolute";
       return button;
     }
     if (typeName === "aTagPart") {
         const aTag = new A_tag('none', 'black', '#', 'Текст оруулах', '14px', '10px').createA();
+        aTag.style.position = "absolute";
+
         return aTag;
     }
     if (typeName === "divTagPart"){
-        const divTag = new Div("40vh", "20vw", "grey").createDiv();
+        const divTag = new Div("40vh", "20vw", "transparent").createDiv();
+        divTag.style.position = "absolute";
+       
     return divTag;
     }
     if (typeName === "pTagPart"){
-        const pTag = new P_tag("Гарчиг", "32px", "Malgun", "black", "100%", "auto").createP();
+        const pTag = new P_tag("Гарчиг", "32px", "Malgun", "black", "auto", "auto").createP();
+        pTag.style.position = "absolute";
+
         return pTag
     }
     if (typeName === "imageTagPart"){
         const image = new Images([250, 250]).createImg();
+        Images.style.position = "absolute";
+
         return image;
     }
   }

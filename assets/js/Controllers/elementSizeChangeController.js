@@ -178,7 +178,7 @@ whitePageWay.contentWindow.addEventListener('click', (event) => {
                 
                 insideWhitePage.onmouseup = function () {
                     selectedElementToChange.style.outline = "5px solid #87CEFA"
-
+                     console.log("deed talaas tataad duuslaa")
                     insideWhitePage.onmousedown = function(){
                         
                     }
@@ -190,29 +190,28 @@ whitePageWay.contentWindow.addEventListener('click', (event) => {
                 }
             }
             //Dood talaas tataj sungan unduriig uurchilj boloh bolomjtoi bolson
-            else if (x > xleftcorner + 8 && x < xleftcorner + selectedElementWidth - 4 && yleftcorner + selectedElementHeight - 4 < y && y < yleftcorner + selectedElementHeight + 8) {
+            else if (x > xleftcorner + 3 && x < xleftcorner + selectedElementWidth - 5 && yleftcorner + selectedElementHeight - 5 < y && y < yleftcorner + selectedElementHeight + 3) {
                 selectedElementToChange.style.cursor = 'ns-resize';
                 insideWhitePage.style.cursor = 'ns-resize';
                 insideWhitePage.onmousedown = function() {
                     insideWhitePage.onmousemove = function(e) {
-             
 
                         x = e.clientX;
                         y = e.clientY;
                         selectedElementToChange.style.height = y - yleftcorner + 'px';
+
                     }
                 }
-                
+              
                 insideWhitePage.onmouseup = function () {
                     selectedElementToChange.style.outline = "5px solid #87CEFA"
-
                     insideWhitePage.onmousedown = function(){
                         
                     }
                     insideWhitePage.onmousemove = function(){
                         
                     }
-
+                    
 
                 
 
@@ -227,7 +226,7 @@ whitePageWay.contentWindow.addEventListener('click', (event) => {
                 insideWhitePage.onmousedown = function() {
                     insideWhitePage.onmousemove = function(e) {
                 
-
+                        
                         x = e.clientX;
                         y = e.clientY;
                         selectedElementToChange.style.left = x + 'px';
@@ -238,8 +237,7 @@ whitePageWay.contentWindow.addEventListener('click', (event) => {
                 }
                 
                 insideWhitePage.onmouseup = function () {
-                    selectedElementToChange.style.outline = "5px solid #87CEFA"
-
+                    
                     insideWhitePage.onmousedown = function(){
                         
                     }
@@ -247,10 +245,10 @@ whitePageWay.contentWindow.addEventListener('click', (event) => {
                         
                         
                     }
+                    selectedElementToChange.style.outline = "5px solid #87CEFA"
 
 
-                    console.log("ene ajlaad bna2")
-                
+                    
                 }
                 
             }
@@ -281,20 +279,19 @@ whitePageWay.contentWindow.addEventListener('click', (event) => {
                     
 
                 }   
-                console.log("ene ajlaad bna")
             //Hureenii dortor bolon gaduurah cursoriin helberiig zaahaas gadna elementiin bairshiliig uurchluh bolomjtoi bolgoh
             }else{
                 insideWhitePage.style.cursor = 'default';
                 selectedElementToChange.style.cursor = 'all-scroll';
-                selectedElementToChange.style.position = 'absolute';
                 selectedElementToChange.onmousedown = function () {
                     var changingX = x - xleftcorner; 
                     var changingY = y - yleftcorner;
+                   
                     insideWhitePage.onmousedown = function(){
                      
                     }
                     insideWhitePage.onmousemove = function(){
-                       
+                           
                     }
                     insideWhitePage.onmousemove = function(e){
                         x = e.clientX;
@@ -303,7 +300,7 @@ whitePageWay.contentWindow.addEventListener('click', (event) => {
                         selectedElementToChange.style.top = y - changingY + "px";
                     }
                 }
-                
+             
                 selectedElementToChange.onmouseup = function () {
            
                     selectedElementToChange.onmousedown = function(){
@@ -319,43 +316,18 @@ whitePageWay.contentWindow.addEventListener('click', (event) => {
                     }
                     
                 }
+                insideWhitePage.onmousedown = function(){
+                    insideWhitePage.onmouseup = function(){
+
+                    }
+                    selectedElementToChange.style.outline = " ";
+                }
                 
             }
             
         })
         
-    }else{    
-        insideWhitePage.onmouseup = function(){
-                  
-        }
-        selectedElementToChange.style.borderStyle = "";
-        selectedElementToChange.style.outline = "";
-            selectedElementToChange = null;
-        
-        
     }
 
 });
 
-// if (selectedElementToChange.classList.contains('selectable')) {
-    //     selectedElementToChange.style.outline = "5px solid #87CEFA"
-    // notSelectDiv = selectedElementToChange.tagName.toLowerCase().substring(0, 3);
-    // if (notSelectDiv.includes('div')) {
-        //     selectedElementToChange.style.width="100%"
-        // } else {
-            //     //Zuuh uyed duudah function
-            //     let chooseElement = null;
-            //     console.log(chooseElement)
-            //         selectedElementToChange.style.position = "absolute";
-            //         chooseElement = selectedElementToChange;
-            //         document.onmousemove = (e) => {
-                //              x = e.clientX;
-                //              y = e.clientY;
-                    
-//             chooseElement.style.left = x - 50 + "px";
-//             chooseElement.style.top = y - 10 + "px";
-//         }
-//         document.onmouseup = function (e) {
-//             chooseElement = null;
-//         }
-//     }

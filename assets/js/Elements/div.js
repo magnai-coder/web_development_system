@@ -27,7 +27,7 @@ class Div{
         container.style.backgroundRepeat = "no-repeat";
         container.style.objectFit = "cover";
         container.tabIndex = "0";
-
+        container.style.border= "solid 1px";
 
         idSerial++;
         return container;
