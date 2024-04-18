@@ -104,7 +104,7 @@ whitePageWay.contentWindow.addEventListener('click', (event) => {
                 insideWhitePage.style.cursor = 'sw-resize';
                 insideWhitePage.onmousedown = function() {
                     insideWhitePage.onmousemove = function(e) {
-                console.log("tatah")
+             
 
                         x = e.clientX;
                         y = e.clientY;
@@ -195,7 +195,7 @@ whitePageWay.contentWindow.addEventListener('click', (event) => {
                 insideWhitePage.style.cursor = 'ns-resize';
                 insideWhitePage.onmousedown = function() {
                     insideWhitePage.onmousemove = function(e) {
-                console.log("dooshoo sungah")
+             
 
                         x = e.clientX;
                         y = e.clientY;
@@ -204,6 +204,8 @@ whitePageWay.contentWindow.addEventListener('click', (event) => {
                 }
                 
                 insideWhitePage.onmouseup = function () {
+                    selectedElementToChange.style.outline = "5px solid #87CEFA"
+
                     insideWhitePage.onmousedown = function(){
                         
                     }
@@ -224,7 +226,7 @@ whitePageWay.contentWindow.addEventListener('click', (event) => {
 
                 insideWhitePage.onmousedown = function() {
                     insideWhitePage.onmousemove = function(e) {
-                console.log("Zuuneer sungah")
+                
 
                         x = e.clientX;
                         y = e.clientY;
@@ -247,18 +249,17 @@ whitePageWay.contentWindow.addEventListener('click', (event) => {
                     }
 
 
+                    console.log("ene ajlaad bna2")
                 
-
                 }
                 
             }
             //Baruun talaas sungaj elementiiin urguniig uurchluh bolomjtoi bolgoh
-            else if (x < xleftcorner + selectedElementWidth + 8 && x > xleftcorner + selectedElementWidth - 4  && yleftcorner + 8 < y && y < yleftcorner + selectedElementHeight - 8) {
+            else if (x < xleftcorner + selectedElementWidth + 13 && x > xleftcorner + selectedElementWidth - 4  && yleftcorner + 8 < y && y < yleftcorner + selectedElementHeight - 8) {
                 selectedElementToChange.style.cursor = 'ew-resize';
                 insideWhitePage.style.cursor = 'ew-resize';
 
                 insideWhitePage.onmousedown = function() {
-                console.log("baruunaar sungah")
 
                     insideWhitePage.onmousemove = function(e) {
                         x = e.clientX;
@@ -268,18 +269,19 @@ whitePageWay.contentWindow.addEventListener('click', (event) => {
                 }
                 
                 insideWhitePage.onmouseup = function () {
-                    selectedElementToChange.style.outline = "5px solid #87CEFA"
                     insideWhitePage.onmousedown = function(){
                         
                     }
                     insideWhitePage.onmousemove = function(){
                         
                     }
-
-
-                
+                    selectedElementToChange.style.outline = "5px solid #87CEFA"
+                    
+                    
+                    
 
                 }   
+                console.log("ene ajlaad bna")
             //Hureenii dortor bolon gaduurah cursoriin helberiig zaahaas gadna elementiin bairshiliig uurchluh bolomjtoi bolgoh
             }else{
                 insideWhitePage.style.cursor = 'default';
@@ -303,6 +305,7 @@ whitePageWay.contentWindow.addEventListener('click', (event) => {
                 }
                 
                 selectedElementToChange.onmouseup = function () {
+           
                     selectedElementToChange.onmousedown = function(){
                     }
                     selectedElementToChange.onmousemove = function(){
@@ -312,7 +315,7 @@ whitePageWay.contentWindow.addEventListener('click', (event) => {
                         
                     }
                     insideWhitePage.onmouseup = function(){
-                        
+                  
                     }
                     
                 }
@@ -321,11 +324,15 @@ whitePageWay.contentWindow.addEventListener('click', (event) => {
             
         })
         
+    }else{    
+        insideWhitePage.onmouseup = function(){
+                  
+        }
+        selectedElementToChange.style.borderStyle = "";
+        selectedElementToChange.style.outline = "";
+            selectedElementToChange = null;
         
-    }else{
-        selectedElementToChange = null;
-   
-
+        
     }
 
 });
