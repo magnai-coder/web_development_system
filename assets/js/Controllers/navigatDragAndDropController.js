@@ -4,6 +4,7 @@ import { Elements } from "../Containers/baseContainerElements.js";
 
 
 const headerMark = window.parent.document.getElementById('render');
+//asynchron uildliig boluilj daraalaar kodiig ajluulah
 headerMark.onload = function () {
 const frameContent = headerMark.contentWindow.document.getElementById("whitePage");
 
