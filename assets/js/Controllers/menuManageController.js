@@ -25,3 +25,6 @@ document.addEventListener("contextmenu", e =>{
     contextMenu.style.top = `${y}px`
     contextMenu.style.visibility = "visible";
 })
+whitePageContent.onclick = function(){
+    contextMenu.style.visibility = "hidden";
+}

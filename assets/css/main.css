@@ -3,100 +3,335 @@
 
 
 /* Эх хуудсыг хуваасанд хэв загвар өгсөн байдал */
-.navigationMain{display: flex; align-items: center; justify-content: center; border-left: ridge #636C6D 1px; border-right: ridge #636C6D 1px;  width: 70%;} 
-.grid-container{
+.navigationMain {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-left: ridge #636C6D 1px;
+    border-right: ridge #636C6D 1px;
+    width: 70%;
+}
+
+.grid-container {
     display: grid;
     grid-template-columns: 15% 70% 15%;
     grid-template-rows: 95vh;
 }
+
 .layoutColumn {
     overflow: hidden;
     grid-column-start: 1;
     height: 100%;
     background-color: #343c3e;
     height: 100%;
- }
- 
+}
 
- .stylesColumn {
+
+.stylesColumn {
     grid-column-start: 3;
     background-color: #343c3e;
- }
-h2{
+}
+
+h2 {
     color: #ffffff;
     font-size: 16px;
-    font-weight:600;
+    font-weight: 600;
     font-family: 'Spectral';
 }
-body{
+
+body {
     object-fit: cover;
 }
 
 
 
 /* Чиглүүлэх дээд хэсгүүдэд хэв загвар өгсөн байдал */
-.head {display: flex;  justify-content: space-evenly; align-items: center; height:5vh; align-items: center; background-color: #343c3e;}
-.navigation {display: flex; justify-content:space-between; width: 100%;}
-.navButtons {display: flex; gap: 6px; align-items: center; height: 100%;}
-.button1 {font-family: 'Pretendard';  font-size: 14px; width: 77px; height: 30px; background-color: #636C6D; color: #ffffff; border-radius: 7px; margin-right: 20px;border: none;}
-.button2 {font-family: 'Pretendard';  font-size: 14px; width: 120px; height: 30px; background-color: #636C6D; color: #ffffff; border-radius: 7px; margin-right: 120px;}
+.head {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 5vh;
+    align-items: center;
+    background-color: #343c3e;
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.navButtons {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    height: 100%;
+}
+
+.button1 {
+    font-family: 'Pretendard';
+    font-size: 14px;
+    width: 77px;
+    height: 30px;
+    background-color: #636C6D;
+    color: #ffffff;
+    border-radius: 7px;
+    margin-right: 20px;
+    border: none;
+}
+
+.button2 {
+    font-family: 'Pretendard';
+    font-size: 14px;
+    width: 120px;
+    height: 30px;
+    background-color: #636C6D;
+    color: #ffffff;
+    border-radius: 7px;
+    margin-right: 120px;
+}
 
 
 
 /*Үндсэн хуудас үүсгэж буй хэсгийг фремд харуулах хэсгийн хэв загвар*/
-#render{grid-column-start: 2; display: flex; position: relative;  width: 100%; min-height: 100%; border: 0; }
+#render {
+    grid-column-start: 2;
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
 
 
 /* Үндсэн хуудсын хэв загвар тодорхойлсон байдал*/
-#whitePage{display: block; position: absolute; height: 100% ; width: 100%;  background-color: rgb(236, 232, 240);  border: dashed 1px; overflow-x: hidden; overflow-wrap: anywhere;}
+#whitePage {
+    display: block;
+    height: 50vh;
+    width: 100%;
+    background-color: rgb(236, 232, 240);
+    border: dashed 1px;
+    overflow-x: hidden;
+    overflow-wrap: anywhere;
+}
 
 /*Бүрдэл их бие, хөл хэсгүүдийн хэв загвар*/
-#bodySimple{display:block;  margin: 10px; width: fit-content; text-align: center;}
-#footerSimple{display:block;  margin: 10px; width: fit-content; text-align: center;}
-#bodySimple p{font-size: 9px;}
-#footerSimple p{font-size: 9px;}
+#bodySimple {
+    display: block;
+    margin: 10px;
+    width: fit-content;
+    text-align: center;
+}
+
+#footerSimple {
+    display: block;
+    margin: 10px;
+    width: fit-content;
+    text-align: center;
+}
+
+#bodySimple p {
+    font-size: 9px;
+}
+
+#footerSimple p {
+    font-size: 9px;
+}
 
 /*Бүрдэл хэсгүүдийг цэсний хэв маяг дотор харуулах хэв загвар*/
-#navigationLayouts {display: flex;  justify-content: center; align-items: center; }
-#navigationLayouts :nth-child(1){display: block;}
-#headerSimpleLayoutPartParent{display:block;  margin: 10px; width: fit-content; text-align: center;}
-#headerSimpleLayoutPartParent p{font-size: 13px;}
-#header-image1{ display:block; width: 10vh; height: 2vh;background-color: rgb(255, 255, 255); cursor: grab; }
-#headerWithSearch{display:block; margin: 10px; justify-content: center;}
-#headerWithSearch p{font-size: 9px;}
-#headerSimpleLayoutPart{width: 25vh; height: 4vh; background-color: rgb(255, 255, 255); cursor: grab; background-image: url('../imgs/main/header.JPG'); background-size:cover; background-repeat: no-repeat;  }
+#navigationLayouts {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#navigationLayouts :nth-child(1) {
+    display: block;
+}
+
+#headerSimpleLayoutPartParent {
+    display: block;
+    margin: 10px;
+    width: fit-content;
+    text-align: center;
+}
+
+#headerSimpleLayoutPartParent p {
+    font-size: 13px;
+}
+
+#header-image1 {
+    display: block;
+    width: 10vh;
+    height: 2vh;
+    background-color: rgb(255, 255, 255);
+    cursor: grab;
+}
+
+#headerWithSearch {
+    display: block;
+    margin: 10px;
+    justify-content: center;
+}
+
+#headerWithSearch p {
+    font-size: 9px;
+}
+
+#headerSimpleLayoutPart {
+    width: 25vh;
+    height: 4vh;
+    background-color: rgb(255, 255, 255);
+    cursor: grab;
+    background-image: url('../imgs/main/header.JPG');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
 
 /* Бие бүрдэлийн хэв загвар */
-#bodySimpleLayoutPart{width: 25vh; height: 9vh; background-color: rgb(255, 255, 255); cursor: grab; background-image: url('../imgs/main/body.JPG'); background-size:cover; background-repeat: no-repeat;  }
-#bodySimpleLayoutPartParent{display:block;  margin: 10px; width: fit-content; text-align: center;}
-#bodySimpleLayoutPartParent p{font-size: 13px;}
-#bodyLayouts {display: flex;  justify-content: center; align-items: center; }
-#bodyLayouts :nth-child(1){display: block;}
+#bodySimpleLayoutPart {
+    width: 25vh;
+    height: 9vh;
+    background-color: rgb(255, 255, 255);
+    cursor: grab;
+    background-image: url('../imgs/main/body.JPG');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#bodySimpleLayoutPartParent {
+    display: block;
+    margin: 10px;
+    width: fit-content;
+    text-align: center;
+}
+
+#bodySimpleLayoutPartParent p {
+    font-size: 13px;
+}
+
+#bodyLayouts {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#bodyLayouts :nth-child(1) {
+    display: block;
+}
 
 /* Хөл бүрдэлийн хэв загвар */
-#footerSimpleLayoutPart{width: 25vh; height: 4vh; background-color: rgb(255, 255, 255); cursor: grab; background-image: url('../imgs/main/footer.JPG'); background-size:cover; background-repeat: no-repeat;  }
-#footerSimpleLayoutPartParent{display:block;  margin: 10px; width: fit-content; text-align: center;}
-#footerSimpleLayoutPartParent p{font-size: 13px;}
-#footerLayouts {display: flex;  justify-content: center; align-items: center; }
-#footerLayouts :nth-child(1){display: block;}
+#footerSimpleLayoutPart {
+    width: 25vh;
+    height: 4vh;
+    background-color: rgb(255, 255, 255);
+    cursor: grab;
+    background-image: url('../imgs/main/footer.JPG');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#footerSimpleLayoutPartParent {
+    display: block;
+    margin: 10px;
+    width: fit-content;
+    text-align: center;
+}
+
+#footerSimpleLayoutPartParent p {
+    font-size: 13px;
+}
+
+#footerLayouts {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#footerLayouts :nth-child(1) {
+    display: block;
+}
 
 /* Эхний хуудас болох ачааллах хуудасны хэв загвар*/
-#introducePage {display: flex; justify-content: center; align-items: center; width: 100%; height: 100vh; background-color: #6A84E2;}
-#logoPart {display: flex; justify-content: center; align-items: center;  background-color: #6A84E2; text-align: center;}
-#animatedSlogan{display: flex; gap: 15px; justify-content: center;}
-#logoPart img{width: 80%; height: 100%; background-color: #6A84E2;  }
-#animatedSlogan p:nth-child(1) {color: white; font-size: 25px; transform-origin: 50% 50%; animation: jump 0.8s linear alternate infinite; animation-delay: 0s;}
-#animatedSlogan p:nth-child(2) {color: white; font-size: 25px; transform-origin: 50% 50%; animation: jump 0.8s linear alternate infinite; animation-delay: 0.4s;}
-#animatedSlogan p:nth-child(3) {color: white; font-size: 25px; transform-origin: 50% 50%; animation: jump 0.8s linear alternate infinite; animation-delay: 0.8s;}
-#linePart{display: block; justify-content: center; margin-bottom: 100px;}
-@keyframes jump{
-    0%   {transform:  translateY(0px);}
-    100%  {transform:  translateY(18px);}
-  }
+#introducePage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    background-color: #6A84E2;
+}
+
+#logoPart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #6A84E2;
+    text-align: center;
+}
+
+#animatedSlogan {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+#logoPart img {
+    width: 80%;
+    height: 100%;
+    background-color: #6A84E2;
+}
+
+#animatedSlogan p:nth-child(1) {
+    color: white;
+    font-size: 25px;
+    transform-origin: 50% 50%;
+    animation: jump 0.8s linear alternate infinite;
+    animation-delay: 0s;
+}
+
+#animatedSlogan p:nth-child(2) {
+    color: white;
+    font-size: 25px;
+    transform-origin: 50% 50%;
+    animation: jump 0.8s linear alternate infinite;
+    animation-delay: 0.4s;
+}
+
+#animatedSlogan p:nth-child(3) {
+    color: white;
+    font-size: 25px;
+    transform-origin: 50% 50%;
+    animation: jump 0.8s linear alternate infinite;
+    animation-delay: 0.8s;
+}
+
+#linePart {
+    display: block;
+    justify-content: center;
+    margin-bottom: 100px;
+}
+
+@keyframes jump {
+    0% {
+        transform: translateY(0px);
+    }
+
+    100% {
+        transform: translateY(18px);
+    }
+}
 
 /*Цэсний хэсгийн утга оруулах формуудын хэв загвар*/
-.forms{display:inline-block; text-align: center; width: 100%; height: auto; border-bottom: none;}
-.forms select{
+.forms {
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+    height: auto;
+    border-bottom: none;
+}
+
+.forms select {
     align-items: center;
     width: 150px;
     height: 25px;
@@ -105,7 +340,8 @@ body{
     border-radius: 5px;
     font-size: 12px;
 }
-.forms input{
+
+.forms input {
     align-items: center;
     width: 150px;
     height: 25px;
@@ -115,25 +351,50 @@ body{
     font-size: 12px;
     color: #343c3e;
 }
-.forms form{display: flex; align-items: center; width: 300px; justify-content: space-between; margin-left: 5px; padding-right: 40px; }
-label{ border-bottom: none; font-size: 12px;}
 
-.description{margin :10px};
-.description button{color:red; background-color: white; border-radius: 5%; padding:3px; margin-right: 25px};
+.forms form {
+    display: flex;
+    align-items: center;
+    width: 300px;
+    justify-content: space-between;
+    margin-left: 5px;
+    padding-right: 40px;
+}
+
+label {
+    border-bottom: none;
+    font-size: 12px;
+}
+
+.description {
+    margin: 10px
+}
+
+;
+
+.description button {
+    color: red;
+    background-color: white;
+    border-radius: 5%;
+    padding: 3px;
+    margin-right: 25px
+}
+
+;
 
 
 
 /*Баруун болон зүүн цэсний нээгдэх хэсгийн хэв загвар*/
-#accordionLeft li, 
-#accordionRight li{
-    list-style:none;
-    width:100%;
+#accordionLeft li,
+#accordionRight li {
+    list-style: none;
+    width: 100%;
     background-color: #343c3e;
     border-radius: 4px;
 }
 
-#accordionLeft li label,  
-#accordionRight li label{
+#accordionLeft li label,
+#accordionRight li label {
     padding: 10px;
     display: flex;
     align-items: center;
@@ -146,33 +407,34 @@ label{ border-bottom: none; font-size: 12px;}
     border-bottom: 0.5px solid #606465;
 }
 
-#accordionLeft label + input[type="checkbox"] , 
-#accordionRight label + input[type="checkbox"]{
+#accordionLeft label+input[type="checkbox"],
+#accordionRight label+input[type="checkbox"] {
     display: none;
-} 
+}
 
-#accordionLeft .content,  
-#accordionRight .content{
+#accordionLeft .content,
+#accordionRight .content {
     line-height: 26px;
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.5s;
     color: #fff;
 }
-#accordionLeft label+input[type="checkbox"]:checked + .content, 
-#accordionRight label+input[type="checkbox"]:checked + .content{
+
+#accordionLeft label+input[type="checkbox"]:checked+.content,
+#accordionRight label+input[type="checkbox"]:checked+.content {
     max-height: 300px;
     border-bottom: 5px solid #606465;
 }
 
 /* Элемент сонгох үед цэнхэр хүрээ харуулах хэв загвар*/
-.special{
+.special {
     border-style: outset;
     border: 5px solid blue;
 }
 
 /* Элементийн цэснүүдийн хэв загвар */
-.element{
+.element {
     display: flex;
     text-align: center;
     align-items: center;
@@ -180,47 +442,55 @@ label{ border-bottom: none; font-size: 12px;}
     background-color: azure;
     border-radius: 10px;
     color: black;
-    margin:10px;
+    margin: 10px;
     margin-left: 50px;
     margin-right: 50px;
-    border:solid black;
+    border: solid black;
     cursor: grab;
 
 }
+
 /*mouse baruun tovch menu css*/
-.wrapper{
+.wrapper {
     position: absolute;
+    top: 5px;
+    left: 5px;
     visibility: hidden;
     width: 200px;
-    background:#fff;
+    background: #fff;
     border-radius: 7px;
     box-shadow: 0 12px 35px rgba(0, 0, 0, 1);
 }
-.content .item{
+
+.content .item {
     display: flex;
     align-items: center;
     padding: 0 5px 0 10px;
     list-style: none;
     font-size: 16px;
     height: 40px;
-    cursor: pointer ;
+    cursor: pointer;
     margin-bottom: 2px;
 }
-.content .item span{
+
+.content .item span {
     font-size: 16px;
     margin-left: 10px;
-} 
-.content .item:hover{
+}
+
+.content .item:hover {
     background: #f2f2f2f2;
 }
-.content .adding{
+
+.content .adding {
     display: flex;
     margin-top: -5px;
     padding: 5px 12px;
     border-top: 1px solid #ccc;
     justify-content: space-between;
 }
-.adding .adding-menu{
+
+.adding .adding-menu {
     position: absolute;
     background: #fff;
     width: 180px;
@@ -229,15 +499,36 @@ label{ border-bottom: none; font-size: 12px;}
     border-radius: 5px;
     pointer-events: none;
     opacity: 0;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.08);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.08);
     transition: 0.2s ease;
 }
-.adding:hover .adding-menu{
+
+.adding:hover .adding-menu {
     opacity: 1;
     pointer-events: auto;
 }
-
-
-
-
-
+/*code zasvarlah hesgiin css bichigdej bna*/
+.main{
+    display:block;
+    background-color: black;
+    height: 100vh;
+    width: 100% ;
+}
+.codePage{
+    display: block;
+    height: 50vh;
+    width: 100%;
+    background-color: red;
+    border: dashed 1px;
+    overflow-x: hidden;
+    overflow-wrap: anywhere;
+}
+.codePage .shifterPart{
+    background-color:#636C6D;
+    height: 40px;
+    width: 100%;
+}
+.shifterPart .widows{
+    height: 100%;
+    width: 100%;
+}

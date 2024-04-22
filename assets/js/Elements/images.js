@@ -10,6 +10,7 @@ class Images{
         img.style.height = this.size[0] + 'px';
         img.style.width = this.size[1] + 'px';
         img.style.borderRadius = this.radius;
+        img.style.border = "solid";
         img.classList.add('selectable');
         img.style.backgroundRepeat = "no-repeat";
         img.style.objectFit = "cover";

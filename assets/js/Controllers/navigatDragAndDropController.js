@@ -34,6 +34,7 @@ function handleDragAndDrop(chosenElement) {
                 hoverElement.style.borderTop = "5px solid red"  
             }else{     
                 hoverElement.style.borderTop = "";
+                hoverElement = event.target;
 
             }
             x = event.pageX;
@@ -44,12 +45,11 @@ function handleDragAndDrop(chosenElement) {
             //drop hiih uyed haan unaj baigaagaas hamaarch (if nuhtsold shalguuraas hamaarch) yamar componentiin umnu bairluulahiig shiidne
             if(constuctedPart.style.width.includes("100%") && frameContent.children[0] != null && hoverElement.className !="whitePage"){
                 frameContent.insertBefore(constuctedPart, hoverElement);
-                
+                hoverElement.style.borderTop = "";
             }else{
                 constuctedPart.style.top = y + 'px';
                 constuctedPart.style.left = x + 'px';
                 frameInsideMainPage.contentWindow.document.getElementById(hoverElement.id).appendChild(constuctedPart);
-                
                 frameContent.removeEventListener("dragover", dragOver);
                 frameContent.removeEventListener("drop", drop);
             }
