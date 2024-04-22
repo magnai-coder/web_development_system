@@ -19,7 +19,7 @@ class Div{
         // loadDocGet();
        
         let container = document.createElement('div');
-        container.setAttribute('id', `div ${idSerial}`);
+        container.setAttribute('id', `div_${idSerial}`);
         container.style.width = this.width;
         container.style.height = this.height;
         container.style.backgroundColor = this.backgroundColor;

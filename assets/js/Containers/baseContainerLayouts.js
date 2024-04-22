@@ -38,13 +38,13 @@ class Layouts {
       return div;
     }
     if (typeName === "bodySimpleLayoutPart") {
-      const pTags = Array.from({ length: 1 }, () => new P_tag("Энд тайлбар мэдээлэл оруулна уу", "16px", "Malgun", "white", "100%", "40px").createP());
-      const pTags2 = new P_tag("Гарчиг", "32px", "Malgun", "white", "100%", "auto").createP();
+      const pTags = Array.from({ length: 1 }, () => new P_tag("Энд тайлбар мэдээлэл оруулна уу", "16px", "Malgun", "white", "auto", "40px").createP());
+      const pTags2 = new P_tag("Гарчиг", "32px", "Malgun", "white", "auto", "auto").createP();
       const imageObject = new Images([250, 250]);
 
       const divObjectInner = new Div("35%", "auto", "black");
       const divObject = new Div("100%", "50%", "black");
-      const buttonIns = new Button('12', 'Malgun', 'grey', 'FirstButton', [30, 100], 5, 3, 10, 'solid');
+      const buttonIns = new Button('12', 'Malgun', 'grey', 'Товч', [30, 100], 5, 3, 0, 'solid');
       const button = buttonIns.createButton();
       const divIn = divObjectInner.createDiv();
       divIn.classList.remove("selectable");

@@ -12,7 +12,7 @@ class Elements {
   createElement(typeName) {
    
     if (typeName === "buttonTagPart") {
-        const button = new Button('12', 'Malgun', 'grey', 'FirstButton', [30, 100], 5, 3, 10, 'solid').createButton();
+        const button = new Button('12', 'Malgun', 'grey', 'Товч', [30, 100], 5, 3, 0, 'solid').createButton();
         button.style.position = "absolute";
       return button;
     }
@@ -24,19 +24,18 @@ class Elements {
     }
     if (typeName === "divTagPart"){
         const divTag = new Div("40vh", "20vw", "transparent").createDiv();
-        divTag.style.position = "absolute";
-       
+        divTag.style.position = "absolute";  
     return divTag;
     }
     if (typeName === "pTagPart"){
         const pTag = new P_tag("Гарчиг", "32px", "Malgun", "black", "auto", "auto").createP();
         pTag.style.position = "absolute";
 
-        return pTag
+        return pTag;
     }
     if (typeName === "imageTagPart"){
         const image = new Images([250, 250]).createImg();
-        Images.style.position = "absolute";
+        image.style.position = "absolute";
 
         return image;
     }
