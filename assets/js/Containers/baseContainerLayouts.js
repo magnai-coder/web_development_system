@@ -12,7 +12,7 @@ class Layouts {
   createLayout(typeName) {
     if (typeName === "headerSimpleLayoutPart") {
       const aTags = Array.from({ length: 5 }, () => new A_tag('none', 'black', '#', 'Текст оруулах', '14px', '10px').createA());
-      const imageObject = new Images([70, 80]);
+      const imageObject = new Images([10, 10]);
 
       const divObjectInner = new Div("50%", "30%", "white");
       const divObject = new Div("100%", "15%", "white");
@@ -40,7 +40,7 @@ class Layouts {
     if (typeName === "bodySimpleLayoutPart") {
       const pTags = Array.from({ length: 1 }, () => new P_tag("Энд тайлбар мэдээлэл оруулна уу", "16px", "Malgun", "black", "auto", "40px").createP());
       const pTags2 = new P_tag("Гарчиг", "32px", "Malgun", "black", "auto", "auto").createP();
-      const imageObject = new Images([250, 250]);
+      const imageObject = new Images([30, 30]);
 
       const divObjectInner = new Div("35%", "auto", "white");
       const divObject = new Div("100%", "50%", "white");
@@ -75,7 +75,7 @@ class Layouts {
       const aTags = Array.from({ length: 4 }, () => new A_tag('none', 'black', '#', 'Текст оруулах', '14px', '10px').createA());
       
       const mapingImage = hrefLogo.map(url => {
-        const images = new Images([30, 30], '50%').createImg();
+        const images = new Images([4, 3], '50%').createImg();
         images.src = url;
         return images;
       });

@@ -34,7 +34,7 @@ class Elements {
         return pTag;
     }
     if (typeName === "imageTagPart"){
-        const image = new Images([250, 250]).createImg();
+        const image = new Images([10, 10]).createImg();
         image.style.position = "absolute";
 
         return image;

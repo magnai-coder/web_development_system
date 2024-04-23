@@ -107,7 +107,7 @@ body {
 /* Үндсэн хуудсын хэв загвар тодорхойлсон байдал*/
 #whitePage {
     display: block;
-    height: 50vh;
+    height: 95vh;
     width: 100%;
     background-color: rgb(236, 232, 240);
     border: dashed 1px;
@@ -515,20 +515,32 @@ label {
     width: 100% ;
 }
 .codePage{
-    display: block;
+    display: none;
     height: 50vh;
     width: 100%;
-    background-color: red;
+    background-color: black;
     border: dashed 1px;
     overflow-x: hidden;
     overflow-wrap: anywhere;
 }
-.codePage .shifterPart{
+.shifterPart{
+    display: flex;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
     background-color:#636C6D;
-    height: 40px;
+    height: 35px;
     width: 100%;
 }
 .shifterPart .widows{
     height: 100%;
+    width: 100%;
+}
+.shifterPart p{
+    font-size: 18px;
+    font-weight: 600;
+}
+.codingSection{
+    display: flex;
     width: 100%;
 }

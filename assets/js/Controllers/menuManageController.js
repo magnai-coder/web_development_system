@@ -1,6 +1,7 @@
 const contextMenu = document.querySelector(".wrapper");
 const addingMenu = contextMenu.querySelector(".adding-menu");
 const whitePageContent = document.getElementById("whitePage")
+
 document.addEventListener("contextmenu", e =>{
     //menunii default utguudiig horiglon
     e.preventDefault();
@@ -8,7 +9,7 @@ document.addEventListener("contextmenu", e =>{
     //objectiin undur bolon urgunii hemjeeg avsan
     let x = e.clientX, y = e.clientY,
     winWidth = whitePageContent.getBoundingClientRect().width,
-    winHeight = whitePageContent.getBoundingClientRect().width,
+    winHeight = whitePageContent.getBoundingClientRect().height,
     mouseMenuWidth = contextMenu.offsetWidth;
     mouseMenuHeight = contextMenu.offsetHeight;
     //hervee x bolon y hemjee menu bolon zainaa ih 
@@ -24,6 +25,7 @@ document.addEventListener("contextmenu", e =>{
     contextMenu.style.left = `${x}px`
     contextMenu.style.top = `${y}px`
     contextMenu.style.visibility = "visible";
+    
 })
 whitePageContent.onclick = function(){
     contextMenu.style.visibility = "hidden";
