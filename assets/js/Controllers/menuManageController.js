@@ -2,7 +2,7 @@ const contextMenu = document.querySelector(".wrapper");
 const addingMenu = contextMenu.querySelector(".adding-menu");
 const whitePageContent = document.getElementById("whitePage")
 
-document.addEventListener("contextmenu", e =>{
+whitePageContent.addEventListener("contextmenu", e =>{
     //menunii default utguudiig horiglon
     e.preventDefault();
     //windowiin undur bolon orgonii utguudiig avlgaa

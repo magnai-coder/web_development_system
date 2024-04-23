@@ -23,7 +23,6 @@
     grid-column-start: 1;
     height: 100%;
     background-color: #343c3e;
-    height: 100%;
 }
 
 
@@ -39,9 +38,6 @@ h2 {
     font-family: 'Spectral';
 }
 
-body {
-    object-fit: cover;
-}
 
 
 
@@ -107,7 +103,7 @@ body {
 /* Үндсэн хуудсын хэв загвар тодорхойлсон байдал*/
 #whitePage {
     display: block;
-    height: 95vh;
+    height: 94vh;
     width: 100%;
     background-color: rgb(236, 232, 240);
     border: dashed 1px;
@@ -507,40 +503,70 @@ label {
     opacity: 1;
     pointer-events: auto;
 }
+
 /*code zasvarlah hesgiin css bichigdej bna*/
-.main{
-    display:block;
-    background-color: black;
-    height: 100vh;
-    width: 100% ;
-}
-.codePage{
-    display: none;
-    height: 50vh;
-    width: 100%;
-    background-color: black;
-    border: dashed 1px;
+
+.codeSection{
+    display: flex;
+    height: 40px;
+    width: 99.5vw;
+    overflow: hidden;
     overflow-x: hidden;
     overflow-wrap: anywhere;
 }
+
+.codePage{
+    display: block;
+    width: 100vw;
+    height:100vh;
+    overflow: hidden;
+    background-color: #343c3e;
+}
+
 .shifterPart{
     display: flex;
     cursor: pointer;
     justify-content: center;
     align-items: center;
     background-color:#636C6D;
+    overflow: hidden;
     height: 35px;
-    width: 100%;
-}
-.shifterPart .widows{
-    height: 100%;
-    width: 100%;
+    width: 100vw;
 }
 .shifterPart p{
     font-size: 18px;
     font-weight: 600;
 }
-.codingSection{
+.codeWindows{
+    display: none;
+    position: relative;
+    overflow: hidden;
+    justify-content: center;
+    text-align:  center;
+    width: 100vw;
+    height: 100vh;
+}
+.windows{
     display: flex;
-    width: 100%;
+    justify-content: space-around;
+    width: 95vw;
+    height: 98vh;
+}
+.htmlPage{
+    display: flex;
+    width: 30vw;
+    height: 90vh;
+    background-color: black;
+}
+.cssPage{
+    display: flex;
+    width: 30vw;
+    height: 90vh;
+    background-color: black;
+}
+.javascriptPage{
+    display: flex;
+    width: 30vw;
+    height: 90vh;
+    background-color: black;
 }
