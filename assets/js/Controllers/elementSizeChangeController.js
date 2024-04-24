@@ -5,9 +5,9 @@ whitePageWay.contentWindow.addEventListener('click', (event) => {
         const insideWhitePage = whitePageWay.contentWindow.document.getElementById("whitePage");
         // cursoriin helberjilt bairshilaas hamarch uurchlugduh
         insideWhitePage.addEventListener('mousemove', (event) => {
-            var elementInformation = selectedElementToChange.getBoundingscreenRect();
-            var x = event.screenX;
-            var y = event.screenY;
+            var elementInformation = selectedElementToChange.getBoundingClientRect();
+            var x = event.clientX;
+            var y = event.clientY;
             var selectedElementHeight = elementInformation.height;
             var selectedElementWidth = elementInformation.width;    
             var xleftcorner = elementInformation.x;
@@ -21,8 +21,8 @@ whitePageWay.contentWindow.addEventListener('click', (event) => {
                 selectedElementToChange.parentElement.onmousedown = function() {
                     selectedElementToChange.parentElement.onmousemove = function(e) {
                         
-                        x = e.screenX;
-                        y = e.screenY;
+                        x = e.clientX;
+                        y = e.clientY;
                         selectedElementToChange.style.top = y + 'px';
                         selectedElementToChange.style.left = x + 'px';
                         
@@ -53,8 +53,8 @@ whitePageWay.contentWindow.addEventListener('click', (event) => {
                     selectedElementToChange.style.cursor = 'nwse-resize';
                     selectedElementToChange.parentElement.onmousedown = function() {
                         selectedElementToChange.parentElement.onmousemove = function(e) {
-                            x = e.screenX;
-                            y = e.screenY;
+                            x = e.clientX;
+                            y = e.clientY;
                             selectedElementToChange.style.height = y - yleftcorner + 'px';
                             selectedElementToChange.style.width = x - xleftcorner + 'px';
                         }
@@ -80,8 +80,8 @@ whitePageWay.contentWindow.addEventListener('click', (event) => {
                     selectedElementToChange.parentElement.onmousemove = function(e) {
                         
 
-                        x = e.screenX;
-                        y = e.screenY;
+                        x = e.clientX;
+                        y = e.clientY;
                         selectedElementToChange.style.top = y + 'px';
                         selectedElementToChange.style.left = xleftcorner + 'px';
                         
@@ -111,8 +111,8 @@ whitePageWay.contentWindow.addEventListener('click', (event) => {
                 selectedElementToChange.parentElement.onmousedown = function() {
                     selectedElementToChange.parentElement.onmousemove = function(e) {
 
-                        x = e.screenX;
-                        y = e.screenY;
+                        x = e.clientX;
+                        y = e.clientY;
                         selectedElementToChange.style.top = yleftcorner+ 'px';
                         selectedElementToChange.style.left = x + 'px';
                         
@@ -142,8 +142,8 @@ whitePageWay.contentWindow.addEventListener('click', (event) => {
                 
                 selectedElementToChange.parentElement.onmousedown = function() {
                     selectedElementToChange.parentElement.onmousemove = function(e) {
-                        x = e.screenX;
-                        y = e.screenY;
+                        x = e.clientX;
+                        y = e.clientY;
                         selectedElementToChange.style.top = y + 'px';
                         
                         selectedElementToChange.style.height = selectedElementHeight + yleftcorner - y + 'px';
@@ -170,8 +170,8 @@ whitePageWay.contentWindow.addEventListener('click', (event) => {
                 selectedElementToChange.parentElement.onmousedown = function() {
                     selectedElementToChange.parentElement.onmousemove = function(e) {
 
-                        x = e.screenX;
-                        y = e.screenY;
+                        x = e.clientX;
+                        y = e.clientY;
                         selectedElementToChange.style.height = y - yleftcorner + 'px';
                         
                     }
@@ -204,8 +204,8 @@ whitePageWay.contentWindow.addEventListener('click', (event) => {
                     selectedElementToChange.parentElement.onmousemove = function(e) {
                 
                         
-                        x = e.screenX;
-                        y = e.screenY;
+                        x = e.clientX;
+                        y = e.clientY;
                         selectedElementToChange.style.left = x + 'px';
                         
                         selectedElementToChange.style.width = selectedElementWidth + xleftcorner - x + 'px';
@@ -241,8 +241,8 @@ whitePageWay.contentWindow.addEventListener('click', (event) => {
                 selectedElementToChange.parentElement.onmousedown = function() {
                     
                     selectedElementToChange.parentElement.onmousemove = function(e) {
-                        x = e.screenX;
-                        y = e.screenY;
+                        x = e.clientX;
+                        y = e.clientY;
                         selectedElementToChange.style.width = x - xleftcorner + 'px';
                     }
                 }
@@ -280,14 +280,14 @@ whitePageWay.contentWindow.addEventListener('click', (event) => {
                         
                     }
                     selectedElementToChange.parentElement.onmousemove = function(e){
-                        x = e.screenX;
-                        y = e.screenY;
+                        x = e.clientX;
+                        y = e.clientY;
                         selectedElementToChange.style.left = x - changingX + "px";
                         selectedElementToChange.style.top = y - changingY + "px";
                     }
                     selectedElementToChange.parentElement.onmousemove = function(e){
-                        x = e.screenX;
-                        y = e.screenY;
+                        x = e.clientX;
+                        y = e.clientY;
                         selectedElementToChange.style.left = x - changingX + "px";
                         selectedElementToChange.style.top = y - changingY + "px";
                     }

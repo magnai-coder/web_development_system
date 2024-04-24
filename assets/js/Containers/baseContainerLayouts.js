@@ -15,7 +15,7 @@ class Layouts {
       const imageObject = new Images([10, 10]);
 
       const divObjectInner = new Div("50%", "30%", "white");
-      const divObject = new Div("100%", "15%", "white");
+      const divObject = new Div("100%", "15vh", "white");
 
       const divIn = divObjectInner.createDiv();
       divIn.classList.remove("selectable");
@@ -43,7 +43,7 @@ class Layouts {
       const imageObject = new Images([30, 30]);
 
       const divObjectInner = new Div("35%", "auto", "white");
-      const divObject = new Div("100%", "50%", "white");
+      const divObject = new Div("100%", "50vh", "white");
       const buttonIns = new Button('12', 'Malgun', 'grey', 'Товч', [30, 100], 5, 3, 0, 'solid');
       const button = buttonIns.createButton();
       const divIn = divObjectInner.createDiv();
@@ -86,7 +86,7 @@ class Layouts {
       })
       
       const divObjectInner = new Div("50%", "30%", "white");
-      const divObject = new Div("100%", "10%", "white");
+      const divObject = new Div("100%", "10vh", "white");
 
       const divIn = divObjectInner.createDiv();
       divIn.classList.remove("selectable");

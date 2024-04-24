@@ -508,6 +508,7 @@ label {
 
 .codeSection{
     display: flex;
+    position: fixed;
     height: 40px;
     width: 99.5vw;
     overflow: hidden;
